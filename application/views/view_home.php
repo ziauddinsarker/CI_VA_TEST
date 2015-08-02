@@ -187,8 +187,76 @@
 			 <?php }?>  
 				
 			
-			  <!-- Events End -->
-			  
+			  <!-- Events Modal -->
+			  <div class="row">
+				<!-- Trigger the modal with a button -->
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+</button>
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						
+					  </div>
+					  <div class="modal-body">
+						<div class="">
+							  <legend>Add New Event</legend>
+							<?php
+							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
+							echo form_open("employee/index", $attributes);?>
+							<fieldset>
+
+								<div class="form-group">
+									<div class="row colbox">
+
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Add New Post</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeename" class="control-label">Post Content</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-lg-8 col-sm-8 text-left">
+										<input id="btn_add" name="btn_add" type="submit" class="btn btn-primary" value="Insert" />
+										<input id="btn_cancel" name="btn_cancel" type="reset" class="btn btn-danger" value="Clear" />
+
+										<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+
+									</div>
+								</div>
+							</fieldset>
+							<?php echo form_close(); ?>
+							<?php echo $this->session->flashdata('msg'); ?>
+							
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+				</div>
+				</div>
+				
 			  </div>
               <div role="tabpanel" class="tab-pane" id="doctor">
 			
@@ -254,7 +322,135 @@
 							</div>								
 						  </div>
 				<?php }?>  
-			  
+				
+			  <div class="row">
+				<!-- Trigger the modal with a button -->
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#healthcare-modal">+</button>
+
+				<!-- Modal -->
+				<div id="healthcare-modal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						
+					  </div>
+					  <div class="modal-body">
+						<div class="">
+							  <legend>Add New Healthcare</legend>
+							<?php
+							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
+							echo form_open("employee/index", $attributes);?>
+							<fieldset>
+
+								<div class="form-group">
+									<div class="row colbox">
+
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Employee No</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="employeeno" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeename" class="control-label">Employee Name</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeename" name="employeename" placeholder="employeename" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="department" class="control-label">Department</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+
+											<?php
+											$attributes = 'class = "form-control" id = "department"';
+											echo form_dropdown('department',$department,set_value('department'),$attributes);?>
+											<span class="text-danger"><?php echo form_error('department'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="designation" class="control-label">Designation</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+
+											<?php
+											$attributes = 'class = "form-control" id = "designation"';
+											echo form_dropdown('designation',$designation, set_value('designation'), $attributes);?>
+
+											<span class="text-danger"><?php echo form_error('designation'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="hireddate" class="control-label">Hired Date</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="hireddate" name="hireddate" placeholder="hireddate" type="text" class="form-control"  value="<?php echo set_value('hireddate'); ?>" />
+											<span class="text-danger"><?php echo form_error('hireddate'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="salary" class="control-label">Salary</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="salary" name="salary" placeholder="salary" type="text" class="form-control" value="<?php echo set_value('salary'); ?>" />
+											<span class="text-danger"><?php echo form_error('salary'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-lg-8 col-sm-8 text-left">
+										<input id="btn_add" name="btn_add" type="submit" class="btn btn-primary" value="Insert" />
+										<input id="btn_cancel" name="btn_cancel" type="reset" class="btn btn-danger" value="Clear" />
+
+										<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+
+									</div>
+								</div>
+							</fieldset>
+							<?php echo form_close(); ?>
+							<?php echo $this->session->flashdata('msg'); ?>
+							
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+				</div>
+
+
+
+
+
+				</div>
 			  </div>
               <div role="tabpanel" class="tab-pane" id="discount">
 					<h3>Find Discount By Category</h3>
@@ -323,8 +519,68 @@
 					</div>
 				 <?php }?>  
 			 
+				<div class="row">
+				<!-- Trigger the modal with a button -->
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#blog-modal">+</button>
+
+				<!-- Blog Modal -->
+				<div id="blog-modal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						
+					  </div>
+					  <div class="modal-body">
+						<div class="">
+							  <legend>Add New Post</legend>
+							<?php
+							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
+							echo form_open("employee/index", $attributes);?>
+							<fieldset>
+
+								<div class="form-group">
+									<div class="row colbox">
+
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Add New Post</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeename" class="control-label">Post Content</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+										</div>
+									</div>
+								</div>
+								
+							</fieldset>
+							<?php echo form_close(); ?>
+							<?php echo $this->session->flashdata('msg'); ?>
+							
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+				</div>
+				</div>
 				
 			  </div>
+			  
 			  <div role="tabpanel" class="tab-pane" id="contact">
 			  <!-- Contact Tab -->
 				<div class="row">
