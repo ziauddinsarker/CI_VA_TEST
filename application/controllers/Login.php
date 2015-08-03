@@ -13,7 +13,11 @@ class Login extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper('security');
 		
-		$this->load->database(); // load database		
+		$this->load->database(); // load database	
+
+		$this->load->model('login_database');
+
+		
 		$this->load->model('blog_model'); // load Blog model
 		$this->load->model('event_model'); // load Event model
 		$this->load->model('company_model'); // load Company model
@@ -22,9 +26,17 @@ class Login extends CI_Controller {
     }
 
 	//Index Function
-	public function index()	
+	public function index()		
 	{
-		// create the data object
+			
+		$this->load->view('template/view_header');
+		$this->load->view('user/view_login');
+		$this->load->view('template/view_footer');
+		
+		
+		
+		
+		/* // create the data object
 		$data = new stdClass();
 
 		// set validation rules
@@ -73,9 +85,73 @@ class Login extends CI_Controller {
 				
 			}
 			
-		}	
+		}	 */
 	}
 	
+	// Check for user login process
+		public function user_login_process() {
+
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+
+			if ($this->form_validation->run() == FALSE) {
+			
+				if(isset($this->session->userdata['logged_in'])){
+					$this->load->view('admin/view_header');
+					$this->load->view('admin/view_admin');
+					$this->load->view('admin/view_footer');
+				}else{
+					$this->load->view('template/view_header');
+					$this->load->view('user/view_login');
+					$this->load->view('template/view_footer');
+				}
+			} else {
+				$data = array(
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password')
+				);
+				$result = $this->login_database->login($data);
+				if ($result == TRUE) {
+
+					$username = $this->input->post('username');
+					$result = $this->login_database->read_user_information($username);
+					if ($result != false) {
+					$session_data = array(
+					'username' => $result[0]->user_name,
+					'email' => $result[0]->user_email,
+					);
+					// Add user data in session
+					$this->session->set_userdata('logged_in', $session_data);
+					$this->load->view('admin/view_header');
+					$this->load->view('admin/view_admin');
+					$this->load->view('admin/view_footer');
+					}
+				} else {
+				$data = array(
+				'error_message' => 'Invalid Username or Password'
+				);
+				$this->load->view('login_form', $data);
+				}
+			}
+		}
+
+	
+	
+	// Logout from admin page
+		public function logout() {
+
+			// Removing session data
+			$sess_array = array(
+			'username' => ''
+			);
+			$this->session->unset_userdata('logged_in', $sess_array);
+			$data['message_display'] = 'Successfully Logout';
+			$this->load->view('template/view_header');
+			$this->load->view('view_home');
+			$this->load->view('template/view_footer');
+		}
+		
+		
 	
 	
 	/**
@@ -84,6 +160,8 @@ class Login extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
+	 
+	 /* 
 	public function logout() {
 		
 		// create the data object
@@ -109,51 +187,7 @@ class Login extends CI_Controller {
 			
 		}
 		
-	}
-	
-	
-	
-	// Check for user login process
-	public function user_login_process() {
-
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('user/view_login');
-		} else {
-			$data = array(
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password')
-			);
-			
-			$result = $this->user_model->login($data);
-			if($result == TRUE){
-				$sess_array = array(
-				'username' => $this->input->post('username')
-				);
-
-			// Add user data in session
-			$this->session->set_userdata('logged_in', $sess_array);
-			$result = $this->user_model->read_user_information($sess_array);
-			if($result != false){
-				$data = array(
-				'name' =>$result[0]->name,
-				'username' =>$result[0]->user_name,
-				'email' =>$result[0]->user_email,
-				'password' =>$result[0]->user_password
-				);
-				redirect('view_home');
-			}
-			}else{
-				$data = array(
-				'error_message' => 'Invalid Username or Password'
-				);
-				$this->load->view('user/view_login', $data);
-			}
-		}
-		
-	}
+	} */
 
 	
 	

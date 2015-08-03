@@ -24,11 +24,12 @@ class Home extends CI_Controller {
 	public function index()	
 	{
 			$this->load->view('template/view_header');		
-			$this->data['blogs'] = $this->blog_model->getPosts(); // calling Post model method getPosts()			
-			$this->data['events'] = $this->event_model->getEvents(); // calling Post model method getPosts()
-			$this->data['company_category'] = $this->company_model->getCompanys(); // calling Post model method getPosts()
-			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file
-		
+			$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()			
+			$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
+			$this->data['company_category'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
+			$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()		
+			
+			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
 			$this->load->view('template/view_footer');		
 	}
 	

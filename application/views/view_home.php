@@ -536,9 +536,7 @@
 					  <div class="modal-body">
 						<div class="">
 							  <legend>Add New Post</legend>
-							<?php
-							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
-							echo form_open("employee/index", $attributes);?>
+							
 							<fieldset>
 
 								<div class="form-group">
@@ -560,13 +558,54 @@
 											<label for="employeename" class="control-label">Post Content</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
+											
+											<textarea id="employeename" name="employeename" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
+											
+											
 											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
 										</div>
 									</div>
 								</div>
 								
+								
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeename" class="control-label">Post Category</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+										<!--
+											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
+											<span class="text-danger"><?php //echo form_error('employeename'); ?></span>
+										-->
+											<?php
+											$attributes = 'class = "form-control" id = "blog_category"';
+											echo form_dropdown('blog_category',$blog_category,set_value('blog_category'),$attributes);?>
+											<span class="text-danger"><?php echo form_error('blog_category'); ?></span>
+											
+											
+											
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											
+										</div>
+										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
+										<input class="btn btn-default" type="submit"  name="post-blog" value="post-blog" />
+											
+										</div>
+									</div>
+								</div>
+								
 							</fieldset>
+
+
+							
+							
 							<?php echo form_close(); ?>
 							<?php echo $this->session->flashdata('msg'); ?>
 							

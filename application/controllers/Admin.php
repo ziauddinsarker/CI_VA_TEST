@@ -5,14 +5,23 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{ 		
-		$this->load->view('admin/view_header');
-       	$this->load->view('admin/view_admin');
-        $this->load->view('admin/view_footer');
-		
+		if(isset($this->session->userdata['logged_in'])){
+					$this->load->view('admin/view_header');
+					$this->load->view('admin/view_admin');
+					$this->load->view('admin/view_footer');
+		}else{
+			$this->load->view('template/view_header');
+			$this->load->view('user/view_login');
+			$this->load->view('template/view_footer');
+		}
+	
 	}
 	
 	public function medicine()
 	{ 		
+	
+		
+	
 		$this->load->view('admin/view_header');
        	$this->load->view('admin/view_medicine');
         $this->load->view('admin/view_footer');

@@ -16,6 +16,44 @@ class blog_model extends CI_Model
 	  return $query->result();
 	}
 	
+	//Add New Entry
+	function add_new_entry($title,$body,$blog_cat)
+    {
+        $data = array(
+            'blog_title' => $title,
+            'blog_description' => $body,
+            'blog_category' => $blog_cat
+        );
+        $this->db->insert('blog',$data);
+    }
+	
+	//Get Blog Category List
+	function get_blog_category(){
+		
+		$this->db->select('blog_category_id');
+        $this->db->select('blog_category_name');
+        $this->db->from('blog_category');
+        $query = $this->db->get();
+        $result = $query->result();
+
+        //array to store department id & department name
+        $blog_cat_id = array('-SELECT-');
+        $blog_cat_name = array('-SELECT-');
+
+        for ($i = 0; $i < count($result); $i++)
+        {
+            array_push($blog_cat_id, $result[$i]->blog_category_id);
+            array_push($blog_cat_name, $result[$i]->blog_category_name);
+        }
+        return $blog_cat_result = array_combine($blog_cat_id, $blog_cat_name);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public function typeahead_blog(){	

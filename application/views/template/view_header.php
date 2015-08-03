@@ -67,8 +67,8 @@
 			<li><a href="https://twitter.com/BhaloAchee" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 			<?php
 				if(!isset($_SESSION['sess_username']) || $role!="user"){
-					echo '<li><a class="cd-signin btn btn-primary" href="' . site_url("home/login").'">Sign in</a></li>';
-			echo '<li><a class="cd-signup btn btn-primary" href="' . site_url("home/register").'">Sign up</a></li>';
+					echo '<li><a class="cd-signin btn btn-primary" href="' . site_url("login").'">Sign in</a></li>';
+			echo '<li><a class="cd-signup btn btn-primary" href="' . site_url("register").'">Sign up</a></li>';
 				}else{
 			?>
 		

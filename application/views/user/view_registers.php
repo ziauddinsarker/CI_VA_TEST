@@ -33,116 +33,101 @@
 					
 					
 					
+					<?php echo form_open("register/index");?>
 					
-						<?= form_open() ?>
+						
 							<div class="form-group">
 							<!-- the name input field -->
 								<label for="login_input_name">Name(Full Name)</label>
-								<input id="login_input_name" class="form-control login_input" type="text" name="fullname" />
+								<input id="login_input_name" class="form-control login_input" type="text" name="doctorfullname" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Title/Degree input field -->
 								<label for="login_input_title">Title/Degree</label>
-								<input id="login_input_title" class="form-control login_input" type="text" name="title" />
+								<input id="login_input_title" class="form-control login_input" type="text" name="doctortitle" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Gender input field -->
 								<label for="login_input_gender">Gender</label>	
-								<input id="login_input_male" type="radio" name="gender" value="male">Male
-								<input id="login_input_female" type="radio" name="gender" value="female">Female
+								<input id="login_input_male" type="radio" name="doctorgender" value="male">Male
+								<input id="login_input_female" type="radio" name="doctorgender" value="female">Female
 							</div>
 							
 							<div class="form-group">
 								<!-- the BDMC input field -->
 								<label for="login_input_bmdc">BMDC No.</label>
-								<input id="login_input_bmdc" class="form-control  login_input" type="text" name="bmdc" />
+								<input id="login_input_bmdc" class="form-control  login_input" type="text" name="doctorbmdc" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the email input field uses a HTML5 email type check -->
 								<label for="login_input_email">Email Address</label>
-								<input id="login_input_email" class="form-control  login_input" type="email" name="user_email" required />
+								<input id="login_input_email" class="form-control  login_input" type="email" name="doctoruser_email" required />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Phone input field -->
 								<label for="login_input_phone">Phone</label>
-								<input id="login_input_phone" class="form-control login_input" type="text" name="phone" />
+								<input id="login_input_phone" class="form-control login_input" type="text" name="doctorphone" />
 							</div>
 							
 							<div class="form-group">
-							
-							
-							
 								<!-- the Specialist input field -->
 								<label for="login_input_specialist">Speciality</label>	
-
-								<?php echo form_dropdown("doctor_category_name", $specility)?>
-							
-								
-								<?php //echo form_dropdown('specialist', $specility);?>
-								
-								<?php /*
-									<?php foreach($specility as $specilist){?>						
-									
-									<select class="form-control" name="specialist" id="sel1">									
-										<option value="<?php echo $specilist->doctor_category_id;?>"><?php echo $specilist->doctor_category_name;?></option>
-									</select>	
-									<?php }?> 
-									*/
-								?>
-									
-									
-									
 								<?php
-								/* echo "<select class=\"form-control\" name=\"specialist\" id=\"sel1\">";	
-									
-									while ($row = mysql_fetch_array($doc_cat)){ 
-									$doctors_category_id = $row["doctors_category_id"];									
-									$doctors_category_name = $row["doctors_category_name"];									
-										echo "<option value=". $doctors_category_id ." >" . $doctors_category_name . "</option>"; 							
-									}	
-									echo "</select>";		 */						
+									$attributes = 'class = "form-control" id = "specility"';
+									echo form_dropdown('specility',$specility,set_value('specility'),$attributes);
 								?>
-								 
+								<span class="text-danger"><?php echo form_error('specility'); ?></span>				
 							</div>	
 															
 							<div class="form-group">
 								<!-- the Address input field -->
 								<label for="login_input_address">Address</label>
-								<input id="login_input_address" class="form-control login_input" type="textarea" name="address" rows="4" cols="20" />
+								<input id="login_input_address" class="form-control login_input" type="textarea" name="doctoraddress" rows="4" cols="20" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Address input field --><!-- the Address input field --><!-- the Address input field --><!-- the Address input field -->
 								<label for="login_input_district">District</label>
-								<input id="login_input_district" class="form-control login_input" type="text" name="district" rows="4" cols="20" />
+								<?php
+									$attributes = 'class = "form-control" id = "district"';
+									echo form_dropdown('district',$district,set_value('district'),$attributes);
+								?>
+								<span class="text-danger"><?php echo form_error('district'); ?></span>
+
+								<!-- <input id="login_input_district" class="form-control login_input" type="text" name="district" rows="4" cols="20" /> -->
 								<!-- the Address input field --><!-- the Address input field --><!-- the Address input field --><!-- the Address input field -->
 							</div>
 							
 							<div class="form-group">
 								<!-- the user name input field uses a HTML5 pattern check -->
 								<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
-								<input id="login_input_username" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
+								<input id="login_input_username" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="doctoruser_name" required />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Password input field -->
 								<label for="login_input_password_new">Password (min. 6 characters)</label>
-								<input id="login_input_password_new" class="form-control login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />
+								<input id="login_input_password_new" class="form-control login_input" type="password" name="doctoruser_password_new" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							
 							<div class="form-group">
 								<label for="login_input_password_repeat">Repeat password</label>
-								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
+								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="doctoruser_password_repeat" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							<!-- the Submit input field -->
-							<input type="submit"  name="registerDoctor" value="Register" />
+							<input type="submit"  name="registerDoctor" value="doctorRegister" />
 
 							</form>
 					</div>
+					
+					
+					
+					
+					
 					
 					<div role="tabpanel" class="tab-pane" id="company">
 						<form method="post" action="signup-process.php">
@@ -172,7 +157,14 @@
 							
 							<div class="form-group">
 								<!-- the Specialist input field -->
-								<label for="login_input_business_type">Business Type</label>								
+								<label for="login_input_business_type">Business Type</label>	
+								
+								<?php
+								$attributes = 'class = "form-control" id = "business_type"';
+								echo form_dropdown('business_type',$business_type,set_value('business_type'),$attributes);?>
+								<span class="text-danger"><?php echo form_error('business_type'); ?></span>
+								
+								
 								
 								<?php
 								/* 

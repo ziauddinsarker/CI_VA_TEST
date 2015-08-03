@@ -4,7 +4,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+if (isset($this->session->userdata['logged_in'])) {
+$username = ($this->session->userdata['logged_in']['username']);
+$email = ($this->session->userdata['logged_in']['email']);
+} else {
+header("location: /");
+}
+?>
 <head>
 
     <meta charset="utf-8">
@@ -65,7 +72,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -76,11 +83,13 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+				
                     <ul class="nav" id="side-menu">
               
                         <li>
                             <a href="<?php echo site_url('admin');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+						
                        
                         <li>
                             <a href="<?php echo site_url('admin/medicine');?>"><i class="fa fa-table fa-fw"></i> Medicine </a>

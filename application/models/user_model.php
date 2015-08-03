@@ -9,6 +9,85 @@ class user_model extends CI_Model
 		$this->load->database();
     }
 	
+	
+	
+	
+	public function index(){
+		
+		
+		
+	}
+	
+	
+	//get department table to populate the department name dropdown
+    function get_doctors_specility()
+    {
+        $this->db->select('doctor_category_id');
+        $this->db->select('doctor_category_name');
+        $this->db->from('doctors_category');
+        $query = $this->db->get();
+        $result = $query->result();
+
+        //array to store department id & department name
+        $doc_cat_id = array('-SELECT-');
+        $doc_cat_name = array('-SELECT-');
+
+        for ($i = 0; $i < count($result); $i++)
+        {
+            array_push($doc_cat_id, $result[$i]->doctor_category_id);
+            array_push($doc_cat_name, $result[$i]->doctor_category_name);
+        }
+        return $doc_specility_result = array_combine($doc_cat_id, $doc_cat_name);
+    }
+	
+	//get department table to populate the department name dropdown
+    function get_district()
+    {
+        $this->db->select('district_id');
+        $this->db->select('district_name');
+        $this->db->from('district');
+        $query = $this->db->get();
+        $result = $query->result();
+
+        //array to store department id & department name
+        $dist_id = array('-SELECT-');
+        $dist_name = array('-SELECT-');
+
+        for ($i = 0; $i < count($result); $i++)
+        {
+            array_push($dist_id, $result[$i]->district_id);
+            array_push($dist_name, $result[$i]->district_name);
+        }
+        return $dist_result = array_combine($dist_id, $dist_name);
+    }
+	
+	//get department table to populate the department name dropdown
+    function get_company_category()
+    {
+        $this->db->select('company_cat_id');
+        $this->db->select('company_cat_name');
+        $this->db->from('company_category');
+        $query = $this->db->get();
+        $result = $query->result();
+
+        //array to store department id & department name
+        $company_cat_id = array('-SELECT-');
+        $company_cat_name = array('-SELECT-');
+
+        for ($i = 0; $i < count($result); $i++)
+        {
+            array_push($company_cat_id, $result[$i]->company_cat_id);
+            array_push($company_cat_name, $result[$i]->company_cat_name);
+        }
+        return $company_cat_result = array_combine($company_cat_id, $company_cat_name);
+    }
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * create_user function.
 	 * 
