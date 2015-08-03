@@ -16,6 +16,19 @@ class blog_model extends CI_Model
 	  return $query->result();
 	}
 	
+	public function getSinglePost($blog_title)
+    {
+      $this->db->select('blog_title, blog_description, author')->where('blog_title', $blog_title);
+      $query = $this->db->get('blog', 1);
+      
+      if ($query->num_rows() == 1)
+      {
+        return $query->row();
+      } else {
+        return false; 
+      }
+    }
+	
 	//Add New Entry
 	function add_new_entry($title,$body,$blog_cat)
     {

@@ -18,19 +18,32 @@ class Home extends CI_Controller {
 		$this->load->model('company_model'); // load Company model
 		$this->load->model('doctor_model'); // load Doctor model
 		$this->load->model('user_model'); // load Users model
+		$this->load->model('home_model'); // load Users model
     }
 
 	//Index Function
 	public function index()	
 	{
 			$this->load->view('template/view_header');		
+			
 			$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()			
 			$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
-			$this->data['company_category'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
-			$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()		
+			$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
+			$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
+			$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()	
+			$this->data['district'] = $this->home_model->getDistrict();			
+			$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
+			$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();			
+			$this->data['all_discount'] = $this->home_model->getAllDiscount();			
+					
 			
 			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
 			$this->load->view('template/view_footer');		
+	}
+	
+	public function company_json_array(){
+		$query = $this->company_model->getCompanyJson();
+		echo json_encode (array($query));		
 	}
 	
 	
@@ -38,8 +51,6 @@ class Home extends CI_Controller {
 		
 		//Create the data objects
 		//$data = new stdClass();
-		
-		
 		
 		//Set Validation Rules
 		// set validation rules

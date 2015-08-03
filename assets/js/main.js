@@ -344,3 +344,59 @@ $(document).ready(function () {
 		});
 	});
 		
+		
+		
+		
+		
+		
+		
+		
+				
+						$(window).scroll(function () {        	
+							if ($(window).scrollTop() == ( $(document).height() - $(window).height())) {
+								loadData();
+							}
+						});
+
+						function loadData() {
+							$.ajax({
+								type: "post",
+								url: "http://127.0.0.1/CI_VA/home/company_json_array",
+								cache: false,				
+								data:'',
+								success: function(response){
+									
+									var obj = JSON.parse(response);
+									try{
+										var str = '';
+										var items=[]; 	
+										$.each(obj[0], function(i,val){														
+												items.push($('<li/>').text(val.company_name));
+										});	
+										
+										$('#finalResult').fadeOut('slow', function() {
+											$(this).append(str).fadeIn('slow').fadeIn(3000);
+											
+											$('#finalResult').css({backgroundColor: ''});
+											$('#finalResult').append.apply($('#finalResult'), items);
+											
+										}).css({backgroundColor: '#D4ED91'});
+																
+									}catch(e) {		
+										alert('Exception while request..');
+									}		
+								},
+								error: function(){						
+									alert('Error while request..');
+								}
+							 });
+							
+
+						};
+
+						
+						
+						
+						
+						
+					

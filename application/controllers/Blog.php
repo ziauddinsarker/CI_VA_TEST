@@ -51,6 +51,23 @@ class Blog extends CI_Controller {
         }
     }
 	
+	//For an individual entry, the url title is used to grab 
+	  //the entry
+	  public function singlePost($url_title = "")
+	  {
+		  if($url_title){
+			$entry_data['post'] = $this->blog->getSinglePost($url_title);
+			
+			if(!$entry_data['post']){
+			  redirect('/', 'location');
+			} else {
+			  $this->load->view('blog/singlePost', $entry_data);
+			}
+		 } else {
+		   redirect('/', 'location');
+		 }
+	  }
+	
 	
 	
 

@@ -113,84 +113,29 @@
 				
 				<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
-			
-			  
-			  
-			  
-			  <!-- Events -->
-			  <?php
-			  /*
-				function seoUrl($string) {
-					//Lower case everything
-					$string = strtolower($string);
-					//Make alphanumeric (removes all other characters)
-					$string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
-					//Clean up multiple dashes or whitespaces
-					$string = preg_replace("/[\s-]+/", " ", $string);
-					//Convert whitespaces and underscore to dash
-					$string = preg_replace("/[\s_]/", "-", $string);
-					return $string;
-				}
-			  ?>
-			  <?php										
-				 	while ($row = mysql_fetch_array($events)){ 
-					$events_name = $row["events_name"];	
-					$events_time = $row["events_time"];	
-					$events_address = $row["events_address"];	
-					$events_phone = $row["events_phone"];	
-					$events_contact_time = $row["events_contact_time"];	
-					$events_email = $row["events_email"];	
-					
-					$eventid = seoUrl($row["events_name"]);
-					
-					echo '<div class="row event-single" id="'. $eventid .'">';
-					echo '<div class="col-md-12">';
-						echo '<h3>' . $events_name . '</h3>';
-						echo '<div class="fb-share-button" data-href="http://bhalo-achee.com'. $eventid .'" data-layout="button_count"></div>';
-					echo '</div>';
-					echo '<div class="col-md-4">';					
-						echo '<h5><b>Events Time:</b> ' . $events_time . '</h5>';								
-						echo '<h5><b>Phone:</b> ' .  $events_phone . '</h5>';
-						echo '<h5><b>Email:</b> ' .  $events_email . '</h5>';					
-					echo '</div>';
-					echo '<div class="col-md-8">';			
-						echo '<h5><b>Contact Time:</b> ' .  $events_contact_time . '</h5>';
-						echo '<h5><b>Address:</b> ' .  $events_address  . '</h5>';
-						
-					 echo '</div>';	
-							
-				  echo '</div>';
-					
-					 
-					
-					}	
-*/					
-	?>			 
-			 
-			<!-- All Events -->
-			<?php foreach($events as $event){?>
-				<div class="row event-single" id="'. $eventid .'">
-					<div class="col-md-12">
-						<h3><?php echo $event->events_name;?></h3>
-						<div class="fb-share-button" data-href="<?php echo site_url();?>"/"<?php echo $event->events_id;?>" data-layout="button_count"></div>
-					</div>
-					<div class="col-md-4">				
-						<h5><b>Events Time:</b> <?php echo $event->events_time;?></h5>							
-						<h5><b>Phone: </b><?php echo $event->events_phone;?></h5>
-						<h5><b>Email: </b><?php echo $event->events_email;?></h5>					
-					</div>
-					<div class="col-md-8">			
-						<h5><b>Contact Time: </b> <?php echo $event->events_contact_time;?></h5>
-						<h5><b>Address: </b><?php echo $event->events_address;?></h5>
-					</div>							
-				  </div>
-			 <?php }?>  
-				
+				<!-- All Events -->
+				<?php foreach($events as $event){?>
+					<div class="row event-single" id="'. $eventid .'">
+						<div class="col-md-12">
+							<h3><?php echo $event->events_name;?></h3>
+							<div class="fb-share-button" data-href="<?php echo site_url();?>"/"<?php echo $event->events_id;?>" data-layout="button_count"></div>
+						</div>
+						<div class="col-md-4">				
+							<h5><b>Events Time:</b> <?php echo $event->events_time;?></h5>							
+							<h5><b>Phone: </b><?php echo $event->events_phone;?></h5>
+							<h5><b>Email: </b><?php echo $event->events_email;?></h5>					
+						</div>
+						<div class="col-md-8">			
+							<h5><b>Contact Time: </b> <?php echo $event->events_contact_time;?></h5>
+							<h5><b>Address: </b><?php echo $event->events_address;?></h5>
+						</div>							
+					  </div>
+				 <?php }?>  				
 			
 			  <!-- Events Modal -->
 			  <div class="row">
 				<!-- Trigger the modal with a button -->
-				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+</button>
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">+</button>
 
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
@@ -264,15 +209,13 @@
 					<div class="col-md-12">
 					<h2>Find Doctors by District
 						<div class="btn-group" data-toggle="buttons" id="division"> 
-								<?php							
-									/* while ($row = mysql_fetch_array($districts)){ 
-									$district_name = $row["district_name"];										
-									echo "<label class=\"btn btn-primary\">";
-									echo "<input type=\"radio\" name=\"district\" class=\"track-order-change \" id=". strtolower($district_name) ." value=".$row['district_name']." onchange='showDistrict(this.value)'>";
-									echo  $district_name;
-									echo "</label>";
-									}		 */							
-								?>
+								<?php foreach($district as $dist){?>									
+									<label class="btn btn-primary">
+									<input type="radio" name="district" class="track-order-change" id="<?php echo $dist->district_name;?>" value="<?php echo $dist->district_name;?>">
+									 <?php echo $dist->district_name;?>
+									</label>			    
+									
+								 <?php }?>  
 			
 						</div>
 					
@@ -281,29 +224,18 @@
 			  <!-- Doctors -->
 			  <h3>Doctor By Category</h3>
 			  
-			  <?php foreach($events as $event){?>
-			  <?php										
-					/* while ($row = mysql_fetch_array($doc_category)){ 
-					$doc_category_id = $row["doctors_category_id"];	
-					$doc_category_name = $row["doctors_category_name"];	
-					$doc_count = $row["doctors_count"];	
+				<?php foreach($doctors_category as $category){?>	
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-4">						
+							<p><a href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
+						</div>
+					</div>								
+				  </div>
+
 					
-					echo '<div class="row">';
-					echo '<div class="col-md-12">';
-						echo '<div class="col-md-4">';						
-							//echo '<p><a href="' . $doc_category_name . '">' . $doc_category_name . '</a>(' . $doc_count . ')</p>';
-							echo '<a href="doctors.php?doctors_category_id='. $doc_category_id.'">' . $doc_category_name . '</a>(' . $doc_count . ')<br />';
-						echo '</div>';
-					echo '</div>';								
-				  echo '</div>';
-					}			 */						
-				?>
 				 <?php }?> 
-				<div class="row doctor-ajax">
-				
-				</div>
-				
-				
+		
 				
 				</div>
 				
@@ -311,21 +243,19 @@
 			  
 				 <h3>Healthcare Centers</h3>
 				 
-				
-				 <?php foreach($company_category as $company_cat){?>
+				<?php foreach($companys as $company){?>
 					<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-4">						
-								 <p><a href="' . $doc_category_name . ' ">doc_category_name</a>(doc_count)</p>
-									<a href="healthcare.php?company_cat_id=<?php echo $company_cat->company_id;?>"><?php echo $company_cat->company_name;?></a><br />
-								</div>
+						<div class="col-md-12">
+							<div class="col-md-4" id="finalResult">						
+								<p><a href="#"><?php echo $company->company_name;?></a><br />
 							</div>								
-						  </div>
-				<?php }?>  
-				
+						</div>								
+					</div>
+				 <?php }?> 
+				 
 			  <div class="row">
 				<!-- Trigger the modal with a button -->
-				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#healthcare-modal">+</button>
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#healthcare-modal">+</button>
 
 				<!-- Modal -->
 				<div id="healthcare-modal" class="modal fade" role="dialog">
@@ -340,20 +270,18 @@
 					  <div class="modal-body">
 						<div class="">
 							  <legend>Add New Healthcare</legend>
-							<?php
-							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
-							echo form_open("employee/index", $attributes);?>
+							<?php echo form_open("home/company");?>
 							<fieldset>
 
 								<div class="form-group">
 									<div class="row colbox">
 
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Employee No</label>
+											<label for="companyname" class="control-label">Company Name</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="employeeno" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="companyname" name="companyname" placeholder="companyname" type="text" class="form-control"  value="<?php echo set_value('companyname'); ?>" />
+											<span class="text-danger"><?php echo form_error('companyname'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -361,70 +289,40 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeename" class="control-label">Employee Name</label>
+											<label for="companyaddress" class="control-label">Company Address</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeename" name="employeename" placeholder="employeename" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+											<input id="companyaddress" name="companyaddress" placeholder="companyaddress" type="text" class="form-control"  value="<?php echo set_value('companyaddress'); ?>" />
+											<span class="text-danger"><?php echo form_error('companyaddress'); ?></span>
 										</div>
 									</div>
 								</div>
-
+								
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="department" class="control-label">Department</label>
+											<label for="companycontact" class="control-label">Company Contact</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-
-											<?php
-											$attributes = 'class = "form-control" id = "department"';
-											echo form_dropdown('department',$department,set_value('department'),$attributes);?>
-											<span class="text-danger"><?php echo form_error('department'); ?></span>
+											<input id="companycontact" name="companycontact" placeholder="companycontact" type="text" class="form-control"  value="<?php echo set_value('companycontact'); ?>" />
+											<span class="text-danger"><?php echo form_error('companycontact'); ?></span>
 										</div>
 									</div>
 								</div>
-
+								
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="designation" class="control-label">Designation</label>
+											<label for="companybusinesstype" class="control-label">Company Business Type</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-
-											<?php
-											$attributes = 'class = "form-control" id = "designation"';
-											echo form_dropdown('designation',$designation, set_value('designation'), $attributes);?>
-
-											<span class="text-danger"><?php echo form_error('designation'); ?></span>
+											<input id="companybusinesstype" name="companybusinesstype" placeholder="companybusinesstype" type="text" class="form-control"  value="<?php echo set_value('companybusinesstype'); ?>" />
+											<span class="text-danger"><?php echo form_error('companybusinesstype'); ?></span>
 										</div>
 									</div>
 								</div>
-
-								<div class="form-group">
-									<div class="row colbox">
-										<div class="col-lg-4 col-sm-4">
-											<label for="hireddate" class="control-label">Hired Date</label>
-										</div>
-										<div class="col-lg-8 col-sm-8">
-											<input id="hireddate" name="hireddate" placeholder="hireddate" type="text" class="form-control"  value="<?php echo set_value('hireddate'); ?>" />
-											<span class="text-danger"><?php echo form_error('hireddate'); ?></span>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row colbox">
-										<div class="col-lg-4 col-sm-4">
-											<label for="salary" class="control-label">Salary</label>
-										</div>
-										<div class="col-lg-8 col-sm-8">
-											<input id="salary" name="salary" placeholder="salary" type="text" class="form-control" value="<?php echo set_value('salary'); ?>" />
-											<span class="text-danger"><?php echo form_error('salary'); ?></span>
-										</div>
-									</div>
-								</div>
-
+								
+								
 								<div class="form-group">
 									<div class="col-sm-offset-4 col-lg-8 col-sm-8 text-left">
 										<input id="btn_add" name="btn_add" type="submit" class="btn btn-primary" value="Insert" />
@@ -455,53 +353,34 @@
               <div role="tabpanel" class="tab-pane" id="discount">
 					<h3>Find Discount By Category</h3>
 					<div class="btn-group" data-toggle="buttons" id="division"> 
-					  <?php										
-						/* 	while ($row = mysql_fetch_array($company_category)){ 
-							$company_cat_id = $row["company_cat_id"];	
-							$company_cat_name = $row["company_cat_name"];	
-							
-							echo "<label class=\"btn btn-primary\">";
-							echo "<input type=\"radio\" name=\"district\" class=\"track-order-change \" id=". strtolower($company_cat_name) ." value=".$row['company_cat_name']." onchange='showDistrict(this.value)'>";
-							echo  $company_cat_name;
-							echo "</label>";
-
-							}		 */							
-						?>
+						<?php foreach($doctors_category_only as $doc_cat){?>		
+							<label class="btn btn-primary">
+								<input type="radio" name="doc_category" class="track-order-change" id="<?php echo $doc_cat->doctor_category_name;?>" value="<?php echo $doc_cat->doctor_category_name;?>">
+								 <?php echo $doc_cat->doctor_category_name;?>
+							</label>			    
+						
+					 <?php }?>  
 					</div>
+					
+					
 		<!--Discount---->
 		
-		
 			<h2>Latest Discount </h2>
+			<?php foreach($all_discount as $discount){?>	
+				<div class="row event-single" id="<?php echo $discount->discount_id;?>">
+					<div class="col-md-12">
+						<h3><?php echo $discount->discount_name;?></h3>
+						<div class="fb-share-button" data-href="<?php echo site_url();?>'<?php echo $discount->discount_id;?>" data-layout="button_count"></div>
+					</div>
+					<div class="col-md-4">					
+						<h5><b>Discount starts on:</b> <?php echo $discount->discount_time_start;?></h5>
+					</div>
+				</div>
 		
-			  <?php		
-/* 
+			<?php }?>  
 			  
-					while ($row = mysql_fetch_array($discount)){ 
-					$discount_name = $row["discount_name"];				
-					$discount_time = $row["discount_time_start"];				
-								
-					
-					$discountid = seoUrl($row["discount_name"]);
-					
-					echo '<div class="row event-single" id="'. $discountid .'">';
-					echo '<div class="col-md-12">';
-						echo '<h3>' . $discount_name . '</h3>';
-						echo '<div class="fb-share-button" data-href="http://bhalo-achee.com'. $discountid .'" data-layout="button_count"></div>';
-					echo '</div>';
-					echo '<div class="col-md-4">';					
-						echo '<h5><b>Discount starts on:</b> ' . $discount_time . '</h5>';								
-									
-					echo '</div>';
 			
-				  echo '</div>';
-					
-					 
-					
-					}				 */					
-				?>
-				
-			
-			  <!-- Events End -->
+			  <!-- Discount End -->
 			  </div>
               <div role="tabpanel" class="tab-pane" id="top-rating">No Top Rating</div>
 			  
@@ -707,12 +586,12 @@
 				
 				<article>
 					<div class="slider1">
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
 					</div>
 				</article>
 			</section>

@@ -1,12 +1,75 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class login_model extends CI_Model
+class home_model extends CI_Model
 {
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
     }
+	
+	
+	
+	//Get All Districts
+	function getDistrict(){
+	  $this->db->select("district_id,district_name");
+	  $this->db->from('district');
+	  $this->db->order_by('district_name','ASC');
+	  $query = $this->db->get();
+	  return $query->result();
+	}
+	
+	//Get Doctors Category 
+	public function getAllDoctorsCategory(){		
+	  $this->db->select('doctor_category_id,doctor_category_name,COUNT(doctors_category.doctor_category_id) doctors_count');
+	  $this->db->from('doctors_category');
+	  $this->db->join('doctors', 'doctors.doctor_specialist = doctors_category.doctor_category_id');
+	  $this->db->group_by('doctors_category.doctor_category_id'); 
+	  $this->db->order_by('doctor_category_name','ASC');
+	  $query = $this->db->get();
+	  return $query->result();
+	} 
+	
+	//Get Doctors Category without Counting the Doctors
+	public function getDoctorsCategoryOnly(){
+	  $this->db->select("doctor_category_id,doctor_category_name");
+	  $this->db->from('doctors_category');
+	  $this->db->order_by('doctor_category_name','ASC');
+	  $query = $this->db->get();
+	  return $query->result();
+	}
+	
+	//Get Discount 
+	public function getAllDiscount(){		
+	  $this->db->select('discount_id,discount_name,discount_time_start');
+	  $this->db->from('company_discount');
+	  $this->db->join('discount', 'company_discount.company_discount_discount = discount.discount_id');
+	  $this->db->join('company', 'company_discount.company_discount_company = company.company_id');
+	  $this->db->order_by('discount_time_start','ASC');
+	  $query = $this->db->get();
+	  return $query->result();
+	} 
+	
+	public function get_key($key){		
+		$this->db->select('brand_name,brand_strength_name,brand_dosage_form_name');
+		$this->db->from('brand_strength_from_price');
+		$this->db->join('brand', 'brand_strength_from_price.brand_name = brand.brand_id');
+		$this->db->join('brand_strength', 'brand_strength_from_price.brand_strength = brand_strength.brand_strength_id');
+		$this->db->join('brand_dosage_form', 'brand_strength_from_price.brand_dosage_form = brand_dosage_form.brand_dosage_form_id');
+		$this->db->get_where('brand_name', $key);	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
     //get the username & password from tbl_usrs
     function get_user($usr, $pwd)
@@ -38,7 +101,8 @@ class login_model extends CI_Model
 	  $data = $office_array;
 	  return $data;
   }
-	
+  
+
 	
 	
 	
