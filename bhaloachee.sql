@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1_3306
+Source Server         : localhost_3306
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : bhaloachee
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-08-04 04:15:15
+Date: 2015-08-04 18:06:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,18 +23,21 @@ CREATE TABLE `blog` (
   `blog_id` int(11) NOT NULL AUTO_INCREMENT,
   `blog_title` varchar(255) DEFAULT NULL,
   `blog_description` text,
-  `blog_category` varchar(255) DEFAULT NULL,
+  `blog_category` int(11) DEFAULT NULL,
   `blog_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`blog_id`),
   KEY `fk_blog_category` (`blog_category`),
-  CONSTRAINT `fk_blog_category` FOREIGN KEY (`blog_category`) REFERENCES `blog_category` (`blog_category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_blog_category` FOREIGN KEY (`blog_category`) REFERENCES `blog_category` (`blog_category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of blog
 -- ----------------------------
-INSERT INTO `blog` VALUES ('1', 'This is about doctors', 'I have nothing to say about doctors', 'Doctors', '2015-07-05 19:44:28');
-INSERT INTO `blog` VALUES ('2', 'This is only a test blog', 'This is a test blog but I have nothing to say about this blog', 'Doctors', '2015-07-06 19:44:28');
+INSERT INTO `blog` VALUES ('3', 'A look back at Medicare’s 50 years', 'On Friday, KQED’s Forum offered a look at Medicare and Medicaid to mark the programs’ 50-year anniversary. Stanford health policy researcher Laurence Baker, PhD, participated in the discussion, which covered issues such as how the programs drive the way prices for care are negotiated with medical providers, how the large population of Baby Boomers will affect the system, and how reimbursement rates affect the kind of care Medicare and Medicaid patients receive.\r\n\r\nThe panel also discussed the gaps in coverage — services like dental care are not covered by Medicare — and the challenges they create. Medicare coverage has grown from the narrow set of conditions it first covered, and Baker thinks the conditions are right to begin a new national conversation about expanding coverage:\r\n\r\n    One of the things that’s really ripe for discussion is how this country is going to handle the long-term care issues. Medicare’s got to be at the center of that. And it almost feels like the time is coming that we’re going to have to think about that much more seriously.\r\n\r\nAnd when host Mina Kim asked Baker the question that’s on a lot of people’s mind — Is Medicare sustainable for the long term? — Baker noted:\r\n- See more at: http://scopeblog.stanford.edu/#sthash.Q1qsDzzJ.dpuf', '4', '2015-08-04 15:51:57');
+INSERT INTO `blog` VALUES ('4', 'werwer', 'werwerewrewr', '3', '2015-08-04 16:28:16');
+INSERT INTO `blog` VALUES ('5', 'Blog This is', 'this is text', '4', '2015-08-04 16:28:51');
+INSERT INTO `blog` VALUES ('6', 'this is blog', 'Enter dddhere...', '4', '2015-08-04 16:30:22');
+INSERT INTO `blog` VALUES ('7', 'This is new Blog ', 'This is news Enter text here...', '3', '2015-08-04 16:30:42');
 
 -- ----------------------------
 -- Table structure for blog_category
@@ -45,13 +48,14 @@ CREATE TABLE `blog_category` (
   `blog_category_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`blog_category_id`),
   KEY `blog_category_name` (`blog_category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of blog_category
 -- ----------------------------
-INSERT INTO `blog_category` VALUES ('1', 'doctors');
-INSERT INTO `blog_category` VALUES ('2', 'Doctors');
+INSERT INTO `blog_category` VALUES ('5', 'Discount');
+INSERT INTO `blog_category` VALUES ('3', 'Doctors');
+INSERT INTO `blog_category` VALUES ('4', 'Hospital');
 
 -- ----------------------------
 -- Table structure for brand
@@ -453,20 +457,25 @@ CREATE TABLE `doctors` (
   `doctor_address_3` varchar(255) DEFAULT NULL,
   `doctor_address_4` varchar(255) DEFAULT NULL,
   `doctor_district` int(11) DEFAULT NULL,
-  `doctor_user_name` int(11) unsigned NOT NULL,
+  `doctor_user_name` int(11) NOT NULL,
   PRIMARY KEY (`doctor_id`),
   KEY `fk_doctor_specialist` (`doctor_specialist`),
   KEY `fk_doctor_district` (`doctor_district`),
   KEY `fk_doctor_user` (`doctor_user_name`),
+  CONSTRAINT `fk_doc_user_name` FOREIGN KEY (`doctor_user_name`) REFERENCES `user_login` (`id`),
   CONSTRAINT `fk_doctor_district` FOREIGN KEY (`doctor_district`) REFERENCES `district` (`district_id`),
   CONSTRAINT `fk_doctor_specialist` FOREIGN KEY (`doctor_specialist`) REFERENCES `doctors_category` (`doctor_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doctors
 -- ----------------------------
-INSERT INTO `doctors` VALUES ('1', 'Ziauddin Saker', 'MBBS', 'Male', 'ANFJC', 'ziauddin.sarker@gmail.com', '01720223388', '3', '', null, null, null, '2', '1');
-INSERT INTO `doctors` VALUES ('2', 'Arman Saker', 'MBBS, FCPS', 'Male', 'TCVFG', 'arman@gmail.com', '01720223388', '2', '', null, null, null, '9', '2');
+INSERT INTO `doctors` VALUES ('3', 'Ziauddin ', 'MBBS', 'Male', 'FAGED', 'ziauddin.sarker@gmail.com', '01720223388', '2', 'Khilgaon, Dhaka', null, null, null, '3', '3');
+INSERT INTO `doctors` VALUES ('4', 'ziauddin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '4', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '4');
+INSERT INTO `doctors` VALUES ('5', 'ziauddin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '7', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '5');
+INSERT INTO `doctors` VALUES ('6', 'ziauddin sarker', 'MBBS FCPS', 'male', 'AGVVAE', 'ziauddisn@siz.com', '01720223388', '4', 'Djakak', null, null, null, null, '6');
+INSERT INTO `doctors` VALUES ('7', 'ziauddin sarker', 'MBBS FCPS', 'female', 'AGVVAE', 'ziauddin@siz.com', '01720223388', '6', 'Djakak', null, null, null, '15', '7');
+INSERT INTO `doctors` VALUES ('8', 'ziauddin sarker', '', null, '', 'ziauddin@siz.com', '01720223388', '3', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, '7', '8');
 
 -- ----------------------------
 -- Table structure for doctors_category
@@ -569,11 +578,12 @@ CREATE TABLE `shop` (
   PRIMARY KEY (`shop_id`),
   KEY `fk_shop_thana` (`shop_thana`),
   CONSTRAINT `fk_shop_thana` FOREIGN KEY (`shop_thana`) REFERENCES `thana` (`thana_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of shop
 -- ----------------------------
+INSERT INTO `shop` VALUES ('1', 'M/S Zia traders ', 'Khilgaon Dhaka', '1', '01720223388', 'yes', '3');
 
 -- ----------------------------
 -- Table structure for thana
@@ -1128,7 +1138,7 @@ CREATE TABLE `user_login` (
   `user_email` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_login
@@ -1136,3 +1146,8 @@ CREATE TABLE `user_login` (
 INSERT INTO `user_login` VALUES ('1', 'ziauddin', 'ziauddin.sarker@gmail.com', 'ziauddin');
 INSERT INTO `user_login` VALUES ('2', 'leemon', 'leemon@gmail.com', 'leemon');
 INSERT INTO `user_login` VALUES ('3', 'arman', 'arman@gmail.com', 'arman');
+INSERT INTO `user_login` VALUES ('4', 'bdzia', '', 'ziauddin');
+INSERT INTO `user_login` VALUES ('5', 'bdzia', '', 'ziauddin');
+INSERT INTO `user_login` VALUES ('6', 'google', '', 'ziauddin');
+INSERT INTO `user_login` VALUES ('7', 'googlea', '', 'simuragroup');
+INSERT INTO `user_login` VALUES ('8', 'bdzia', '', 'ziauddin');
