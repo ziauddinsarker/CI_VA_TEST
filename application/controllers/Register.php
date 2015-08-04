@@ -50,6 +50,17 @@ class Register extends CI_Controller {
         }
         else
 		{  //pass validation
+			
+			$userpass = array(
+				'user_name' => $this->input->post('doctoruser_name'),
+                'user_password' => $this->input->post('doctoruser_password_new')	
+			);
+			
+			$this->db->insert('user_login', $userpass);
+				
+			$doc_user_name = $this->db->insert_id();
+			
+			
             $data = array(
                 'doctor_name' => $this->input->post('doctorfullname'),
                 'doctor_title' => $this->input->post('doctortitle'),
@@ -57,19 +68,20 @@ class Register extends CI_Controller {
                 'doctor_bmdc_no' => $this->input->post('doctorbmdc'),
                 'doctor_email' => $this->input->post('doctoruser_email'),
                 'doctor_phone' => $this->input->post('doctorphone'),
-                'doctor_specility' => $this->input->post('doctorspecility'),
-                'doctor_address' => $this->input->post('doctoraddress'),
-                'doctor_district' => $this->input->post('doctordistrict'),
-                'doctor_user_name' => $this->input->post('doctoruser_name'),
-                'doctor_user_password_new' => $this->input->post('doctoruser_password_new')
+                'doctor_specialist' => $this->input->post('specility'),
+                'doctor_address_1' => $this->input->post('doctoraddress'),
+                'doctor_district' => $this->input->post('district'),  
+                'doctor_user_name' => $doc_user_name
             );
 
+			
+			
             //insert the form data into database
             $this->db->insert('doctors', $data);
 
             //display success message
             $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Employee details added to Database!!!</div>');
-            redirect('doctor/index');
+            redirect('home/index');
         }
 	
 	}

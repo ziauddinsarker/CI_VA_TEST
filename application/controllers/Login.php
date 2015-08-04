@@ -33,9 +33,6 @@ class Login extends CI_Controller {
 		$this->load->view('user/view_login');
 		$this->load->view('template/view_footer');
 		
-		
-		
-		
 		/* // create the data object
 		$data = new stdClass();
 
@@ -130,7 +127,10 @@ class Login extends CI_Controller {
 				$data = array(
 				'error_message' => 'Invalid Username or Password'
 				);
-				$this->load->view('login_form', $data);
+								
+				$this->load->view('template/view_header', $data);
+				$this->load->view('user/view_login', $data);
+				$this->load->view('template/view_footer', $data);
 				}
 			}
 		}

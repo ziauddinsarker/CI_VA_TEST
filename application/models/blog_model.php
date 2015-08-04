@@ -16,6 +16,17 @@ class blog_model extends CI_Model
 	  return $query->result();
 	}
 	
+	
+	//Get All Posts
+	function getAllPosts(){
+	  $this->db->select('*');
+	  $this->db->from('blog');
+	  $this->db->join('blog_category', 'blog.blog_category = blog_category.blog_category_id');	  
+	  $query = $this->db->get();
+	  return $query->result();
+	}
+	
+	
 	public function getSinglePost($blog_title)
     {
       $this->db->select('blog_title, blog_description, author')->where('blog_title', $blog_title);
@@ -29,6 +40,10 @@ class blog_model extends CI_Model
       }
     }
 	
+	
+	
+	
+	
 	//Add New Entry
 	function add_new_entry($title,$body,$blog_cat)
     {
@@ -39,6 +54,11 @@ class blog_model extends CI_Model
         );
         $this->db->insert('blog',$data);
     }
+	
+	
+	
+	
+	
 	
 	//Get Blog Category List
 	function get_blog_category(){

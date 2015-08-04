@@ -34,8 +34,7 @@
 									 
 								<div class="row">
 								<div class="col-md-8">
-									<?php echo form_open('login/user_login_process'); ?>
-										
+									<?php echo form_open('login/user_login_process'); ?>										
 									
 									<?php if (validation_errors()) : ?>
 									
@@ -64,8 +63,11 @@
 										<div class="form-group">
 											<input type="submit" class="btn btn-default" value="Login">
 										</div>
-										
-									<a href="<?php echo base_url() ?>register">To SignUp Click Here</a>
+									<?php 
+									/*	
+										<a href="<?php echo base_url() ?>register">To SignUp Click Here</a>
+									*/
+									?>
 								<?php echo form_close(); ?>
 									
 									 </div>

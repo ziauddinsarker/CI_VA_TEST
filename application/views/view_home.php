@@ -417,16 +417,16 @@
 							  <legend>Add New Post</legend>
 							
 							<fieldset>
-
+							<?= form_open('home/add_new_entry') ?>
 								<div class="form-group">
 									<div class="row colbox">
 
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Add New Post</label>
+											<label for="blog_title" class="control-label">Add New Post</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="blog_title" name="blog_title" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('blog_title'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -434,14 +434,14 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeename" class="control-label">Post Content</label>
+											<label for="blog_description" class="control-label">Post Content</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
 											
-											<textarea id="employeename" name="employeename" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
+											<textarea id="blog_description" name="blog_description" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
 											
 											
-											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+											<span class="text-danger"><?php echo form_error('blog_description'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -450,20 +450,13 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeename" class="control-label">Post Category</label>
+											<label for="blog_category" class="control-label">Post Category</label>
 										</div>
-										<div class="col-lg-8 col-sm-8">
-										<!--
-											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
-											<span class="text-danger"><?php //echo form_error('employeename'); ?></span>
-										-->
+										<div class="col-lg-8 col-sm-8">									
 											<?php
 											$attributes = 'class = "form-control" id = "blog_category"';
 											echo form_dropdown('blog_category',$blog_category,set_value('blog_category'),$attributes);?>
 											<span class="text-danger"><?php echo form_error('blog_category'); ?></span>
-											
-											
-											
 										</div>
 									</div>
 								</div>
@@ -474,17 +467,13 @@
 											
 										</div>
 										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
-										<input class="btn btn-default" type="submit"  name="post-blog" value="post-blog" />
+										<input class="btn btn-default" type="submit"  name="submit" value="submit" />
 											
 										</div>
 									</div>
 								</div>
 								
 							</fieldset>
-
-
-							
-							
 							<?php echo form_close(); ?>
 							<?php echo $this->session->flashdata('msg'); ?>
 							
@@ -586,8 +575,8 @@
 				
 				<article>
 					<div class="slider1">
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/Square.png"></div>
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>

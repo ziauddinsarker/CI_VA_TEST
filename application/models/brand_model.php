@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class user_model extends CI_Model
+class brand_model extends CI_Model
 {
     function __construct()
     {
@@ -9,20 +9,24 @@ class user_model extends CI_Model
 		$this->load->database();
     }
 	
+	
+	
+	
 	public function index(){
 		
-		
-		
-	}
-	
-	function get_all_users(){		
-	  $this->db->select('user_name,user_email');
-	  $this->db->from('user_login');	  	  
+	  $this->db->select('*');
+	  $this->db->from('brand_strength_from_price');
+	  $this->db->join('brand', 'brand_strength_from_price.brand_name = brand.brand_id');
+	  $this->db->join('brand_generic', 'brand.brand_generic = brand_generic.brand_generic_id');
+	  $this->db->join('brand_dosage_form', 'brand_strength_from_price.brand_dosage_form = brand_dosage_form.brand_dosage_form_id');
+	  $this->db->join('brand_manufacturer', 'brand.brand_manufacturer = brand_manufacturer.manufacturer_id');
+	  $this->db->join('brand_strength', 'brand_strength_from_price.brand_strength = brand_strength.brand_strength_id');
 	  $query = $this->db->get();
-	  return $query->result();	
+	  return $query->result();
+		
+		
 		
 	}
-	
 	
 	
 	//get department table to populate the department name dropdown

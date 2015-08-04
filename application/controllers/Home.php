@@ -20,24 +20,27 @@ class Home extends CI_Controller {
 		$this->load->model('doctor_model'); // load Doctor model
 		$this->load->model('user_model'); // load Users model
 		$this->load->model('home_model'); // load Users model
+		
+		
+		
+		
+		
+		$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()			
+		$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
+		$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
+		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
+		$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()	
+		$this->data['district'] = $this->home_model->getDistrict();			
+		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
+		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();			
+		$this->data['all_discount'] = $this->home_model->getAllDiscount();
     }
 
 	//Index Function
 	public function index()	
 	{
-			$this->load->view('template/view_header');		
-			
-			$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()			
-			$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
-			$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
-			$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
-			$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()	
-			$this->data['district'] = $this->home_model->getDistrict();			
-			$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
-			$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();			
-			$this->data['all_discount'] = $this->home_model->getAllDiscount();			
-					
-			
+			$this->load->view('template/view_header');				
+							
 			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
 			$this->load->view('template/view_footer');		
 	}
@@ -46,6 +49,7 @@ class Home extends CI_Controller {
 		$query = $this->company_model->getCompanyJson();
 		echo json_encode (array($query));		
 	}
+		
 	
 	
 	public function register_user(){
@@ -315,6 +319,33 @@ class Home extends CI_Controller {
 
 	}
 
+	
+	function add_new_entry()
+    {
+        //set validation rules
+        $this->form_validation->set_rules('blog_title', 'Title', 'required');
+        $this->form_validation->set_rules('blog_description', 'Post Body', 'required');
+        $this->form_validation->set_rules('blog_category', 'Category', 'required');
+ 
+        if ($this->form_validation->run() == FALSE)
+        {
+            //if not valid
+            $this->load->view('template/view_header');
+            $this->load->view('view_home',$data);			
+            $this->load->view('template/view_footer');
+        }
+        else
+        {
+            //if valid
+            $title = $this->input->post('blog_title');
+            $body = $this->input->post('blog_description');
+            $blog_cat = $this->input->post('blog_category');
+            $this->blog_model->add_new_entry($title,$body,$blog_cat);
+            $this->session->set_flashdata('message', '1 new entry added!');
+			//if not valid
+            redirect('home');
+        }
+    }
 	
 	
 }

@@ -119,7 +119,7 @@
 								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="doctoruser_password_repeat" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							<!-- the Submit input field -->
-							<input type="submit"  name="registerDoctor" value="doctorRegister" />
+							<input class="btn btn-default" type="submit"  name="registerDoctor" value="Register Doctor" />
 
 							</form>
 					</div>
@@ -196,7 +196,7 @@
 								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							<!-- the Submit input field -->
-							<input type="submit"  name="registerDoctor" value="Register" />
+							<input class="btn btn-default" type="submit"  name="registerCompany" value="Company Register" />
 
 							</form>
 					</div>				  

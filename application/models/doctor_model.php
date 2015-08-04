@@ -24,6 +24,16 @@ class doctor_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+	
+	public function getDoctorsInformation(){
+	  $this->db->select('*');
+	  $this->db->from('doctors');
+	  $this->db->join('doctors_category', 'doctors.doctor_specialist = doctors_category.doctor_category_id');	  
+	  $query = $this->db->get();
+	  return $query->result();
+		
+	}
+	
 
 
 }
