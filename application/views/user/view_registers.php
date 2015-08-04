@@ -130,29 +130,29 @@
 					
 					
 					<div role="tabpanel" class="tab-pane" id="company">
-						<form method="post" action="signup-process.php">
+						<?php echo form_open("register/register-company");?>
 							<div class="form-group">
 							<!-- the name input field -->
 								<label for="login_input_name">Name</label>
-								<input id="login_input_name" class="form-control login_input" type="text" name="fullname" />
+								<input id="login_input_name" class="form-control login_input" type="text" name="companyfullname" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Address input field -->
 								<label for="login_input_address">Address</label>
-								<input id="login_input_address" class="form-control login_input" type="textarea" name="address" rows="4" cols="20" />
+								<input id="login_input_address" class="form-control login_input" type="textarea" name="companyaddress" rows="4" cols="20" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Phone input field -->
 								<label for="login_input_phone">Phone</label>
-								<input id="login_input_phone" class="form-control login_input" type="text" name="phone" />
+								<input id="login_input_phone" class="form-control login_input" type="text" name="companyphone" />
 							</div>
 							
 							<div class="form-group">
 								<!-- the email input field uses a HTML5 email type check -->
 								<label for="login_input_email">Email Address</label>
-								<input id="login_input_email" class="form-control  login_input" type="email" name="user_email" required />
+								<input id="login_input_email" class="form-control  login_input" type="email" name="companyuser_email" required />
 							</div>
 							
 							<div class="form-group">
@@ -163,40 +163,26 @@
 								$attributes = 'class = "form-control" id = "business_type"';
 								echo form_dropdown('business_type',$business_type,set_value('business_type'),$attributes);?>
 								<span class="text-danger"><?php echo form_error('business_type'); ?></span>
-								
-								
-								
-								<?php
-								/* 
-									echo "<select class=\"form-control\" name=\"businesstype\" id=\"sel2\">";	
-									
-									while ($row = mysql_fetch_array($company_cat)){ 
-									$company_category_id = $row["company_cat_id"];									
-									$company_category_name = $row["company_cat_name"];									
-										echo "<option value=". $company_category_id ." >" . $company_category_name . "</option>"; 							
-									}	
-									echo "</select>";	 */							
-								?>
 							</div>	
 							
 							<div class="form-group">
 								<!-- the user name input field uses a HTML5 pattern check -->
 								<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
-								<input id="login_input_username" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
+								<input id="login_input_username" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="companyuser_name" required />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Password input field -->
 								<label for="login_input_password_new">Password (min. 6 characters)</label>
-								<input id="login_input_password_new" class="form-control login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />
+								<input id="login_input_password_new" class="form-control login_input" type="password" name="companyuser_password_new" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							
 							<div class="form-group">
 								<label for="login_input_password_repeat">Repeat password</label>
-								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
+								<input id="login_input_password_repeat" class="form-control login_input" type="password" name="companyuser_password_repeat" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							<!-- the Submit input field -->
-							<input class="btn btn-default" type="submit"  name="registerCompany" value="Company Register" />
+							<input class="btn btn-default" type="submit"  name="registerCompany" value="Register Company" />
 
 							</form>
 					</div>				  

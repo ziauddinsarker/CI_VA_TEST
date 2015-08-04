@@ -247,7 +247,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="col-md-4" id="finalResult">						
-								<p><a href="#"><?php echo $company->company_name;?></a><br />
+								<p><a href="healthcare/index"><?php echo $company->company_name;?></a><br />
 							</div>								
 						</div>								
 					</div>
@@ -343,9 +343,6 @@
 
 				  </div>
 				</div>
-
-
-
 
 
 				</div>
@@ -576,11 +573,11 @@
 				<article>
 					<div class="slider1">
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/Square.png"></div>
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
-					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/beximco.jpg"></div>
 					</div>
 				</article>
 			</section>

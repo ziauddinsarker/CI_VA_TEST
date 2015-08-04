@@ -21,6 +21,11 @@ class Register extends CI_Controller {
 	public function index()	
 	{
 		
+		
+		
+		
+		
+		
 		//fetch data from department and designation tables
         $data['specility'] = $this->user_model->get_doctors_specility();
         $data['district'] = $this->user_model->get_district();
@@ -85,7 +90,6 @@ class Register extends CI_Controller {
         }
 	
 	}
-		
 	
 	
 
