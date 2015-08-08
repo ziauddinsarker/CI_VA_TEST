@@ -3,74 +3,127 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Blog extends CI_Controller {
 
-	public function __construct()
+	function __construct() 
     {
         parent::__construct();
-        $this->load->library('session');  
-		$this->load->helper('url');		
-		$this->load->helper('form');		
-		$this->load->helper('html');		
-		$this->load->library('form_validation');
-		
-		$this->load->database(); // load database		
-		$this->load->model('blog_model'); // load Blog model
+		$this->load->database(); // load database	
+        $this->load->model('blog_model');
     }
-
-	//Index Function
-	public function index()	
-	{
-			$this->load->view('template/view_header');		
-			
-			$this->data['blogs'] = $this->blog_model->getPosts(); // calling Post model method getPosts()		
-			
-			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file
-		
-			$this->load->view('template/view_footer');		
-	}
-	
-	
-	function add_new_entry()
+    function index($start = 0)//index page
     {
-         //set validation rules
-        $this->form_validation->set_rules('entry_name', 'Title', 'required|xss_clean|max_length[200]');
-        $this->form_validation->set_rules('entry_body', 'Body', 'required|xss_clean');
- 
-        if ($this->form_validation->run() == FALSE)
+        $data['posts'] = $this->blog_model->get_posts(5, $start);
+        
+        //pagination
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'blog/index/';//url to set pagination
+        $config['total_rows'] = $this->blog_model->get_post_count();
+        $config['per_page'] = 5; 
+        $this->pagination->initialize($config); 
+        $data['pages'] = $this->pagination->create_links(); //Links of pages
+        
+        $class_name = array(
+            'home_class'=>'current', 
+            'login_class' => '', 
+            'register_class' => '',
+            'upload_class'=>'',
+            'contact_class'=>'');
+        $this->load->view('header',$class_name);
+        $this->load->view('v_home',$data);
+        $this->load->view('footer');
+    }
+    function post($post_id)//single post page
+    {   
+        $this->load->model('model_comment');
+        $data['comments'] = $this->model_comment->get_comment($post_id);    
+        $data['post'] = $this->blog_model->get_post($post_id);
+        
+        $this->load->view('template/view_header');
+        $this->load->view('view_single_post',$data);
+        $this->load->view('template/view_footer');
+    }
+    
+    function new_post()//Creating new post page
+    {
+        if(!$this->check_permissions('author'))//when the user is not an andmin and author
         {
-            //if not valid
-            $this->load->view('blog/add_new_entry');
+            redirect(base_url().'users/login');
         }
-        else
+        if($this->input->post())
         {
-            //if valid
-            $name = $this->input->post('entry_name');
-            $body = $this->input->post('entry_body');
-            $this->blog_model->add_new_entry($name,$body);
-            $this->session->set_flashdata('message', '1 new entry added!');
-            redirect('blog/add_new_entry');
+            $data = array(
+                'post_title' => $this->input->post('post_title'),
+                'post' => $this->input->post('post'),
+                'active' => 1,
+				'post_category' => 1
+            );
+            $this->blog_model->insert_post($data);
+            redirect(base_url());
+        }
+        else{
+           
+            $this->load->view('template/view_header');
+            $this->load->view('view_new_post');
+            $this->load->view('template/view_footer');
         }
     }
-	
-	//For an individual entry, the url title is used to grab 
-	  //the entry
-	  public function singlePost($url_title = "")
-	  {
-		  if($url_title){
-			$entry_data['post'] = $this->blog->getSinglePost($url_title);
-			
-			if(!$entry_data['post']){
-			  redirect('/', 'location');
-			} else {
-			  $this->load->view('blog/singlePost', $entry_data);
-			}
-		 } else {
-		   redirect('/', 'location');
-		 }
-	  }
-	
-	
-	
-
-	
+    function editpost($post_id)//Edit post page
+    {
+        if(!$this->check_permissions('author'))//when the user is not an andmin and author
+        {
+            redirect(base_url().'users/login');
+        }
+        $data['success'] = 0;
+        
+        if($this->input->post())
+        {
+            $data = array(
+                'post_title' => $this->input->post('post_title'),
+                'post' => $this->input->post('post'),
+                'active' => 1
+            );
+            $this->m_db->update_post($post_id, $data);
+            $data['success'] = 1;
+        }
+        $data['post'] = $this->m_db->get_post($post_id);
+        
+        $class_name = array(
+            'home_class'=>'current', 
+            'login_class' =>'', 
+            'register_class' => '',
+            'upload_class'=>'',
+            'contact_class'=>'');
+        $this->load->view('header',$class_name);
+        $this->load->view('v_edit_post',$data);
+        $this->load->view('footer');
+    }
+    function deletepost($post_id)//delete post page
+    {
+        if(!$this->check_permissions('author'))//when the user is not an andmin and author
+        {
+            redirect(base_url().'users/login');
+        }
+        $this->m_db->delete_post($post_id);
+        redirect(base_url().'blog/');
+    }
+    
+    function check_permissions($required)//checking current user's permission
+    {
+        $user_type = $this->session->userdata('user_type');//curren user
+        if($required == 'user')//requirment is user 
+        {
+            if($user_type){return TRUE;}//all user have permission
+        }
+        elseif($required == 'author')//when requirement is author
+        {
+            if($user_type == 'author' || $user_type == 'admin')//author and admin have the permission
+            {
+                return TRUE;
+            }
+        }
+        elseif($required == 'admin')//when required is admin
+        {
+            if($user_type == 'admin'){return TRUE;}//only admin have the permission
+        }
+    }
 	
 }

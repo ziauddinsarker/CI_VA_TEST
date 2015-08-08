@@ -2,131 +2,64 @@
 
 class blog_model extends CI_Model
 {
-    function __construct()
+    function get_posts($number = 10, $start = 0)
     {
-        // Call the Model constructor
-        parent::__construct();
-    }	
-	
-	//Get All Posts
-	function getPosts(){
-	  $this->db->select("blog_id,blog_title,blog_description,blog_date");
-	  $this->db->from('blog');
-	  $query = $this->db->get();
-	  return $query->result();
-	}
-	
-	
-	//Get All Posts
-	function getAllPosts(){
-	  $this->db->select('*');
-	  $this->db->from('blog');
-	  $this->db->join('blog_category', 'blog.blog_category = blog_category.blog_category_id');	  
-	  $query = $this->db->get();
-	  return $query->result();
-	}
-	
-	
-	public function getSinglePost($blog_title)
-    {
-      $this->db->select('blog_title, blog_description, author')->where('blog_title', $blog_title);
-      $query = $this->db->get('blog', 1);
-      
-      if ($query->num_rows() == 1)
-      {
-        return $query->row();
-      } else {
-        return false; 
-      }
-    }
-	
-	
-	
-	
-	
-	//Add New Entry
-	function add_new_entry($title,$body,$blog_cat)
-    {
-        $data = array(
-            'blog_title' => $title,
-            'blog_description' => $body,
-            'blog_category' => $blog_cat
-        );
-        $this->db->insert('blog',$data);
-    }
-	
-	
-	
-	
-	
-	
-	//Get Blog Category List
-	function get_blog_category(){
-		
-		$this->db->select('blog_category_id');
-        $this->db->select('blog_category_name');
-        $this->db->from('blog_category');
+        $this->db->select();
+        $this->db->from('posts');
+        $this->db->where('active',1);
+        $this->db->order_by('date_added','desc');
+        $this->db->limit($number, $start);
         $query = $this->db->get();
-        $result = $query->result();
-
-        //array to store department id & department name
-        $blog_cat_id = array('-SELECT-');
-        $blog_cat_name = array('-SELECT-');
-
-        for ($i = 0; $i < count($result); $i++)
-        {
-            array_push($blog_cat_id, $result[$i]->blog_category_id);
-            array_push($blog_cat_name, $result[$i]->blog_category_name);
-        }
-        return $blog_cat_result = array_combine($blog_cat_id, $blog_cat_name);
-	}
+        return $query->result_array();
+    }   
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	public function typeahead_blog(){	
-		  $name_array = $this->db->query('SELECT DISTINCT blog_title from blog')->result_array();
-
-			 $typeahead_string = '';
-			 foreach ($name_array as $name)
-			 {
-			  $formatted_name    =  '"' . $name['blog_title'] . '", ';
-			  $typeahead_string .= $formatted_name;
-			 }
-
-			 $option_list = "[" . rtrim($typeahead_string, ", ") . "]";
-			 
-			 return $option_list;
-			 
-			 //$data['typeahead'] = $option_list;
-			 
-		
-	}
-	
-	
-	
-	
-
-    //get the username & password from tbl_usrs
-    function get_user($usr, $pwd)
+	function get_all_posts($number = 10, $start = 0)
     {
-        $sql = "select * from tbl_usrs where username = '" . $usr . "' and password = '" . md5($pwd) . "' and status = 'active'";
-        $query = $this->db->query($sql);
-        return $query->num_rows();
+        $this->db->select();
+        $this->db->from('posts');
+        $this->db->where('active',1);
+        $this->db->order_by('date_added','desc');
+        $this->db->limit($number, $start);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function get_post_count()
+    {
+        $this->db->select()->from('posts')->where('active',1);
+        $query = $this->db->get();
+        return $query->num_rows;
     }
 	
-	function get_logged_user($logged_usr){
-    $query=$this->db->query('SELECT * FROM tbl_usrs WHERE username = $logged_usr');
-    //$this->db->select('*');
-    //$query= $this->db->get('customer');
-    return $query->result();
-		
-	}
+    function get_post($post_id)
+    {
+        $this->db->select('*');
+        $this->db->from('posts');
+        $this->db->where(array('active'=>1,'post_id'=>$post_id));
+        $this->db->order_by('date_added','desc');
+        $query = $this->db->get();
+        return $query->first_row('array');
+    }
+	
+	
+    function insert_post($data)
+    {
+        $this->db->insert('posts',$data);
+        return $this->db->insert_id();
+    }
+    
+    function update_post($post_id, $data)
+    {
+        $this->db->where('post_id',$post_id);
+        $this->db->update('posts',$data);
+    }
+    
+    function delete_post($post_id)
+    {
+        $this->db->where('post_id',$post_id);
+        $this->db->delete('posts');
+    }
+	
 }
 
 ?>

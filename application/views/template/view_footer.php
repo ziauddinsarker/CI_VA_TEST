@@ -48,6 +48,30 @@
 		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
 		
-	
+	<script type="text/javascript">// <![CDATA[
+		$(document).ready(function(){       
+			$('#get_doctor_cat').change(function(){
+				$("#classes > option").remove();
+				var grade_id = $('#grades').val();
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>home/getDoctorsFromCategory/",
+					data: {gradeid:grade_id},
+					success: function(classes)
+					{
+						$.each(classes,function(id,name)
+						{
+							var opt = $('<option />');
+							opt.val(id);
+							opt.text(name);
+							$('#classes').append(opt);
+						});
+					}        
+				});
+
+			});
+		});
+		// ]]>
+	</script>
     </body>
 </html>

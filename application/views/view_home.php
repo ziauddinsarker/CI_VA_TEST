@@ -9,13 +9,13 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
 			  <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
-              <li role="presentation" class="active"><a href="#price" aria-controls="home" role="tab" data-toggle="tab">Find Medicine Price</a></li>
-              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Free Social Event</a></li>
-              <li role="presentation"><a href="#top-rating" aria-controls="profile" role="tab" data-toggle="tab">Top Ratings</a></li>			  
-              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Discount Offer</a></li>
+              <li role="presentation" class="active"><a href="#price" aria-controls="home" role="tab" data-toggle="tab">Medicine Price & Shops</a></li>
+              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Upcoming Events</a></li>			  
+              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Review & News</a></li>			  
+              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Find Discounts</a></li>
               <li role="presentation"><a href="#doctor" aria-controls="messages" role="tab" data-toggle="tab">Find Doctors</a></li>
-              <li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Centers</a></li>
-              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Review & News</a></li>
+              <li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Centers</a></li>			  
+              <li role="presentation"><a href="#faqs" aria-controls="profile" role="tab" data-toggle="tab">FAQs</a></li>
               <li role="presentation"><a href="#contact" aria-controls="settings" role="tab" data-toggle="tab">Contact Us</a></li>
             </ul>
 
@@ -66,6 +66,8 @@
 			</div>
 						
 			</div>
+			
+			
                 <div role="tabpanel" class="tab-pane active" id="price">
                     <div class="result-medicine" id="shop-result" >
 						
@@ -109,7 +111,14 @@
 								</div>
 						</article>						
 					</div>
+					
+					
+					
+					
                 </div>
+				
+				
+				
 				
 				<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
@@ -228,7 +237,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-4">						
-							<p><a href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
+							<p><a class="get_doctor_cat" href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
 						</div>
 					</div>								
 				  </div>
@@ -379,23 +388,15 @@
 			
 			  <!-- Discount End -->
 			  </div>
-              <div role="tabpanel" class="tab-pane" id="top-rating">No Top Rating</div>
+              <div role="tabpanel" class="tab-pane" id="faqs">No Top Rating</div>
 			  
               <div role="tabpanel" class="tab-pane" id="blog">
 			  
-			  <!-- All Blog and News -->
-			  <h3>Blog</h3>	
 			  
-				 <?php foreach($blogs as $blog){?>
-					<div class="row">
-						<div class="col-md-12">
-						<h3><a href="blog-single.php?article_id=<?php echo $blog->blog_id;?>"> <?php echo $blog->blog_title;?></a></h3>
-								<p> <?php echo $blog->blog_description;?></p>					    
-						</div>								
-					</div>
-				 <?php }?>  
-			 
-				<div class="row">
+			  <!--Blog Post Modal -->
+			  
+			  <?php if($this->session->userdata('user_id')) { ?>
+			  <div class="row">
 				<!-- Trigger the modal with a button -->
 				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#blog-modal">+</button>
 
@@ -482,6 +483,22 @@
 				  </div>
 				</div>
 				</div>
+			  <?php } ?>
+				
+				
+			  <!-- All Blog and News -->
+			  <h3>Blog</h3>	
+			  
+				 <?php foreach($blogs as $blog){?>
+					<div class="row">
+						<div class="col-md-12">
+						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>						
+								<p> <?php echo $blog->post;?></p>					    
+						</div>								
+					</div>
+				 <?php }?>  
+			 
+				
 				
 			  </div>
 			  
@@ -569,6 +586,39 @@
           </div>
     
 				</article>
+				<article class="row">
+				<div class="col-md-4">
+					<h3>Top Pharmacists</h3>
+					<ul>
+						<li>Pharmacist 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+					
+				<div class="col-md-4">
+					<h3>Top Doctor</h3>
+					<ul>
+						<li>Doctor 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+					
+				<div class="col-md-4">
+					<h3>Top Business</h3>
+					<ul>
+						<li>Business 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+						
+				</article>
+				
 				
 				<article>
 					<div class="slider1">
@@ -580,6 +630,9 @@
 					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/Square.png"></div>
 					</div>
 				</article>
+				
+				
+				
 			</section>
 		</div>
 

@@ -1,49 +1,17 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<div class="container">
-	<div class="row">
-		<?php if (validation_errors()) : ?>
-			<div class="col-md-12">
-				<div class="alert alert-danger" role="alert">
-					<?= validation_errors() ?>
-				</div>
-			</div>
-		<?php endif; ?>
-		<?php if (isset($error)) : ?>
-			<div class="col-md-12">
-				<div class="alert alert-danger" role="alert">
-					<?= $error ?>
-				</div>
-			</div>
-		<?php endif; ?>
-		<div class="col-md-12">
-			<div class="page-header">
-				<h1>Register</h1>
-			</div>
-			<?= form_open() ?>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" id="username" name="username" placeholder="Enter a username">
-					<p class="help-block">At least 4 characters, letters or numbers only</p>
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
-					<p class="help-block">A valid email address</p>
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Enter a password">
-					<p class="help-block">At least 6 characters</p>
-				</div>
-				<div class="form-group">
-					<label for="password_confirm">Confirm password</label>
-					<input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirm your password">
-					<p class="help-block">Must match your password</p>
-				</div>
-				<div class="form-group">
-					<input type="submit" class="btn btn-default" value="Register">
-				</div>
-			</form>
-		</div>
-	</div><!-- .row -->
-</div><!-- .container -->
+<form action="<?=  base_url()?>register/index/" method="post">
+
+<?php if($error){echo '<div style="color:red;">'.$error.'</div>'; }?>
+<div class="form_settings">
+	<p><span>Username</span><input class="" type="text" name="username" value="" /></p>
+	<p><span>E-Mail</span><input class="" type="email" name="email" value="" /></p>
+	<p><span>Password</span><input class="" type="password" name="password" value="" /></p>
+	<p><span>Retype Password</span><input class="" type="password" name="passconf" value="" /></p>
+	<p><span>User Type</span>
+		<select class="form-control" name="user_type">
+		<option value="admin">Admin</option>
+		<option value="author">Author</option>
+		<option value="user" selected>User</option>
+	</select>
+	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="add" value="Register" /></p>
+</div>
+</form>

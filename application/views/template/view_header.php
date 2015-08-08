@@ -65,22 +65,31 @@
 			<ul>
 			<li><a href="https://www.facebook.com/BhaloAchee" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
 			<li><a href="https://twitter.com/BhaloAchee" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
-			<?php
-				if(!isset($_SESSION['sess_username']) || $role!="user"){
-					echo '<li><a class="cd-signin btn btn-primary" href="' . site_url("login").'">Sign in</a></li>';
-			echo '<li><a class="cd-signup btn btn-primary" href="' . site_url("register").'">Sign up</a></li>';
-				}else{
-			?>
-		
 			
-			<?php echo '<li><a href="user/dashboard.php">Hello Ziauddin</a></li>'; } ?>
-				 <!-- 
-				<li><a class="cd-signin" href="#0">Sign in</a></li>
-				<li><a class="cd-signup" href="#0">Sign up</a></li>
-				-->
-				
+			<?php
+				if($this->session->userdata('user_id'))//if user is loged in, display comment box
+                {
+			?>
+                    <!-- <li><a class="cd-signin btn btn-primary" href="<?php  //base_url()?>users/logout">Logout</a></li>-->
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x"></i><span class="caret"></span></a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+						<li class="divider"></li>
+						<li><a href="<?php base_url() ?>users/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+						</li>
+					</ul>
+				  </li>
+               <?php               
+                }else {
+				//if no user is loged in, then show the loged in button
+                echo '<li><a class="cd-signin btn btn-primary" href="' . site_url("login").'">Login</a></li>';
+				echo '<li><a class="cd-signup btn btn-primary" href="' . site_url("register").'">Join (Free)</a></li>';
+				}
+				?>
 			</ul>
-		
+			
 		</nav>
 		
 		</div><!--/.nav-collapse -->

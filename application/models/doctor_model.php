@@ -33,8 +33,28 @@ class doctor_model extends CI_Model
 	  return $query->result();
 		
 	}
-	
 
+	
+	//get_all_doctor_from_category
+	function get_all_doctor_from_category($doc_cat_id){
+		
+		 $this->db->where('doctor_category_id', $doc_cat_id);
+
+		$query = $this->db->get('doctors_category');
+
+		if($query->result()){
+			$result = $query->result();
+
+			foreach($result as $row)
+			{
+				$options[$row->id] = $row->doctors_category_name;
+			}   
+			return $options;
+		} 
+	}
+
+	
+	
 
 }
 

@@ -5,13 +5,7 @@ class Admin extends CI_Controller {
 	
 	public function __construct()
     {
-        parent::__construct();
-        $this->load->library('session');  
-		$this->load->helper('url');		
-		$this->load->helper('form');		
-		$this->load->helper('html');		
-		$this->load->library('form_validation');
-		$this->load->helper('security');
+        parent::__construct();      
 		
 		$this->load->database(); // load database	
 		$this->load->model('brand_model');

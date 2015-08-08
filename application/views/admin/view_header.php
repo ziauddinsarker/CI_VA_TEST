@@ -4,10 +4,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-if (isset($this->session->userdata['logged_in'])) {
-$username = ($this->session->userdata['logged_in']['username']);
-$email = ($this->session->userdata['logged_in']['email']);
+
+
+<?php if($this->session->userdata('user_id')) {
+
 } else {
 	 
 	 redirect('login', 'refresh');
@@ -74,7 +74,7 @@ $email = ($this->session->userdata['logged_in']['email']);
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="users/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

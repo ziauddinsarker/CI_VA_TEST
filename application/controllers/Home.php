@@ -21,29 +21,57 @@ class Home extends CI_Controller {
 		$this->load->model('user_model'); // load Users model
 		$this->load->model('home_model'); // load Users model
 		
+		//Get Blog Data
+		//$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()
+		$this->data['blogs'] = $this->blog_model->get_all_posts();		
 		
-		
-		
-		
-		$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()			
+		//Get Events Data
 		$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
+		
+		//Get Company Data
 		$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
 		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
-		$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()	
-		$this->data['district'] = $this->home_model->getDistrict();			
+		//$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()
+
+		//Get All Districts
+		$this->data['district'] = $this->home_model->getDistrict();
+		
+		//Get Doctors Data
 		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
-		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();			
+		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();	
+		
+		//Get All Discount
 		$this->data['all_discount'] = $this->home_model->getAllDiscount();
     }
 
 	//Index Function
 	public function index()	
 	{
+		
+			
+		
 			$this->load->view('template/view_header');				
 							
 			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
 			$this->load->view('template/view_footer');		
 	}
+	
+	
+	//Get Doctors From Category
+	function getDoctorsFromCategory(){		
+
+		if ($district_from_districts = $this->input->post('district'))
+		{
+			$query = $this->doctor_model->get_all_doctor_from_category($district_from_districts);
+			header('Content-Type: application/json');
+			echo json_encode($query);
+		} else {
+			redirect('home/getDoctorsFromCategory');
+		}
+
+	}
+	
+	
 	
 	public function company_json_array(){
 		$query = $this->company_model->getCompanyJson();
@@ -80,7 +108,7 @@ class Home extends CI_Controller {
 			
 			// validation not ok, send validation errors to the view
 			$this->load->view('template/view_header');			
-			$this->load->view('user/view_registers', $data);
+			$this->load->view('user/view_register', $data);
 			$this->load->view('template/view_footer');
 			
 		} else {			
@@ -112,7 +140,7 @@ class Home extends CI_Controller {
 				
 				// send error to the view
 				$this->load->view('template/view_header');
-				$this->load->view('user/view_registers', $data);
+				$this->load->view('user/view_register', $data);
 				$this->load->view('template/view_footer');
 				
 			}
