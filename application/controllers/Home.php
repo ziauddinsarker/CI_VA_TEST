@@ -19,7 +19,8 @@ class Home extends CI_Controller {
 		$this->load->model('company_model'); // load Company model
 		$this->load->model('doctor_model'); // load Doctor model
 		$this->load->model('user_model'); // load Users model
-		$this->load->model('home_model'); // load Users model
+		$this->load->model('home_model'); // load Home model
+		$this->load->model('location_model'); // load Location model
 		
 		//Get Blog Data
 		//$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()
@@ -42,20 +43,19 @@ class Home extends CI_Controller {
 		
 		//Get All Discount
 		$this->data['all_discount'] = $this->home_model->getAllDiscount();
+		
+		  //Get Divistion
+         $this->data['divisions'] = $this->location_model->get_division();
     }
 
 	//Index Function
 	public function index()	
-	{
-		
-			
-		
-			$this->load->view('template/view_header');				
-							
+	{		
+			$this->load->view('template/view_header');								
 			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
 			$this->load->view('template/view_footer');		
 	}
-	
+
 	
 	//Get Doctors From Category
 	function getDoctorsFromCategory(){		
@@ -351,9 +351,8 @@ class Home extends CI_Controller {
 	function add_new_entry()
     {
         //set validation rules
-        $this->form_validation->set_rules('blog_title', 'Title', 'required');
-        $this->form_validation->set_rules('blog_description', 'Post Body', 'required');
-        $this->form_validation->set_rules('blog_category', 'Category', 'required');
+        $this->form_validation->set_rules('post_title', 'Title', 'required');
+        $this->form_validation->set_rules('post', 'Post Body', 'required');
  
         if ($this->form_validation->run() == FALSE)
         {
@@ -365,15 +364,55 @@ class Home extends CI_Controller {
         else
         {
             //if valid
-            $title = $this->input->post('blog_title');
-            $body = $this->input->post('blog_description');
-            $blog_cat = $this->input->post('blog_category');
-            $this->blog_model->add_new_entry($title,$body,$blog_cat);
+            $title = $this->input->post('post_title');
+            $body = $this->input->post('post');
+            $this->blog_model->add_new_entry($title,$body);
             $this->session->set_flashdata('message', '1 new entry added!');
 			//if not valid
             redirect('home');
         }
     }
 	
+	function new_post()//Creating new post page
+    {
+        if(!$this->check_permissions('author'))//when the user is not an andmin and author
+        {
+            redirect(base_url().'users/login');
+        }
+        if($this->input->post())
+        {
+            $data = array(
+                'post_title' => $this->input->post('post_title'),
+                'post' => $this->input->post('post'),
+                'active' => 1,
+            );
+            $this->blog_model->insert_post($data);
+            redirect(base_url());
+        }
+        else{          
+            $this->load->view('template/view_header');
+            $this->load->view('view_home');
+            $this->load->view('template/view_footer');
+        }
+    }
+	function check_permissions($required)//checking current user's permission
+		{
+			$user_type = $this->session->userdata('user_type');//curren user
+			if($required == 'user')//requirment is user 
+			{
+				if($user_type){return TRUE;}//all user have permission
+			}
+			elseif($required == 'author')//when requirement is author
+			{
+				if($user_type == 'author' || $user_type == 'admin')//author and admin have the permission
+				{
+					return TRUE;
+				}
+			}
+			elseif($required == 'admin')//when required is admin
+			{
+				if($user_type == 'admin'){return TRUE;}//only admin have the permission
+			}
+		}
 	
 }

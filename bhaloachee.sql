@@ -1,61 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : 127.0.0.1_3306
 Source Server Version : 50621
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : bhaloachee
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-08-04 18:06:41
+Date: 2015-08-09 02:11:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for blog
--- ----------------------------
-DROP TABLE IF EXISTS `blog`;
-CREATE TABLE `blog` (
-  `blog_id` int(11) NOT NULL AUTO_INCREMENT,
-  `blog_title` varchar(255) DEFAULT NULL,
-  `blog_description` text,
-  `blog_category` int(11) DEFAULT NULL,
-  `blog_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`blog_id`),
-  KEY `fk_blog_category` (`blog_category`),
-  CONSTRAINT `fk_blog_category` FOREIGN KEY (`blog_category`) REFERENCES `blog_category` (`blog_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of blog
--- ----------------------------
-INSERT INTO `blog` VALUES ('3', 'A look back at Medicare’s 50 years', 'On Friday, KQED’s Forum offered a look at Medicare and Medicaid to mark the programs’ 50-year anniversary. Stanford health policy researcher Laurence Baker, PhD, participated in the discussion, which covered issues such as how the programs drive the way prices for care are negotiated with medical providers, how the large population of Baby Boomers will affect the system, and how reimbursement rates affect the kind of care Medicare and Medicaid patients receive.\r\n\r\nThe panel also discussed the gaps in coverage — services like dental care are not covered by Medicare — and the challenges they create. Medicare coverage has grown from the narrow set of conditions it first covered, and Baker thinks the conditions are right to begin a new national conversation about expanding coverage:\r\n\r\n    One of the things that’s really ripe for discussion is how this country is going to handle the long-term care issues. Medicare’s got to be at the center of that. And it almost feels like the time is coming that we’re going to have to think about that much more seriously.\r\n\r\nAnd when host Mina Kim asked Baker the question that’s on a lot of people’s mind — Is Medicare sustainable for the long term? — Baker noted:\r\n- See more at: http://scopeblog.stanford.edu/#sthash.Q1qsDzzJ.dpuf', '4', '2015-08-04 15:51:57');
-INSERT INTO `blog` VALUES ('4', 'werwer', 'werwerewrewr', '3', '2015-08-04 16:28:16');
-INSERT INTO `blog` VALUES ('5', 'Blog This is', 'this is text', '4', '2015-08-04 16:28:51');
-INSERT INTO `blog` VALUES ('6', 'this is blog', 'Enter dddhere...', '4', '2015-08-04 16:30:22');
-INSERT INTO `blog` VALUES ('7', 'This is new Blog ', 'This is news Enter text here...', '3', '2015-08-04 16:30:42');
-
--- ----------------------------
--- Table structure for blog_category
--- ----------------------------
-DROP TABLE IF EXISTS `blog_category`;
-CREATE TABLE `blog_category` (
-  `blog_category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `blog_category_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`blog_category_id`),
-  KEY `blog_category_name` (`blog_category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of blog_category
--- ----------------------------
-INSERT INTO `blog_category` VALUES ('5', 'Discount');
-INSERT INTO `blog_category` VALUES ('3', 'Doctors');
-INSERT INTO `blog_category` VALUES ('4', 'Hospital');
 
 -- ----------------------------
 -- Table structure for brand
@@ -209,21 +167,42 @@ CREATE TABLE `brand_strength_from_price` (
 INSERT INTO `brand_strength_from_price` VALUES ('1', '1', '1', '1', '1', '50', '378', '8');
 
 -- ----------------------------
--- Table structure for ci_sessions
+-- Table structure for cities
 -- ----------------------------
-DROP TABLE IF EXISTS `ci_sessions`;
-CREATE TABLE `ci_sessions` (
-  `id` varchar(40) NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
-  `data` blob NOT NULL,
+DROP TABLE IF EXISTS `cities`;
+CREATE TABLE `cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) DEFAULT NULL,
+  `id_country` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `ci_sessions_timestamp` (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_country` (`id_country`),
+  CONSTRAINT `fk_country` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of ci_sessions
+-- Records of cities
 -- ----------------------------
+INSERT INTO `cities` VALUES ('1', 'Dhaka', '1');
+INSERT INTO `cities` VALUES ('2', 'Comilla', '1');
+
+-- ----------------------------
+-- Table structure for comments
+-- ----------------------------
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of comments
+-- ----------------------------
+INSERT INTO `comments` VALUES ('2', '2', '10', 'Hi, this is a comment. Thanks for this nice post. I like to see you blog. ', '2014-08-26 21:38:00');
+INSERT INTO `comments` VALUES ('3', '4', '10', 'Oh, thanks for reading this blog. Thanks for being with me.', '2014-08-26 21:39:05');
 
 -- ----------------------------
 -- Table structure for company
@@ -243,8 +222,7 @@ CREATE TABLE `company` (
   KEY `company_name` (`company_name`),
   KEY `fk_company_cat` (`company_business_type`),
   KEY `fk_user_name` (`company_user_name`),
-  CONSTRAINT `fk_company_cat` FOREIGN KEY (`company_business_type`) REFERENCES `company_category` (`company_cat_id`),
-  CONSTRAINT `fk_company_user` FOREIGN KEY (`company_user_name`) REFERENCES `users` (`id`)
+  CONSTRAINT `fk_company_cat` FOREIGN KEY (`company_business_type`) REFERENCES `company_category` (`company_cat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -320,6 +298,22 @@ CREATE TABLE `company_discount` (
 INSERT INTO `company_discount` VALUES ('1', '325', '6');
 
 -- ----------------------------
+-- Table structure for countries
+-- ----------------------------
+DROP TABLE IF EXISTS `countries`;
+CREATE TABLE `countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Country` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of countries
+-- ----------------------------
+INSERT INTO `countries` VALUES ('1', 'Bangladesh');
+INSERT INTO `countries` VALUES ('2', 'India');
+
+-- ----------------------------
 -- Table structure for discount
 -- ----------------------------
 DROP TABLE IF EXISTS `discount`;
@@ -344,79 +338,80 @@ INSERT INTO `discount` VALUES ('326', 'No discount found for discount one', '201
 DROP TABLE IF EXISTS `district`;
 CREATE TABLE `district` (
   `district_id` int(11) NOT NULL,
-  `district_name` varchar(255) NOT NULL,
+  `district_name` varchar(255) DEFAULT NULL,
   `division` int(11) DEFAULT NULL,
-  PRIMARY KEY (`district_name`),
+  PRIMARY KEY (`district_id`),
   KEY `fk_division` (`division`),
-  KEY `district_id` (`district_id`)
+  KEY `district_id` (`district_id`),
+  CONSTRAINT `fk_division` FOREIGN KEY (`division`) REFERENCES `division` (`division_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of district
 -- ----------------------------
-INSERT INTO `district` VALUES ('34', 'Bagerhat', '4');
-INSERT INTO `district` VALUES ('7', 'Bandarban', '2');
 INSERT INTO `district` VALUES ('1', 'Barguna', '1');
 INSERT INTO `district` VALUES ('2', 'Barisal', '1');
 INSERT INTO `district` VALUES ('3', 'Bhola', '1');
-INSERT INTO `district` VALUES ('44', 'Bogra', '5');
-INSERT INTO `district` VALUES ('8', 'Brahmanbaria', '2');
-INSERT INTO `district` VALUES ('9', 'Chandpur', '2');
-INSERT INTO `district` VALUES ('45', 'Chapai Nawabganj', '5');
-INSERT INTO `district` VALUES ('10', 'Chittagong', '2');
-INSERT INTO `district` VALUES ('35', 'Chuadanga', '4');
-INSERT INTO `district` VALUES ('11', 'Comilla', '2');
-INSERT INTO `district` VALUES ('12', 'Cox\'s Bazar', '2');
-INSERT INTO `district` VALUES ('17', 'Dhaka', '3');
-INSERT INTO `district` VALUES ('52', 'Dinajpur', '6');
-INSERT INTO `district` VALUES ('18', 'Faridpur', '3');
-INSERT INTO `district` VALUES ('13', 'Feni', '2');
-INSERT INTO `district` VALUES ('53', 'Gaibandha', '6');
-INSERT INTO `district` VALUES ('19', 'Gazipur', '3');
-INSERT INTO `district` VALUES ('20', 'Gopalganj', '3');
-INSERT INTO `district` VALUES ('60', 'Habiganj', '7');
-INSERT INTO `district` VALUES ('21', 'Jamalpur', '3');
-INSERT INTO `district` VALUES ('36', 'Jessore', '4');
 INSERT INTO `district` VALUES ('4', 'Jhalokati', '1');
-INSERT INTO `district` VALUES ('37', 'Jhenaidah', '4');
-INSERT INTO `district` VALUES ('46', 'Joypurhat', '5');
-INSERT INTO `district` VALUES ('14', 'Khagrachhari', '2');
-INSERT INTO `district` VALUES ('38', 'Khulna', '4');
-INSERT INTO `district` VALUES ('22', 'Kishoregonj', '3');
-INSERT INTO `district` VALUES ('54', 'Kurigram', '6');
-INSERT INTO `district` VALUES ('39', 'Kushtia', '4');
-INSERT INTO `district` VALUES ('55', 'Lalmonirhat', '6');
-INSERT INTO `district` VALUES ('23', 'Madaripur', '3');
-INSERT INTO `district` VALUES ('40', 'Magura', '4');
-INSERT INTO `district` VALUES ('24', 'Manikganj', '3');
-INSERT INTO `district` VALUES ('61', 'Maulvibazar', '7');
-INSERT INTO `district` VALUES ('41', 'Meherpur', '4');
-INSERT INTO `district` VALUES ('25', 'Munshiganj', '3');
-INSERT INTO `district` VALUES ('26', 'Mymensingh', '3');
-INSERT INTO `district` VALUES ('47', 'Naogaon', '5');
-INSERT INTO `district` VALUES ('42', 'Narail', '4');
-INSERT INTO `district` VALUES ('27', 'Narayanganj', '3');
-INSERT INTO `district` VALUES ('28', 'Narsingdi', '3');
-INSERT INTO `district` VALUES ('48', 'Natore', '5');
-INSERT INTO `district` VALUES ('29', 'Netrakona', '3');
-INSERT INTO `district` VALUES ('56', 'Nilphamari', '6');
-INSERT INTO `district` VALUES ('15', 'Noakhali', '2');
-INSERT INTO `district` VALUES ('49', 'Pabna', '5');
-INSERT INTO `district` VALUES ('57', 'Panchagarh', '6');
 INSERT INTO `district` VALUES ('5', 'Patuakhali', '1');
 INSERT INTO `district` VALUES ('6', 'Pirojpur', '1');
-INSERT INTO `district` VALUES ('30', 'Rajbari', '3');
-INSERT INTO `district` VALUES ('50', 'Rajshahi', '5');
+INSERT INTO `district` VALUES ('7', 'Bandarban', '2');
+INSERT INTO `district` VALUES ('8', 'Brahmanbaria', '2');
+INSERT INTO `district` VALUES ('9', 'Chandpur', '2');
+INSERT INTO `district` VALUES ('10', 'Chittagong', '2');
+INSERT INTO `district` VALUES ('11', 'Comilla', '2');
+INSERT INTO `district` VALUES ('12', 'Cox\'s Bazar', '2');
+INSERT INTO `district` VALUES ('13', 'Feni', '2');
+INSERT INTO `district` VALUES ('14', 'Khagrachhari', '2');
+INSERT INTO `district` VALUES ('15', 'Noakhali', '2');
 INSERT INTO `district` VALUES ('16', 'Rangamati', '2');
-INSERT INTO `district` VALUES ('58', 'Rangpur', '6');
-INSERT INTO `district` VALUES ('43', 'Satkhira', '4');
-INSERT INTO `district` VALUES ('33', 'Shariatpur', '3');
+INSERT INTO `district` VALUES ('17', 'Dhaka', '3');
+INSERT INTO `district` VALUES ('18', 'Faridpur', '3');
+INSERT INTO `district` VALUES ('19', 'Gazipur', '3');
+INSERT INTO `district` VALUES ('20', 'Gopalganj', '3');
+INSERT INTO `district` VALUES ('21', 'Jamalpur', '3');
+INSERT INTO `district` VALUES ('22', 'Kishoregonj', '3');
+INSERT INTO `district` VALUES ('23', 'Madaripur', '3');
+INSERT INTO `district` VALUES ('24', 'Manikganj', '3');
+INSERT INTO `district` VALUES ('25', 'Munshiganj', '3');
+INSERT INTO `district` VALUES ('26', 'Mymensingh', '3');
+INSERT INTO `district` VALUES ('27', 'Narayanganj', '3');
+INSERT INTO `district` VALUES ('28', 'Narsingdi', '3');
+INSERT INTO `district` VALUES ('29', 'Netrakona', '3');
+INSERT INTO `district` VALUES ('30', 'Rajbari', '3');
 INSERT INTO `district` VALUES ('31', 'Sherpur', '3');
+INSERT INTO `district` VALUES ('32', 'Tangail', '3');
+INSERT INTO `district` VALUES ('33', 'Shariatpur', '3');
+INSERT INTO `district` VALUES ('34', 'Bagerhat', '4');
+INSERT INTO `district` VALUES ('35', 'Chuadanga', '4');
+INSERT INTO `district` VALUES ('36', 'Jessore', '4');
+INSERT INTO `district` VALUES ('37', 'Jhenaidah', '4');
+INSERT INTO `district` VALUES ('38', 'Khulna', '4');
+INSERT INTO `district` VALUES ('39', 'Kushtia', '4');
+INSERT INTO `district` VALUES ('40', 'Magura', '4');
+INSERT INTO `district` VALUES ('41', 'Meherpur', '4');
+INSERT INTO `district` VALUES ('42', 'Narail', '4');
+INSERT INTO `district` VALUES ('43', 'Satkhira', '4');
+INSERT INTO `district` VALUES ('44', 'Bogra', '5');
+INSERT INTO `district` VALUES ('45', 'Chapai Nawabganj', '5');
+INSERT INTO `district` VALUES ('46', 'Joypurhat', '5');
+INSERT INTO `district` VALUES ('47', 'Naogaon', '5');
+INSERT INTO `district` VALUES ('48', 'Natore', '5');
+INSERT INTO `district` VALUES ('49', 'Pabna', '5');
+INSERT INTO `district` VALUES ('50', 'Rajshahi', '5');
 INSERT INTO `district` VALUES ('51', 'Sirajganj', '5');
+INSERT INTO `district` VALUES ('52', 'Dinajpur', '6');
+INSERT INTO `district` VALUES ('53', 'Gaibandha', '6');
+INSERT INTO `district` VALUES ('54', 'Kurigram', '6');
+INSERT INTO `district` VALUES ('55', 'Lalmonirhat', '6');
+INSERT INTO `district` VALUES ('56', 'Nilphamari', '6');
+INSERT INTO `district` VALUES ('57', 'Panchagarh', '6');
+INSERT INTO `district` VALUES ('58', 'Rangpur', '6');
+INSERT INTO `district` VALUES ('59', 'Thakurgaon', '6');
+INSERT INTO `district` VALUES ('60', 'Habiganj', '7');
+INSERT INTO `district` VALUES ('61', 'Maulvibazar', '7');
 INSERT INTO `district` VALUES ('62', 'Sunamganj', '7');
 INSERT INTO `district` VALUES ('63', 'Sylhet', '7');
-INSERT INTO `district` VALUES ('32', 'Tangail', '3');
-INSERT INTO `district` VALUES ('59', 'Thakurgaon', '6');
 
 -- ----------------------------
 -- Table structure for division
@@ -462,7 +457,6 @@ CREATE TABLE `doctors` (
   KEY `fk_doctor_specialist` (`doctor_specialist`),
   KEY `fk_doctor_district` (`doctor_district`),
   KEY `fk_doctor_user` (`doctor_user_name`),
-  CONSTRAINT `fk_doc_user_name` FOREIGN KEY (`doctor_user_name`) REFERENCES `user_login` (`id`),
   CONSTRAINT `fk_doctor_district` FOREIGN KEY (`doctor_district`) REFERENCES `district` (`district_id`),
   CONSTRAINT `fk_doctor_specialist` FOREIGN KEY (`doctor_specialist`) REFERENCES `doctors_category` (`doctor_category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -471,11 +465,11 @@ CREATE TABLE `doctors` (
 -- Records of doctors
 -- ----------------------------
 INSERT INTO `doctors` VALUES ('3', 'Ziauddin ', 'MBBS', 'Male', 'FAGED', 'ziauddin.sarker@gmail.com', '01720223388', '2', 'Khilgaon, Dhaka', null, null, null, '3', '3');
-INSERT INTO `doctors` VALUES ('4', 'ziauddin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '4', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '4');
-INSERT INTO `doctors` VALUES ('5', 'ziauddin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '7', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '5');
-INSERT INTO `doctors` VALUES ('6', 'ziauddin sarker', 'MBBS FCPS', 'male', 'AGVVAE', 'ziauddisn@siz.com', '01720223388', '4', 'Djakak', null, null, null, null, '6');
+INSERT INTO `doctors` VALUES ('4', 'Samin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '4', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '4');
+INSERT INTO `doctors` VALUES ('5', 'Aslam', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '7', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '5');
+INSERT INTO `doctors` VALUES ('6', 'Timir', 'MBBS FCPS', 'male', 'AGVVAE', 'ziauddisn@siz.com', '01720223388', '4', 'Djakak', null, null, null, null, '6');
 INSERT INTO `doctors` VALUES ('7', 'ziauddin sarker', 'MBBS FCPS', 'female', 'AGVVAE', 'ziauddin@siz.com', '01720223388', '6', 'Djakak', null, null, null, '15', '7');
-INSERT INTO `doctors` VALUES ('8', 'ziauddin sarker', '', null, '', 'ziauddin@siz.com', '01720223388', '3', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, '7', '8');
+INSERT INTO `doctors` VALUES ('8', 'Sohel', '', null, '', 'ziauddin@siz.com', '01720223388', '3', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, '7', '8');
 
 -- ----------------------------
 -- Table structure for doctors_category
@@ -491,7 +485,7 @@ CREATE TABLE `doctors_category` (
 -- ----------------------------
 -- Records of doctors_category
 -- ----------------------------
-INSERT INTO `doctors_category` VALUES ('1', 'Allergist  \r\n', '(For allergy, hey fever or asthma problems)\r\n');
+INSERT INTO `doctors_category` VALUES ('1', 'dentist', '(For allergy, hey fever or asthma problems)\r\n');
 INSERT INTO `doctors_category` VALUES ('2', 'Andrologists  \r\n', '(For males reproductive system disorders)\r\n');
 INSERT INTO `doctors_category` VALUES ('3', 'Anesthesiologist  \r\n', '(For anesthesia and related complications)\r\n');
 INSERT INTO `doctors_category` VALUES ('4', 'Audiologist  \r\n', '(For hearing problems)\r\n');
@@ -538,14 +532,57 @@ CREATE TABLE `events` (
   `events_phone` varchar(255) DEFAULT NULL,
   `events_contact_time` varchar(255) DEFAULT NULL,
   `events_email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`events_id`)
+  `events_author` int(11) DEFAULT NULL,
+  PRIMARY KEY (`events_id`),
+  KEY `fk_event_author` (`events_author`),
+  CONSTRAINT `fk_event_author` FOREIGN KEY (`events_author`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of events
 -- ----------------------------
-INSERT INTO `events` VALUES ('1', 'Nothing Events', '2015-08-01', '258 Nabinbagh, Khilgaon , Dhaka', '01720223388', '12:90', 'ziauddin.sarker@gmail.com');
-INSERT INTO `events` VALUES ('2', 'Another Nothing Events', '2015-07-30', 'Khilgaon Badda Kustia', '7211434', '3:20', 'info@simkam.com');
+INSERT INTO `events` VALUES ('1', 'Nothing Events', '2015-08-01', '258 Nabinbagh, Khilgaon , Dhaka', '01720223388', '12:90', 'ziauddin.sarker@gmail.com', '1');
+INSERT INTO `events` VALUES ('2', 'Another Nothing Events', '2015-07-30', 'Khilgaon Badda Kustia', '7211434', '3:20', 'info@simkam.com', '1');
+
+-- ----------------------------
+-- Table structure for node
+-- ----------------------------
+DROP TABLE IF EXISTS `node`;
+CREATE TABLE `node` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `created` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of node
+-- ----------------------------
+INSERT INTO `node` VALUES ('1', 'My name is Khan', 'article', '2015-07-30');
+INSERT INTO `node` VALUES ('2', 'This is image', 'image', '2015-08-07');
+INSERT INTO `node` VALUES ('3', 'This is Another Post', 'article', '2015-08-04');
+
+-- ----------------------------
+-- Table structure for posts
+-- ----------------------------
+DROP TABLE IF EXISTS `posts`;
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `post` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `active` int(11) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of posts
+-- ----------------------------
+INSERT INTO `posts` VALUES ('11', 'What we’re reading today', 'As has become a Friday tradition, here are five education stories to “brighten” your day. If the spirit moves you, please read, recommend, share, and respond on Medium! Also, I’m looking to commission some new stories. If you’re interested in contributing, reach out to me on Twitter (@sarika008) and I’ll DM you my email address.', '1', '2015-08-08 00:18:41', '1');
+INSERT INTO `posts` VALUES ('13', 'My Cujo', '\r\nOn the days that I have to leave early to work, I get very stressed out. But not for the reasons you might imagine. Every day, at around 6 a.m. there’s this tiny wisp of a girl that walks dogs in my neighborhood. Correction: it’s the dogs that walk her around. Her smallest canine friend looks bigger than she does — and there…', '1', '2015-08-08 03:00:33', '0');
+INSERT INTO `posts` VALUES ('14', 'Getting Thru the day…', 'I don’t know anyone who likes their day jobs.\r\n\r\nInstead of waiting for “Miller Time” what if we had an IV drip of our favorite alcohol to get thru the daily grind?', '1', '2015-08-08 08:45:09', '0');
 
 -- ----------------------------
 -- Table structure for rating
@@ -1109,45 +1146,21 @@ INSERT INTO `thana` VALUES ('501', 'Zanjira', '33');
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL DEFAULT '',
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL DEFAULT '',
-  `avatar` varchar(255) DEFAULT 'default.jpg',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `is_confirmed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `is_deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `user_id` int(4) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `user_type` enum('admin','doctor','pharmacist','business') NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'ziauddin', 'ziauddin@gmail.com', '2918369981a1233871e87a452afe1f1a', 'default.jpg', '0000-00-00 00:00:00', '2015-08-02 00:45:15', '1', '1', '0');
-INSERT INTO `users` VALUES ('2', 'arman', 'arman@gmail.com', '2918369981a1233871e87a452afe1f1a', 'default.jpg', '0000-00-00 00:00:00', null, '0', '0', '0');
-
--- ----------------------------
--- Table structure for user_login
--- ----------------------------
-DROP TABLE IF EXISTS `user_login`;
-CREATE TABLE `user_login` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) NOT NULL,
-  `user_email` varchar(255) NOT NULL,
-  `user_password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of user_login
--- ----------------------------
-INSERT INTO `user_login` VALUES ('1', 'ziauddin', 'ziauddin.sarker@gmail.com', 'ziauddin');
-INSERT INTO `user_login` VALUES ('2', 'leemon', 'leemon@gmail.com', 'leemon');
-INSERT INTO `user_login` VALUES ('3', 'arman', 'arman@gmail.com', 'arman');
-INSERT INTO `user_login` VALUES ('4', 'bdzia', '', 'ziauddin');
-INSERT INTO `user_login` VALUES ('5', 'bdzia', '', 'ziauddin');
-INSERT INTO `user_login` VALUES ('6', 'google', '', 'ziauddin');
-INSERT INTO `user_login` VALUES ('7', 'googlea', '', 'simuragroup');
-INSERT INTO `user_login` VALUES ('8', 'bdzia', '', 'ziauddin');
+INSERT INTO `users` VALUES ('1', 'al.imran.cse', 'al_imran_ahmed', '6f4a9c7287503510eb9ab662ed116c0272bf4ae1', 'admin');
+INSERT INTO `users` VALUES ('2', 'al_imranahmed@yahoo.com', 'user', '12dea96fec20593566ab75692c9949596833adc9', 'doctor');
+INSERT INTO `users` VALUES ('3', 'author@gmail.com', 'author', 'f64cd8e32f5ac7553c150bd05d6f2252bb73f68d', 'admin');
+INSERT INTO `users` VALUES ('4', 'admin@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin');
+INSERT INTO `users` VALUES ('5', 'chand@gmail.com', 'chand', '6f4a9c7287503510eb9ab662ed116c0272bf4ae1', 'admin');
+INSERT INTO `users` VALUES ('6', 'ziauddin.sarker@gmail.com', 'ziauddin', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'admin');
+INSERT INTO `users` VALUES ('7', 'ziauddin_sarker@live.com', 'bdzia', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');

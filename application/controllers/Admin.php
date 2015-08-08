@@ -68,4 +68,12 @@ class Admin extends CI_Controller {
 		
 	}
 	
+	public function profile(){
+		$data['profile'] = $this->profile_model->getSingleProfile();
+		$this->load->view('admin/view_header');
+       	$this->load->view('admin/view_profile',$data);
+        $this->load->view('admin/view_footer');
+		
+	}
+	
 }

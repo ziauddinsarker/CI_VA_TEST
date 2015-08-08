@@ -102,8 +102,8 @@ class Blog extends CI_Controller {
         {
             redirect(base_url().'users/login');
         }
-        $this->m_db->delete_post($post_id);
-        redirect(base_url().'blog/');
+        $this->blog_model->delete_post($post_id);
+        redirect(base_url());
     }
     
     function check_permissions($required)//checking current user's permission

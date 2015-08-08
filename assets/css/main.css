@@ -327,3 +327,12 @@ th, td {
 .main-nav a{
 	border-top:none !important;
 }
+
+
+.doctor-desc .doctor-name,.doctor-desc .doctor-description{
+	background: powderblue;
+}
+
+.col-md-12 #doc-time {
+    display: none;
+} 

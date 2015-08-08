@@ -6,6 +6,7 @@ class blog_model extends CI_Model
     {
         $this->db->select();
         $this->db->from('posts');
+		$this->db->join('users','');
         $this->db->where('active',1);
         $this->db->order_by('date_added','desc');
         $this->db->limit($number, $start);

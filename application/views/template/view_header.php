@@ -75,7 +75,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x"></i><span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+						<li><a href="<?php base_url() ?>admin"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 						<li class="divider"></li>
 						<li><a href="<?php base_url() ?>users/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 						</li>

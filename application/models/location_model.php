@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class login_model extends CI_Model
+class location_model extends CI_Model
 {
     function __construct()
     {
@@ -11,7 +11,10 @@ class login_model extends CI_Model
 	
 	// Get Division
 	public function get_division(){	
-	
+		$this->db->select('division_id,division_name');
+        $this->db->from('division'); 
+        $query = $this->db->get();
+	  return $query->result();
 	}
 	
 	// Get Districts

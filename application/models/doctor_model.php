@@ -8,6 +8,8 @@ class doctor_model extends CI_Model
         parent::__construct();
     }
 
+	
+	
     //get the username & password from tbl_usrs
     //Get All Posts
 	function getDoctors(){

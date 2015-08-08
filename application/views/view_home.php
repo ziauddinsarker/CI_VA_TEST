@@ -88,7 +88,18 @@
 							</div>
 								<div class="col-md-7">
 								
-									<div class="btn-group" data-toggle="buttons" id="division"> 
+									<div class="btn-group" data-toggle="buttons" id="division">
+									
+									<?php foreach($divisions as $division){?>
+										<label class="btn btn-primary">
+										<input type="radio" name="division" class="track-order-change" id="<?php echo $division->division_id;?>" value="<?php echo $division->division_name;?>">
+										<?php echo $division->division_name;?>
+										</label>
+									<?php }?>
+									
+									 <!--country dropdown-->
+									
+
 											<?php
 										 /*
 												while ($row = mysql_fetch_array($division)){ 
@@ -111,36 +122,12 @@
 								</div>
 						</article>						
 					</div>
-					
-					
-					
-					
+	
                 </div>
-				
-				
-				
-				
+			
 				<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
-				<!-- All Events -->
-				<?php foreach($events as $event){?>
-					<div class="row event-single" id="'. $eventid .'">
-						<div class="col-md-12">
-							<h3><?php echo $event->events_name;?></h3>
-							<div class="fb-share-button" data-href="<?php echo site_url();?>"/"<?php echo $event->events_id;?>" data-layout="button_count"></div>
-						</div>
-						<div class="col-md-4">				
-							<h5><b>Events Time:</b> <?php echo $event->events_time;?></h5>							
-							<h5><b>Phone: </b><?php echo $event->events_phone;?></h5>
-							<h5><b>Email: </b><?php echo $event->events_email;?></h5>					
-						</div>
-						<div class="col-md-8">			
-							<h5><b>Contact Time: </b> <?php echo $event->events_contact_time;?></h5>
-							<h5><b>Address: </b><?php echo $event->events_address;?></h5>
-						</div>							
-					  </div>
-				 <?php }?>  				
-			
+				<?php if($this->session->userdata('user_id')) { ?>
 			  <!-- Events Modal -->
 			  <div class="row">
 				<!-- Trigger the modal with a button -->
@@ -166,17 +153,73 @@
 
 								<div class="form-group">
 									<div class="row colbox">
-
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Add New Post</label>
+											<label for="employeeno" class="control-label">Event Name</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<input id="employeeno" name="employeeno" placeholder="Enter Event name Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
 											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
 										</div>
 									</div>
 								</div>
 
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Event Time</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Time Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Event Address</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Events Address Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Event Phone</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Phone Number Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Event Contact TIme</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Contact Time Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="employeeno" class="control-label">Event Email</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="employeeno" name="employeeno" placeholder="Enter Email Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+										</div>
+									</div>
+								</div>
+								
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
@@ -210,6 +253,26 @@
 				  </div>
 				</div>
 				</div>
+				<?php } ?>
+				<!-- All Events -->
+				<?php foreach($events as $event){?>
+					<div class="row event-single" id="'. $eventid .'">
+						<div class="col-md-12">
+							<a><h3><?php echo $event->events_name;?></h3></a><sup>By: <?php echo $event->username;?></sup>
+							<div class="fb-share-button" data-href="<?php echo site_url();?>"/"<?php echo $event->events_id;?>" data-layout="button_count"></div>
+						</div>
+						<div class="col-md-4">				
+							<h5><b>Events Time:</b> <?php echo $event->events_time;?></h5>							
+							<h5><b>Phone: </b><?php echo $event->events_phone;?></h5>
+							<h5><b>Email: </b><?php echo $event->events_email;?></h5>					
+						</div>
+						<div class="col-md-8">			
+							<h5><b>Contact Time: </b> <?php echo $event->events_contact_time;?></h5>
+							<h5><b>Address: </b><?php echo $event->events_address;?></h5>
+						</div>							
+					  </div>
+				 <?php }?>  				
+			
 				
 			  </div>
               <div role="tabpanel" class="tab-pane" id="doctor">
@@ -237,15 +300,17 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-4">						
-							<p><a class="get_doctor_cat" href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
+							<p><a id="get_doctor_cat" href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
 						</div>
 					</div>								
-				  </div>
-
-					
+				  </div> 
+				  	
 				 <?php }?> 
+
 		
 				
+				  
+				  
 				</div>
 				
               <div role="tabpanel" class="tab-pane" id="healthcare">
@@ -388,7 +453,111 @@
 			
 			  <!-- Discount End -->
 			  </div>
-              <div role="tabpanel" class="tab-pane" id="faqs">No Top Rating</div>
+              <div role="tabpanel" class="tab-pane" id="faqs">
+			  
+			  <div class="row">
+				<h3>Frequently Asked Questions (FAQs)</h4>
+				<div class="col-md-6 about-page">
+				<h4>1. Is the membership on Bhalo-Achee.com free?</h4>
+				<p>Answer:  Yes, any kind of membership on Bhalo-Achee.com is always free.</p>
+
+				<h4>2. Who can be a member on Bhalo-Achee.com?</h4>
+				<p>Answer:  Yes, we ask any hospital, clinic, pharmaceutical company, medicine shop, fitness center, therapy center, medical-diagnostic center, NGO, pharmacist, dentist, dietician and doctor to be a member on Bhalo-Achee.com, and contribute in healthcare for the people, using our free platform, and get RSB (Rating on Social Branding) points for that.</p>
+				
+				<h4>3. How to inform if I do not find the medicine that I have searched for?</h4>
+				<p>Answer:  Please visit: www.facebook.com/BhaloAchee and post about the missing medicine. We believe using our platform, you can contribute, along with our pharmacist members, to enrich our medicine-price database to help the general people to reduce their cost of treatment.</p>
+
+				<h4>4. How can the pharmacists help people?</h4>
+				<p>Answer: People can ask questions about the uses/indications, dosage, side effects, adverse reactions, contraindications, pharmacology, alternative, price and more of any medicine to them. Our pharmacist members can answer to the questions of people and get RSB (Rating on Social Branding) points for that.</p>
+
+				</div>
+				
+				<div class="col-md-6 about-page">
+					<h4>5. What is a free event?</h4>
+						<p>Answer:  A free event is any event where any healthcare professional can spend their time with people for free consultation and get RSB (Rating on Social Branding) points for that.</p>
+
+					<h4>6. How to get free event notifications from Bhalo-Achee.com?</h4>
+						<p>Answer:  Please visit: www.facebook.com/BhaloAchee and hit the Like button on our page to be updated about all news and events.</p>
+
+					<h4>7. How many RSB points can I get?</h4>
+						<p>Answer: You can get RSB points always. We manually give RSB points as below:</p> 
+					<p>1.	“10 RSB points” for a pharmacist for every time s/he submits a new or updated medicine price, or answers to a medicine-related question.</p>
+					<p>2.	“100 RSB points” for a doctor or any other healthcare professional or a business for every hour they spend for free health consultancy.</p>
+					<p>3.	“1000 RSB points” for a business or company for every thousand they spend as monetary donation. </p>
+					<h4>8. How can I get “Rating on Social Branding” (RSB) points?</h4>
+						<p>Answer: Please follow the respective instructions below to get RSB points.  </p> 
+
+				</div>
+			</div>
+			
+			<div class="row">
+					<div class="col-md-6">
+						<h3>For pharmacists</h3>
+						To get RSB points for the answers to individual questions: 
+						1.	Please visit www.facebook.com/BhaloAchee
+						2.	Select a medicine-related question to answer.
+						3.	Post with the following information below:
+						•	Your answer:
+						•	Your Bhalo-Achee.com ID:
+						•	Tag: #‎BhaloAchee‬_QA_Pharmacist
+
+						(We will update your RSB point within 48 hours.)
+
+						To get RSB points by submitting new or updated medicine price: 
+						1.	Please visit www.facebook.com/BhaloAchee
+						2.	Post with the following information below:
+						•	Brand Name*:
+						•	Generic Name*:
+						•	Manufacturer*:
+						•	Dosage Form*:
+						•	Strength:
+						•	Amount/volume:
+						•	Quantity per pack*:
+						•	Price*:
+						•	Your Bhalo-Achee.com ID:
+						•	Tag: ‪#‎BhaloAchee‬_Price_Update‬‬‬
+
+						(We will update your RSB point within 48 hours.)
+					</div>
+					<div class="col-md-6">					
+					<h3>For doctors, other professionals and business.</h3>
+					To get RSB points for the events with Bhalo-Achee.com: 
+					1.	Please visit: www.facebook.com/BhaloAchee
+					2.	Consult into a previously declared event on Bhalo-Achee.com.
+
+					(We will update your RSB point within 48 hours.) 
+
+					<div>
+						To get RSB points for the events without Bhalo-Achee.com: 
+						1.	Please visit www.facebook.com/BhaloAchee 
+						2.	Post with the following information below:
+						•	Your evidence:
+						(Please submit a link of any event, video, image, website page, article or post that proves that any particular free event on healthcare was done by you)
+						•	Your Bhalo-Achee.com ID:
+						•	Tag: #‎BhaloAchee‬_Event_Evidence
+
+						(We will update your RSB point within 48 hours.)   
+
+					</div>
+					</div>
+					
+					<div class="col-md-12">
+						9. How to use Bhalo-Achee.com?
+							Answer:  Please watch the following videos to know how to use Bhalo-Achee.com:
+
+						1.	for visitors: (coming)
+						2.	for members: (coming)
+
+						10. How to advertise with Bhalo-Achee.com?
+							Answer:  Please go to Contact Us Tab on www.bhalo-achee.com and fill up the form with respective subject for price quotation.
+
+					</div>
+			</div>
+			  
+			  
+			  
+			  
+			  </div>
 			  
               <div role="tabpanel" class="tab-pane" id="blog">
 			  
@@ -398,7 +567,7 @@
 			  <?php if($this->session->userdata('user_id')) { ?>
 			  <div class="row">
 				<!-- Trigger the modal with a button -->
-				<button type="button" title="Hooray!" class="btn btn-info btn-lg" data-toggle="modal" data-target="#blog-modal">+</button>
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#blog-modal">+</button>
 
 				<!-- Blog Modal -->
 				<div id="blog-modal" class="modal fade" role="dialog">
@@ -415,16 +584,16 @@
 							  <legend>Add New Post</legend>
 							
 							<fieldset>
-							<?= form_open('home/add_new_entry') ?>
+							<?= form_open('home/new_post') ?>
 								<div class="form-group">
 									<div class="row colbox">
 
 										<div class="col-lg-4 col-sm-4">
-											<label for="blog_title" class="control-label">Add New Post</label>
+											<label for="post_title" class="control-label">Post Title</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="blog_title" name="blog_title" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('blog_title'); ?></span>
+											<input id="post_title" name="post_title" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('post_title'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -432,40 +601,24 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="blog_description" class="control-label">Post Content</label>
+											<label for="post" class="control-label">Post Content</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
 											
-											<textarea id="blog_description" name="blog_description" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
+											<textarea id="post" name="post" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
 											
 											
-											<span class="text-danger"><?php echo form_error('blog_description'); ?></span>
+											<span class="text-danger"><?php echo form_error('post'); ?></span>
 										</div>
 									</div>
 								</div>
-								
-								
-								<div class="form-group">
-									<div class="row colbox">
-										<div class="col-lg-4 col-sm-4">
-											<label for="blog_category" class="control-label">Post Category</label>
-										</div>
-										<div class="col-lg-8 col-sm-8">									
-											<?php
-											$attributes = 'class = "form-control" id = "blog_category"';
-											echo form_dropdown('blog_category',$blog_category,set_value('blog_category'),$attributes);?>
-											<span class="text-danger"><?php echo form_error('blog_category'); ?></span>
-										</div>
-									</div>
-								</div>
-								
-								<div class="form-group">
+														<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
 											
 										</div>
 										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
-										<input class="btn btn-default" type="submit"  name="submit" value="submit" />
+										<input class="btn btn-default" type="submit"  name="submit" value="Publish" />
 											
 										</div>
 									</div>
@@ -492,8 +645,15 @@
 				 <?php foreach($blogs as $blog){?>
 					<div class="row">
 						<div class="col-md-12">
-						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>						
-								<p> <?php echo $blog->post;?></p>					    
+						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>
+						<p>Author: </p>
+						<?php if($this->session->userdata('user_id')) { ?>
+						<p>
+							<a href="<?=  base_url()?>blog/editpost/<?= $blog->post_id;?>"><span class="glyphicon glyphicon-edit" title="Edit post"></span></a> | 
+							<a href="<?=  base_url()?>blog/deletepost/<?= $blog->post_id;?>"><span style="color:#f77;" class="glyphicon glyphicon-remove-circle" title="Delete post"></span></a>
+						</p>						
+						<?php } ?>
+							<p> <?php echo $blog->post;?></p>					    
 						</div>								
 					</div>
 				 <?php }?>  
@@ -506,19 +666,36 @@
 			  <!-- Contact Tab -->
 				<div class="row">
 					<div class="col-md-4">
-					<h4>Contact for RSB<h5>(Rating on Social Branding)</h5></h4>
+					<h4>Contact Us</h4>
 						<form role="form">
+						<div class="form-group">
+								<label for="subject">Subject:</label>
+								<select class="form-control" name="subject">
+									<option value="advertisement">For Advertisement</option>
+									<option value="error" selected>Report An Error</option>
+									<option value="event" >Submit and Event</option>
+									<option value="partnership" >Asking for Partnership</option>
+									<option value="suggestion" >Submitting a suggestion</option>
+									<option value="offer" >Asking for and Offer</option>
+									<option value="article" >Submitting and Article</option>
+									<option value="productlist" >Submitting Product List</option>
+								</select>
+							</div>
 							<div class="form-group">
-								<label for="name">Name:</label>
+								<label for="name">Name*:</label>
 								<input type="text" class="form-control" id="name">
 							</div>
 							<div class="form-group">
-								<label for="email">Email address:</label>
+								<label for="email">Email address*:</label>
 								<input type="email" class="form-control" id="email">
 							</div>
 							<div class="form-group">
+								<label for="phone">Phone:</label>
+								<input type="text" class="form-control" id="phone">
+							</div>
+							<div class="form-group">
 								<label for="submittext">Submit Text:</label>
-								<input type="textarea" class="form-control" id="submittext">
+								<textarea type="textarea" class="form-control" id="submittext"></textarea>
 							</div>
 							<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
 							  <button type="submit" class="btn btn-default">Submit</button>
@@ -526,56 +703,12 @@
 					</div>
 					
 					<div class="col-md-4"> 
-					<h4>Contact for other reasons</h4>
-					<form role="form">
-						<div class="form-group">
-							<label for="subject">Subject:</label>
-							<input type="text" class="form-control" id="subject">
-						</div>
-						<div class="form-group">
-							<label for="name">Name:</label>
-							<input type="text" class="form-control" id="name">
-						</div>
-						<div class="form-group">
-							<label for="email">Email address:</label>
-							<input type="email" class="form-control" id="email">
-						</div>						
-						<div class="form-group">
-							<label for="phone">Phone Number:</label>
-							<input type="text" class="form-control" id="phone">
-						</div>
-						<div class="form-group">
-							<label for="submittext">Submit Text:</label>
-							<input type="textarea" class="form-control" id="submittext">
-						</div>
-						<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
-						  <button type="submit" class="btn btn-default">Submit</button>
-					</form>
+					
 					
 					</div>
 					
 					<div class="col-md-4">
-					<h4>Contact for Advertisement</h4>
-						 <form role="form">
-							<div class="form-group">
-								<label for="name">Name:</label>
-								<input type="text" class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email address:</label>
-								<input type="email" class="form-control" id="email">
-							</div>
-							<div class="form-group">
-								<label for="phone">Phone Number:</label>
-								<input type="text" class="form-control" id="phone">
-							</div>
-							<div class="form-group">
-								<label for="submittext">Submit Text:</label>
-								<input type="textarea" class="form-control" id="submittext">
-							</div>
-						<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
-							  <button type="submit" class="btn btn-default">Submit</button>
-						</form>
+					
 					</div>
 				</div>
 			  <!-- Contact Tab -->
