@@ -350,8 +350,12 @@ th, td {
 .big {
     height: auto;
 }
+.event-single .banner{
+    padding: 23px 0 0;
+	margin:10px
+    text-align: center;
+}
 
-
-
-#thumbs .thumb{cursor: pointer; background-color: red; float: left; margin: 0 20px 0 20px; width: 100px; text-align: center; height: 100px; position: relative;}
-#thumbs .more{ display: none; position: absolute; width: 380px; top:0; left:0; background-color: blue; color:#fff}
+.event-single .col-md-12.banner > img {
+    padding: 23px 0 0;
+}

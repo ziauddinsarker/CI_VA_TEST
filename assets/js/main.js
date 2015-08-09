@@ -1,4 +1,28 @@
 
+// Instantiate the Bloodhound suggestion engine
+var countries = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {
+        url: '<?php echo base_url().'home/get_brand'; ?>',
+        filter: function (countries) {
+            return $.map(countries, function (country) {
+                return {
+                    name: country
+                };
+            });
+        }
+    }
+});
+
+// Initialize the Bloodhound suggestion engine
+countries.initialize();
+
+// Instantiate the Typeahead UI
+$('.typeahead').typeahead(null, {
+    displayKey: 'name',
+    source: countries.ttAdapter()
+});
 
 
 /* 

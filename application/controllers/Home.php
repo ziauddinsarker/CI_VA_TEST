@@ -21,6 +21,7 @@ class Home extends CI_Controller {
 		$this->load->model('user_model'); // load Users model
 		$this->load->model('home_model'); // load Home model
 		$this->load->model('location_model'); // load Location model
+		$this->load->model('search_model');
 		
 		//Get Blog Data
 		//$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()
@@ -46,6 +47,7 @@ class Home extends CI_Controller {
 		
 		  //Get Divistion
          $this->data['divisions'] = $this->location_model->get_division();
+		 
     }
 
 	//Index Function
@@ -56,7 +58,10 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_footer');		
 	}
 
-	
+	public function get_brand(){			
+			$data = $this->search_model->get();
+			echo json_encode($data);
+	}
 	//Get Doctors From Category
 	/* function getDoctorsFromCategory(){		
 
@@ -409,9 +414,11 @@ class Home extends CI_Controller {
         }
     }
 	
+	
+	//Add New post from homepage
 	function new_post()//Creating new post page
     {
-        if(!$this->check_permissions('author'))//when the user is not an andmin and author
+        if(!$this->check_permissions('author'))//when the user is not an admin and author
         {
             redirect(base_url().'users/login');
         }
@@ -431,6 +438,58 @@ class Home extends CI_Controller {
             $this->load->view('template/view_footer');
         }
     }
+	//Add New Event from Homepage
+	function new_event()//Creating new post page
+		{
+			if(!$this->check_permissions('author'))//when the user is not an admin and author
+			{
+				redirect(base_url().'users/login');
+			}
+			
+			 //set validation rules
+			$this->form_validation->set_rules('events_name', 'Event Name', 'required');
+			$this->form_validation->set_rules('events_time', 'Event Time', 'required');
+			$this->form_validation->set_rules('events_address', 'Event Address', 'required');
+			$this->form_validation->set_rules('events_phone', 'Event Phone', 'required');
+			$this->form_validation->set_rules('events_contact_time', 'Post Body', 'required');
+			$this->form_validation->set_rules('events_email', 'Post Body', 'required');
+			$this->form_validation->set_rules('events_email', 'Post Body', 'required');
+			$this->form_validation->set_rules('events_content', 'Post Body', 'required');
+	 
+			if ($this->form_validation->run() == FALSE)
+			{
+				//if not valid
+				$this->load->view('template/view_header');
+				$this->load->view('view_home',$data);			
+				$this->load->view('template/view_footer');
+			}
+			else
+			{				
+				if($this->input->post())
+					{
+						$data = array(
+							'events_name' => $this->input->post('events_name'),
+							'events_time' => $this->input->post('events_time'),
+							'events_address' => $this->input->post('events_address'),
+							'events_phone' => $this->input->post('events_phone'),
+							'events_contact_time' => $this->input->post('events_contact_time'),
+							'events_email' => $this->input->post('events_email'),
+							'events_content' => $this->input->post('events_content'),
+							'event_author' => $this->input->post($_GET['session_id']),
+						);
+						$this->event_model->insert_event($data);
+						$this->session->set_flashdata('message', '1 new entry added!');
+						redirect(base_url());
+					}
+					else{          
+						$this->load->view('template/view_header');
+						$this->load->view('view_home');
+						$this->load->view('template/view_footer');
+					}
+			}		
+		}
+
+	
 	function check_permissions($required)//checking current user's permission
 		{
 			$user_type = $this->session->userdata('user_type');//curren user
@@ -450,5 +509,7 @@ class Home extends CI_Controller {
 				if($user_type == 'admin'){return TRUE;}//only admin have the permission
 			}
 		}
+		
+			
 	
 }

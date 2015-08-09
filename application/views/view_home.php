@@ -146,19 +146,17 @@
 					  <div class="modal-body">
 						<div class="">
 							  <legend>Add New Event</legend>
-							<?php
-							$attributes = array("class" => "form-horizontal", "id" => "employeeform", "name" => "employeeform");
-							echo form_open("employee/index", $attributes);?>
+							<?= form_open('home/new_event') ?>
 							<fieldset>
 
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Name</label>
+											<label for="event_name" class="control-label">Event Name</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Event name Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_name" name="events_name" placeholder="Event Name" type="text" class="form-control"  value="<?php echo set_value('events_name'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_name'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -166,11 +164,11 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Time</label>
+											<label for="events_time" class="control-label">Event Time</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Time Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_time" name="events_time" placeholder="Event Time" type="text" class="form-control"  value="<?php echo set_value('events_time'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_time'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -178,44 +176,44 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Address</label>
+											<label for="events_address" class="control-label">Event Address</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Events Address Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_address" name="events_address" placeholder="Enter Events Address Here" type="text" class="form-control"  value="<?php echo set_value('events_address'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_address'); ?></span>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Phone</label>
+											<label for="events_phone" class="control-label">Event Phone</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Phone Number Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_phone" name="events_phone" placeholder="Enter Phone Number Here" type="text" class="form-control"  value="<?php echo set_value('events_phone'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_phone'); ?></span>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Contact TIme</label>
+											<label for="events_contact_time" class="control-label">Event Contact TIme</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Contact Time Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_contact_time" name="events_contact_time" placeholder="Enter Contact Time Here" type="text" class="form-control"  value="<?php echo set_value('events_contact_time'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_contact_time'); ?></span>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeeno" class="control-label">Event Email</label>
+											<label for="events_email" class="control-label">Event Email</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeeno" name="employeeno" placeholder="Enter Email Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeeno'); ?></span>
+											<input id="events_email" name="events_email" placeholder="Enter Email Here" type="text" class="form-control"  value="<?php echo set_value('events_email'); ?>" />
+											<span class="text-danger"><?php echo form_error('events_email'); ?></span>
 										</div>
 									</div>
 								</div>
@@ -223,22 +221,24 @@
 								<div class="form-group">
 									<div class="row colbox">
 										<div class="col-lg-4 col-sm-4">
-											<label for="employeename" class="control-label">Post Content</label>
+											<label for="events_content" class="control-label">Post Content</label>
 										</div>
 										<div class="col-lg-8 col-sm-8">
-											<input id="employeename" name="employeename" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('employeename'); ?>" />
-											<span class="text-danger"><?php echo form_error('employeename'); ?></span>
+											<textarea id="events_content" name="events_content" placeholder="Enter Content Here" type="text" class="form-control"  value="<?php echo set_value('events_content'); ?>" /></textarea>
+											<span class="text-danger"><?php echo form_error('events_content'); ?></span>
 										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<div class="col-sm-offset-4 col-lg-8 col-sm-8 text-left">
-										<input id="btn_add" name="btn_add" type="submit" class="btn btn-primary" value="Insert" />
-										<input id="btn_cancel" name="btn_cancel" type="reset" class="btn btn-danger" value="Clear" />
-
-										<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
-
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											
+										</div>
+										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
+										<input class="btn btn-default" type="submit"  name="submit" value="Publish" />
+											
+										</div>
 									</div>
 								</div>
 							</fieldset>
@@ -256,7 +256,12 @@
 				<?php } ?>
 				<!-- All Events -->
 				<?php foreach($events as $event){?>
-					<div class="row event-single" id="'. $eventid .'">
+					<div class="row event-single">
+					<br>
+						<div class="col-md-12 banner">
+							<img class="img-responsive" src="<?php echo base_url("assets/images/banner-120x728.jpg"); ?>" alt="">
+						</div>
+					
 						<div class="col-md-12">
 							<a><h3><?php echo $event->events_name;?></h3></a><sup>By: <?php echo $event->username;?></sup>
 							<div class="fb-share-button" data-href="<?php echo site_url();?>"/"<?php echo $event->events_id;?>" data-layout="button_count"></div>
@@ -275,6 +280,110 @@
 			
 				
 			  </div>
+			  
+			  <div role="tabpanel" class="tab-pane" id="blog">
+			  
+			  
+			  <!--Blog Post Modal -->
+			  
+			  <?php if($this->session->userdata('user_id')) { ?>
+			  <div class="row">
+				<!-- Trigger the modal with a button -->
+				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#blog-modal">+</button>
+
+				<!-- Blog Modal -->
+				<div id="blog-modal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						
+					  </div>
+					  <div class="modal-body">
+						<div class="">
+							  <legend>Add New Post</legend>
+							
+							<fieldset>
+							<?= form_open('home/new_post') ?>
+								<div class="form-group">
+									<div class="row colbox">
+
+										<div class="col-lg-4 col-sm-4">
+											<label for="post_title" class="control-label">Post Title</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											<input id="post_title" name="post_title" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
+											<span class="text-danger"><?php echo form_error('post_title'); ?></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											<label for="post" class="control-label">Post Content</label>
+										</div>
+										<div class="col-lg-8 col-sm-8">
+											
+											<textarea id="post" name="post" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
+											
+											
+											<span class="text-danger"><?php echo form_error('post'); ?></span>
+										</div>
+									</div>
+								</div>
+														<div class="form-group">
+									<div class="row colbox">
+										<div class="col-lg-4 col-sm-4">
+											
+										</div>
+										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
+										<input class="btn btn-default" type="submit"  name="submit" value="Publish" />
+											
+										</div>
+									</div>
+								</div>
+								
+							</fieldset>
+							<?php echo form_close(); ?>
+							<?php echo $this->session->flashdata('msg'); ?>
+							
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+				</div>
+				</div>
+			  <?php } ?>
+				
+				
+			  <!-- All Blog and News -->
+			  <h3>Blog</h3>	
+			  
+				 <?php foreach($blogs as $blog){?>
+					<div class="row">
+						<div class="col-md-12">
+						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>
+						<p>Author: </p>
+						<?php if($this->session->userdata('user_id')) { ?>
+						<p>
+							<a href="<?=  base_url()?>blog/editpost/<?= $blog->post_id;?>"><span class="glyphicon glyphicon-edit" title="Edit post"></span></a> | 
+							<a href="<?=  base_url()?>blog/deletepost/<?= $blog->post_id;?>"><span style="color:#f77;" class="glyphicon glyphicon-remove-circle" title="Delete post"></span></a>
+						</p>						
+						<?php } ?>
+							<p> <?php echo $blog->post;?></p>					    
+						</div>								
+					</div>
+				 <?php }?>  
+			  </div>
+			  
+			  
+			  
+			  
 				<div role="tabpanel" class="tab-pane" id="doctor">
 				
 				<div class="row">
@@ -553,108 +662,7 @@
 			  
 			  </div>
 			  
-              <div role="tabpanel" class="tab-pane" id="blog">
-			  
-			  
-			  <!--Blog Post Modal -->
-			  
-			  <?php if($this->session->userdata('user_id')) { ?>
-			  <div class="row">
-				<!-- Trigger the modal with a button -->
-				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#blog-modal">+</button>
-
-				<!-- Blog Modal -->
-				<div id="blog-modal" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						
-					  </div>
-					  <div class="modal-body">
-						<div class="">
-							  <legend>Add New Post</legend>
-							
-							<fieldset>
-							<?= form_open('home/new_post') ?>
-								<div class="form-group">
-									<div class="row colbox">
-
-										<div class="col-lg-4 col-sm-4">
-											<label for="post_title" class="control-label">Post Title</label>
-										</div>
-										<div class="col-lg-8 col-sm-8">
-											<input id="post_title" name="post_title" placeholder="Enter Title Here" type="text" class="form-control"  value="<?php echo set_value('employeeno'); ?>" />
-											<span class="text-danger"><?php echo form_error('post_title'); ?></span>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row colbox">
-										<div class="col-lg-4 col-sm-4">
-											<label for="post" class="control-label">Post Content</label>
-										</div>
-										<div class="col-lg-8 col-sm-8">
-											
-											<textarea id="post" name="post" placeholder="Enter Content Here" type="textarea" class="form-control"  value="<?php echo set_value('employeename'); ?>">Enter text here...</textarea>
-											
-											
-											<span class="text-danger"><?php echo form_error('post'); ?></span>
-										</div>
-									</div>
-								</div>
-														<div class="form-group">
-									<div class="row colbox">
-										<div class="col-lg-4 col-sm-4">
-											
-										</div>
-										<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
-										<input class="btn btn-default" type="submit"  name="submit" value="Publish" />
-											
-										</div>
-									</div>
-								</div>
-								
-							</fieldset>
-							<?php echo form_close(); ?>
-							<?php echo $this->session->flashdata('msg'); ?>
-							
-						</div>
-					  </div>
-
-					</div>
-
-				  </div>
-				</div>
-				</div>
-			  <?php } ?>
-				
-				
-			  <!-- All Blog and News -->
-			  <h3>Blog</h3>	
-			  
-				 <?php foreach($blogs as $blog){?>
-					<div class="row">
-						<div class="col-md-12">
-						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>
-						<p>Author: </p>
-						<?php if($this->session->userdata('user_id')) { ?>
-						<p>
-							<a href="<?=  base_url()?>blog/editpost/<?= $blog->post_id;?>"><span class="glyphicon glyphicon-edit" title="Edit post"></span></a> | 
-							<a href="<?=  base_url()?>blog/deletepost/<?= $blog->post_id;?>"><span style="color:#f77;" class="glyphicon glyphicon-remove-circle" title="Delete post"></span></a>
-						</p>						
-						<?php } ?>
-							<p> <?php echo $blog->post;?></p>					    
-						</div>								
-					</div>
-				 <?php }?>  
-			 
-				
-				
-			  </div>
+              
 			  
 			  <div role="tabpanel" class="tab-pane" id="contact">
 			  <!-- Contact Tab -->

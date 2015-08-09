@@ -127,7 +127,7 @@
     </div>
 </div>
   
- -->
+
  
  
  <div id="thumbs">
@@ -147,5 +147,5 @@
 
 
 <div style="background-color: #ccc; height: 200px; margin-top: 50px;"></div>
-	 
+	  -->
 <?php } ?>

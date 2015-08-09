@@ -44,42 +44,17 @@
 		<script src="<?php echo base_url('assets/js/jquery-1.11.3.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/simple-expand.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/typeahead.min.js'); ?>"></script>
+		
+		<script src="<?php echo base_url('assets/js/typeahead.bundle.min.js'); ?>"></script>
+		
+		
 		<script src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
-		<script>
-			$('.expander').simpleexpand();
-			
-			var z=999;
-			$(function() {
-				$('.thumb').click(function(){
-				   var $more=$(this).find('.more')
-				   $more.css('z-index',z).show();
-				   z++;
-				   
-				   var h=$more.height();     
-				   $(this).height(h);
-				})
-				
-				$('.more').click(function(event){
-					event.stopPropagation();
-					$(this).hide();        
-					$('.thumb').height(100);        
-				})
-			})
-		</script>
+		
 		<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
 		
 		<!-- Get More doctor  -->
 		<script>
-		jQuery(function ($) {
-			$('#click').click(function() {
-				$('div.wrapper').find('div').toggleClass('small big');
-			});
-		});
-		
-		
-		
 			function filter(type) {
 				var url = "http://127.0.0.1/CI_VA/home/give_more_doctor";
 				var postdata = {type: type};
