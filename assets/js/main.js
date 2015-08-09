@@ -1,6 +1,81 @@
 
 
-$(document).ready(function () {
+
+/* 
+$(function(){
+
+// The height of the content block when it's not expanded
+var adjustheight = 80;
+// The "more" link text
+var moreText = "+  More";
+// The "less" link text
+var lessText = "- Less";
+
+// Sets the .more-block div to the specified height and hides any content that overflows
+$(".more-less .more-block").css('height', adjustheight).css('overflow', 'hidden');
+
+// The section added to the bottom of the "more-less" div
+$(".more-less").append('<p class="continued">[&hellip;]</p><a href="#" class="adjust"></a>');
+
+$("a.adjust").text(moreText);
+
+$(".adjust").toggle(function() {
+		$(this).parents("div:first").find(".more-block").css('height', 'auto').css('overflow', 'visible');
+		// Hide the [...] when expanded
+		$(this).parents("div:first").find("p.continued").css('display', 'none');
+		$(this).text(lessText);
+	}, function() {
+		$(this).parents("div:first").find(".more-block").css('height', adjustheight).css('overflow', 'hidden');
+		$(this).parents("div:first").find("p.continued").css('display', 'block');
+		$(this).text(moreText);
+});
+}); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* $(document).ready(function () {
+		$(".heeader").click(function () {
+		$heeader = $(this);
+		//getting the next element
+		$content = $heeader.next();
+		//open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+		$content.slideToggle(500, function () {
+			//execute this after slideToggle is done
+			//change text of header based on visibility of content div
+			$heeader.text(function () {
+				//change text based on condition
+				return $content.is(":visible") ? "Collapse" : "Expand";
+			});
+		});
+
+	});
+}); */
+
+
+	$('.majorpoints').click(function(){
+    $(this).find('.hiders').toggle();
+});
+
+/* $(document).ready(function () {
     $("#country").keyup(function () {
         $.ajax({
             type: "POST",
@@ -29,17 +104,18 @@ $(document).ready(function () {
         $('#country').val($(this).text());
     });
 });
+ */
 
 
 
 
-
-
+/* 
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
-	})
+	}) */
 	
+	/* 
 	$('#dist-barisal').hide();
 	$('#thana-Barguna').hide();
 	//button show hide	
@@ -64,7 +140,7 @@ $(document).ready(function () {
 		}
 	});
 	
-	
+	 */
 	
 
 
@@ -79,7 +155,8 @@ $(document).ready(function () {
 		  });
 		});
 
-		$(document).ready(function(){
+		
+	/* 	$(document).ready(function(){
 		
 			$('input.typeahead').typeahead({
 				name: 'typeahead',
@@ -103,7 +180,7 @@ $(document).ready(function () {
 					  //var brand = datum['brand_name_fk']);
 					  //document.write(brand);
 		  });
-		});
+		}); */
 		
 		// - {{strength_name_fk}} - ({{form_name_fk}})
 
@@ -339,7 +416,7 @@ $(document).ready(function () {
 
 */
 	
-
+	//To Open Modal 
 	$('#openBtn').click(function(){
 		$('.modal-body').load('/render/62805',function(result){
 			$('#myModal').modal({show:true});
@@ -352,7 +429,7 @@ $(document).ready(function () {
 		
 		
 		
-		
+		/* 
 				
 						$(window).scroll(function () {        	
 							if ($(window).scrollTop() == ( $(document).height() - $(window).height())) {
@@ -396,63 +473,8 @@ $(document).ready(function () {
 
 						};
 
-						
+						 */
 		
 		
 		
 		
-		
-		
-		
-		
-		$(document).ready(function () {
-			  ajax_articles();
-			  ajax_images();
-			  ajax_gallery();
-			});
-			 
-			function ajax_articles() {
-			  $('.show-articles').click(function () {
-				$.ajax({
-				  url: base_url+"?/ajax_demo/give_more_data",
-				  async: false,
-				  type: "POST",
-				  data: "type=article",
-				  dataType: "html",
-				  success: function(data) {
-					$('#ajax-content-container').html(data);
-				  }
-				})
-			  });
-			   
-			}
-			 
-			function ajax_images() {
-			  $('.show-images').click(function () {
-				$.ajax({
-				  url: base_url+"?/ajax_demo/give_more_data",
-				  async: false,
-				  type: "POST",
-				  data: "type=image",
-				  dataType: "html",
-				  success: function(data) {
-					$('#ajax-content-container').fadeIn().html(data);
-				  }
-				})
-			  });
-			}
-			 
-			function ajax_gallery() {
-			  $('.show-gallery').click(function () {
-				$.ajax({
-				  url: base_url+"?/ajax_demo/give_more_data",
-				  async: false,
-				  type: "POST",
-				  data: "type=gallery",
-				  dataType: "html",
-				  success: function(data) {
-					$('#ajax-content-container').html(data);
-				  }
-				})
-			  });
-			}

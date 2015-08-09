@@ -38,7 +38,7 @@ class doctor_model extends CI_Model
 
 	
 	//get_all_doctor_from_category
-	function get_all_doctor_from_category($doc_cat_id){
+	/* function get_all_doctor_from_category($doc_cat_id){
 		
 		 $this->db->where('doctor_category_id', $doc_cat_id);
 
@@ -53,8 +53,16 @@ class doctor_model extends CI_Model
 			}   
 			return $options;
 		} 
-	}
-
+	} */
+	
+	function get_node_by_type($type) {
+        $this->db->select("*");
+        $this->db->from('doctors_category');
+		$this->db->join('doctors','doctors.doctor_specialist = doctors_category.doctor_category_id');
+        $this->db->where('doctors_category.doctor_category_name', $type);
+        $query = $this->db->get();
+        return $query->result();
+    }
 	
 	
 

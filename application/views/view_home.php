@@ -275,48 +275,42 @@
 			
 				
 			  </div>
-              <div role="tabpanel" class="tab-pane" id="doctor">
-			
+				<div role="tabpanel" class="tab-pane" id="doctor">
+				
 				<div class="row">
 					<div class="col-md-12">
-					<h2>Find Doctors by District
+					<!-- Find Doctors by Districts-->
+					<h3>Find Doctors by District</h3>
 						<div class="btn-group" data-toggle="buttons" id="division"> 
-								<?php foreach($district as $dist){?>									
-									<label class="btn btn-primary">
-									<input type="radio" name="district" class="track-order-change" id="<?php echo $dist->district_name;?>" value="<?php echo $dist->district_name;?>">
-									 <?php echo $dist->district_name;?>
-									</label>			    
-									
-								 <?php }?>  
-			
-						</div>
-					
+							<?php foreach($district as $dist){?>									
+								<label class="btn btn-primary">
+								<input type="radio" name="district" class="track-order-change" id="<?php echo $dist->district_name;?>" value="<?php echo $dist->district_name;?>">
+								 <?php echo $dist->district_name;?>
+								</label> 
+							 <?php }?>  			
+						</div>					
 					</div>			
 				</div>
-			  <!-- Doctors -->
-			  <h3>Doctor By Category</h3>
-			  
-				<?php foreach($doctors_category as $category){?>	
-				<div class="row">
-					<div class="col-md-12">
-						<div class="col-md-4">						
-							<p><a id="get_doctor_cat" href="#"><?php echo $category->doctor_category_name;?></a>(<?php echo $category->doctors_count;?>)</p>							
-						</div>
-					</div>								
-				  </div> 
-				  	
-				 <?php }?> 
-
-		
 				
-				  
-				  
+				<!-- Find Doctors by Category-->
+				<h3>Doctor By Category</h3>	
+					<?php foreach($doctors_category as $category){?>	
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-4" id="filters">
+									<label><input type="radio" name="type" value="<?php echo $category->doctor_category_name;?>" checked><?php echo $category->doctor_category_name;?></label>
+									
+								</div>
+							</div>								
+						</div> 				  	
+					<?php }?>
+
+					<div id="more-doctor-content-container"></div>	
 				</div>
 				
-              <div role="tabpanel" class="tab-pane" id="healthcare">
+				<div role="tabpanel" class="tab-pane" id="healthcare">
 			  
-				 <h3>Healthcare Centers</h3>
-				 
+				<h3>Healthcare Centers</h3>				 
 				<?php foreach($companys as $company){?>
 					<div class="row">
 						<div class="col-md-12">

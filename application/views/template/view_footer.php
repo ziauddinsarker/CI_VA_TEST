@@ -42,36 +42,108 @@
 -->
 		
 		<script src="<?php echo base_url('assets/js/jquery-1.11.3.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/simple-expand.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/typeahead.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
+		<script>
+			$('.expander').simpleexpand();
+			
+			var z=999;
+			$(function() {
+				$('.thumb').click(function(){
+				   var $more=$(this).find('.more')
+				   $more.css('z-index',z).show();
+				   z++;
+				   
+				   var h=$more.height();     
+				   $(this).height(h);
+				})
+				
+				$('.more').click(function(event){
+					event.stopPropagation();
+					$(this).hide();        
+					$('.thumb').height(100);        
+				})
+			})
+		</script>
 		<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
 		
-	<script type="text/javascript">// <![CDATA[
-		$(document).ready(function(){       
-			$('#get_doctor_cat').change(function(){
-				$("#classes > option").remove();
-				var grade_id = $('#grades').val();
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>home/getDoctorsFromCategory/",
-					data: {gradeid:grade_id},
-					success: function(classes)
-					{
-						$.each(classes,function(id,name)
-						{
-							var opt = $('<option />');
-							opt.val(id);
-							opt.text(name);
-							$('#classes').append(opt);
-						});
-					}        
-				});
-
+		<!-- Get More doctor  -->
+		<script>
+		jQuery(function ($) {
+			$('#click').click(function() {
+				$('div.wrapper').find('div').toggleClass('small big');
 			});
 		});
-		// ]]>
-	</script>
+		
+		
+		
+			function filter(type) {
+				var url = "http://127.0.0.1/CI_VA/home/give_more_doctor";
+				var postdata = {type: type};
+				$.post(url, postdata, function(data) {
+					var results = JSON.parse(data);
+					$('#more-doctor-content-container').html(results);
+				});
+			}
+
+			filter("All"); //runs at load
+
+			$('#filters input').click(function() {
+				var type = $(this).val();
+				filter(type);
+			});
+		</script>
+		
+		
+		<script>
+			/* $("#doc-description").click(function () {
+
+				$header = $(this);
+				//getting the next element
+				$content = $header.next();
+				//open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+				$content.slideToggle(500, function () {
+					//execute this after slideToggle is done
+					//change text of header based on visibility of content div
+					$header.text(function () {
+						//change text based on condition
+						return $content.is(":visible") ? "Collapse" : "Expand";
+					});
+				});
+
+			}); */
+		</script>
+		
+		
+	
+	
+		<script type="text/javascript">// <![CDATA[
+			$(document).ready(function(){       
+				$('#get_doctor_cat').change(function(){
+					$("#classes > option").remove();
+					var grade_id = $('#grades').val();
+					$.ajax({
+						type: "POST",
+						url: "<?php echo base_url(); ?>home/getDoctorsFromCategory/",
+						data: {gradeid:grade_id},
+						success: function(classes)
+						{
+							$.each(classes,function(id,name)
+							{
+								var opt = $('<option />');
+								opt.val(id);
+								opt.text(name);
+								$('#classes').append(opt);
+							});
+						}        
+					});
+
+				});
+			});
+			// ]]>
+		</script>
     </body>
 </html>

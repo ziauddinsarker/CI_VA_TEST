@@ -58,7 +58,7 @@ class Home extends CI_Controller {
 
 	
 	//Get Doctors From Category
-	function getDoctorsFromCategory(){		
+	/* function getDoctorsFromCategory(){		
 
 		if ($district_from_districts = $this->input->post('district'))
 		{
@@ -69,7 +69,43 @@ class Home extends CI_Controller {
 			redirect('home/getDoctorsFromCategory');
 		}
 
+	} */
+	
+	function getDoctorsFromCategory(){	
+	
+		if (isset($_POST['category'])) {
+		  $data['ajax_req'] = TRUE;
+		  $data['doctor_list'] = $this->doctor_model->get_doctor_by_category($_POST['category']);
+		  $this->load->view('view_home',$data);
+
+		}
 	}
+	
+	
+	
+	//Get doctors from category when click
+	function give_more_doctor() {
+		$this->load->model('home_model'); // load Home model
+        $category_name = $this->input->post('doctor_category_name');
+		
+		if ($category_name === NULL) {
+            $results = $this->home_model->get_all();
+        } else {
+            $results = $this->home_model->get_doctor_by_cateogry($category_name);
+        }
+		
+		//$results = $this->home_model->get_all();   
+		
+		//$results = $this->home_model->get_doctor_by_cateogry($category_name);		
+		//$results = $this->home_model->get_doctor_by_cateogry('Andrologists  
+//');		
+        $data['doctor_list_from_doctor'] = $results;
+        $filter_view = $this->load->view('doc_cat_filter', $data, TRUE);
+	    echo json_encode($filter_view);
+    }
+	
+	
+	
 	
 	
 	

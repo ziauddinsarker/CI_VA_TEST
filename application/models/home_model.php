@@ -8,6 +8,25 @@ class home_model extends CI_Model
         parent::__construct();
     }
 	
+	//Get all 
+	function get_all() {
+        $this->db->select();
+        $this->db->from('doctors_category');
+		$this->db->join('doctors','doctors.doctor_specialist = doctors_category.doctor_category_id');       
+        $query = $this->db->get();
+        return $query->result();
+    }
+	
+	
+	//Get Doctor by Category
+	function get_doctor_by_cateogry($category_name) {
+        $this->db->select();
+        $this->db->from('doctors_category');
+		$this->db->join('doctors','doctors.doctor_specialist = doctors_category.doctor_category_id');
+        $this->db->where('doctor_category_name', $category_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 	
 	
 	//Get All Districts

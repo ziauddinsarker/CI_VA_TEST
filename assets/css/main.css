@@ -332,7 +332,26 @@ th, td {
 .doctor-desc .doctor-name,.doctor-desc .doctor-description{
 	background: powderblue;
 }
-
-.col-md-12 #doc-time {
+.single-doctor {
+    margin-bottom: 10px;
+}
+.single-doctor .col-md-12.doctor-time {
     display: none;
 } 
+
+.doctor-desc {
+    cursor: pointer;
+}
+
+.small {
+    height: 30px;
+    overflow: hidden;
+}
+.big {
+    height: auto;
+}
+
+
+
+#thumbs .thumb{cursor: pointer; background-color: red; float: left; margin: 0 20px 0 20px; width: 100px; text-align: center; height: 100px; position: relative;}
+#thumbs .more{ display: none; position: absolute; width: 380px; top:0; left:0; background-color: blue; color:#fff}
