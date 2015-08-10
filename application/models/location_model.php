@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class location_model extends CI_Model
+class Location_model extends CI_Model
 {
     function __construct()
     {
@@ -17,11 +17,19 @@ class location_model extends CI_Model
 	  return $query->result();
 	}
 	
+	
 	// Get Districts
-	public function get_district(){
-		
+	public function get_districts(){	
+		//$division = $this->input->post(division);
+		$this->db->select('*');
+		$this->db->from('district'); 
+		$this->db->join('division','district.division = division.division_id'); 
+		$this->db->where('division_name','Barisal');
+		$query = $this->db->get();
+		return $query->result();
 		
 	}
+	
 	
 	// Get Thana
 	public function get_thana(){

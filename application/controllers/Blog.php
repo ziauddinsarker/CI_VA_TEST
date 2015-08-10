@@ -31,8 +31,9 @@ class Blog extends CI_Controller {
         $this->load->view('v_home',$data);
         $this->load->view('footer');
     }
-    function post($post_id)//single post page
+    function post($post_id = NULL )//single post page
     {   
+		
         $this->load->model('model_comment');
         $data['comments'] = $this->model_comment->get_comment($post_id);    
         $data['post'] = $this->blog_model->get_post($post_id);

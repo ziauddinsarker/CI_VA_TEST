@@ -32,8 +32,17 @@ class blog_model extends CI_Model
         return $query->num_rows;
     }
 	
-    function get_post($post_id)
+    function get_post($post_id, $str_slug = '')
     {
+		$row = $this->db->get_where('posts', array('post_title' => $post_id))->row();
+
+        if ($row and ! $str_slug) {
+
+            $str_slug = url_title($row->title, 'dash', TRUE);
+            redirect("blog/post/{$int_id}/{$str_slug}");
+
+        }
+		
         $this->db->select('*');
         $this->db->from('posts');
         $this->db->where(array('active'=>1,'post_id'=>$post_id));

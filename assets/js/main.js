@@ -1,10 +1,11 @@
 
+
 // Instantiate the Bloodhound suggestion engine
 var countries = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     prefetch: {
-        url: '<?php echo base_url().'home/get_brand'; ?>',
+        url: 'http://127.0.0.1/CI_VA/home/get_brand',
         filter: function (countries) {
             return $.map(countries, function (country) {
                 return {
@@ -25,79 +26,6 @@ $('.typeahead').typeahead(null, {
 });
 
 
-/* 
-$(function(){
-
-// The height of the content block when it's not expanded
-var adjustheight = 80;
-// The "more" link text
-var moreText = "+  More";
-// The "less" link text
-var lessText = "- Less";
-
-// Sets the .more-block div to the specified height and hides any content that overflows
-$(".more-less .more-block").css('height', adjustheight).css('overflow', 'hidden');
-
-// The section added to the bottom of the "more-less" div
-$(".more-less").append('<p class="continued">[&hellip;]</p><a href="#" class="adjust"></a>');
-
-$("a.adjust").text(moreText);
-
-$(".adjust").toggle(function() {
-		$(this).parents("div:first").find(".more-block").css('height', 'auto').css('overflow', 'visible');
-		// Hide the [...] when expanded
-		$(this).parents("div:first").find("p.continued").css('display', 'none');
-		$(this).text(lessText);
-	}, function() {
-		$(this).parents("div:first").find(".more-block").css('height', adjustheight).css('overflow', 'hidden');
-		$(this).parents("div:first").find("p.continued").css('display', 'block');
-		$(this).text(moreText);
-});
-}); */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* $(document).ready(function () {
-		$(".heeader").click(function () {
-		$heeader = $(this);
-		//getting the next element
-		$content = $heeader.next();
-		//open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-		$content.slideToggle(500, function () {
-			//execute this after slideToggle is done
-			//change text of header based on visibility of content div
-			$heeader.text(function () {
-				//change text based on condition
-				return $content.is(":visible") ? "Collapse" : "Expand";
-			});
-		});
-
-	});
-}); */
-
-
-	$('.majorpoints').click(function(){
-    $(this).find('.hiders').toggle();
-});
 
 /* $(document).ready(function () {
     $("#country").keyup(function () {
@@ -133,51 +61,22 @@ $(".adjust").toggle(function() {
 
 
 
-/* 
+ 
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
-	}) */
+	})
 	
-	/* 
-	$('#dist-barisal').hide();
-	$('#thana-Barguna').hide();
-	//button show hide	
-	$('input[name="division"]').change( function() {
-		//Dhaka
-		if ($('#barisal').is(":checked")){
-			$('#dist-barisal').show();		
-			$('#division').hide();	
-		} else {			
-			$('#dist-barisal').collapse('hide');
-		}
+	
+
+	$(document).ready(function(){
+	  $('.slider1').bxSlider({
+		slideWidth: 200,
+		minSlides: 2,
+		maxSlides: 5,
+		slideMargin: 10
+	  });
 	});
-	
-	$('input[name="district"]').change( function() {
-		//Dhaka
-		if ($('#Barguna').is(":checked")){
-			$('#thana-Barguna').show();		
-			$('#dist-barisal').hide();
-			$('#division').hide();	
-		} else {			
-			$('#thana-Barguna').collapse('hide');
-		}
-	});
-	
-	 */
-	
-
-
-
-
-		$(document).ready(function(){
-		  $('.slider1').bxSlider({
-			slideWidth: 200,
-			minSlides: 2,
-			maxSlides: 5,
-			slideMargin: 10
-		  });
-		});
 
 		
 	/* 	$(document).ready(function(){
@@ -206,7 +105,6 @@ $(".adjust").toggle(function() {
 		  });
 		}); */
 		
-		// - {{strength_name_fk}} - ({{form_name_fk}})
 
 		/*
 		function fetchfromMysqlDatabase() {
@@ -231,14 +129,16 @@ $(".adjust").toggle(function() {
 		*
 		*/
 		
-		/*
+		
+		
 		function showDistrict(str)
 		{
 		if (str=="")
 		  {
 		  document.getElementById("div-dis-tha").innerHTML="";
 		  return;
-		  } 
+		  }
+		  
 		if (window.XMLHttpRequest)
 		  {// code for IE7+, Firefox, Chrome, Opera, Safari
 		  xmlhttp=new XMLHttpRequest();
@@ -254,11 +154,11 @@ $(".adjust").toggle(function() {
 			document.getElementById("div-dis-tha").innerHTML=xmlhttp.responseText;
 			}
 		  }
-		xmlhttp.open("GET","db/getdistrict.php?q="+str,true);
+		xmlhttp.open("GET","home/get_district_from_division",true);
 		xmlhttp.send();
 		}
+		 
 		
-		*/
 		
 		
 		/*

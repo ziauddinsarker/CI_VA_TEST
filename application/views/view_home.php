@@ -92,34 +92,15 @@
 									
 									<?php foreach($divisions as $division){?>
 										<label class="btn btn-primary">
-										<input type="radio" name="division" class="track-order-change" id="<?php echo $division->division_id;?>" value="<?php echo $division->division_name;?>">
+										<input type="radio" name="division" class="track-order-change" id="<?php echo $division->division_name;?>" value="<?php echo $division->division_name;?>" onchange="showDistrict(this.value)">
 										<?php echo $division->division_name;?>
 										</label>
 									<?php }?>
-									
-									 <!--country dropdown-->
-									
-
-											<?php
-										 /*
-												while ($row = mysql_fetch_array($division)){ 
-												$divsion_name = $row["division_name"];										
-												echo "<label class=\"btn btn-primary\">";
-												echo "<input type=\"radio\" name=\"division\" class=\"track-order-change\" id=". strtolower($divsion_name) ." value=".$row['division_name']." onchange='showDistrict(this.value)'>";
-												echo  $divsion_name;
-												echo "</label>";
-												}
-
-										*/												
-											?>
-										<!--	
-											<label class="btn btn-primary">
-											  <input type="radio" name="radios" class="track-order-change" id="chittagong">
-											  Chittagong
-											</label>
-										-->
+					
 									</div>
 								</div>
+								
+								<div id="ajax-content-container"></div>
 						</article>						
 					</div>
 	
@@ -403,16 +384,16 @@
 				
 				<!-- Find Doctors by Category-->
 				<h3>Doctor By Category</h3>	
-					<?php foreach($doctors_category as $category){?>	
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-4" id="filters">
-									<label><input type="radio" name="type" value="<?php echo $category->doctor_category_name;?>" checked><?php echo $category->doctor_category_name;?></label>
-									
-								</div>
-							</div>								
-						</div> 				  	
-					<?php }?>
+				
+						<div class="btn-group" data-toggle="buttons" id="filters"> 
+							<?php foreach($doctors_category as $category){?>									
+								<label class="btn btn-primary">
+								<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
+								 <?php echo $category->doctor_category_name;?>
+								</label> 
+							 <?php }?>  			
+						</div>	
+				
 
 					<div id="more-doctor-content-container"></div>	
 				</div>
