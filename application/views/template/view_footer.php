@@ -1,4 +1,60 @@
+</div>
+    
+				</article>
+				<article class="row">
+				<div class="col-md-4">
+					<h3>Top Pharmacists</h3>
+					<ul>
+						<li>Pharmacist 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Pharmacist 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+					
+				<div class="col-md-4">
+					<h3>Top Doctor</h3>
+					<ul>
+						<li>Doctor 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Doctor 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+					
+				<div class="col-md-4">
+					<h3>Top Business</h3>
+					<ul>
+						<li>Business 1<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 2<sup>* 2 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 3<sup>* 10 RSB (Rating on Social Branding)</sup></li>
+						<li>Business 4<sup>* 0 RSB (Rating on Social Branding)</sup></li>
+					</ul>
+				</div>
+						
+				</article>
+				
+				
+				<article>
+					<div class="slider1">
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/nuvista.png"></div>
+					  <div class="slide"><img src="<?php echo base_url(); ?>assets/images/Square.png"></div>
+					</div>
+				</article>
+				
+				
+				
+			</section>
+		</div>
 
+	 	<!--End Container -->	
+		<!--Footer Start Here -->
+
+	</div>
 	<footer id="footer">
       <div class="container">
 	  <!--

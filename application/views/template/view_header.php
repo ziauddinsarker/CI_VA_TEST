@@ -105,3 +105,27 @@
 	<!--Main Starts Here -->	
 	<div class="main">
 		<div class="container">	
+		
+		
+			<section class="shop-result medicine-result">
+				
+			<article class="row">					
+			
+            <div role="tabpanel" id="main-tab">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+			  <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+              <li role="presentation" class="active"><a href="#price" aria-controls="home" role="tab" data-toggle="tab">Medicine Price & Shops</a></li>
+              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Upcoming Events</a></li>			  
+              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Review & News</a></li>			  
+              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Find Discounts</a></li>
+              <li role="presentation"><a href="#doctor" aria-controls="messages" role="tab" data-toggle="tab">Find Doctors</a></li>
+              <li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Centers</a></li>			  
+              <li role="presentation"><a href="#faqs" aria-controls="profile" role="tab" data-toggle="tab">FAQs</a></li>
+              <li role="presentation"><a href="#contact" aria-controls="settings" role="tab" data-toggle="tab">Contact Us</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+			

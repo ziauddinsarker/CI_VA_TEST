@@ -8,7 +8,7 @@ class home_model extends CI_Model
         parent::__construct();
     }
 	
-	//Get all 
+	//Get all doctors category
 	function get_all() {
         $this->db->select();
         $this->db->from('doctors_category');
@@ -17,6 +17,15 @@ class home_model extends CI_Model
         return $query->result();
     }
 	
+	
+	function get_all_doctor(){
+		$this->db->select();
+        $this->db->from('doctors');
+		$this->db->join('doctors_category','doctors.doctor_specialist = doctors_category.doctor_category_id');
+        $query = $this->db->get();
+        return $query->result();
+		
+	}
 	
 	//Get Doctor by Category
 	function get_doctor_by_cateogry($category_name) {

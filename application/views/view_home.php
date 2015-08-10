@@ -21,6 +21,8 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
+			
+			
 			<div role="tabpanel" class="tab-pane" id="about">
 			<div class="row">
 				<div class="col-md-6 about-page">
@@ -67,7 +69,7 @@
 						
 			</div>
 			
-			
+			<!--Search  Tab-->
                 <div role="tabpanel" class="tab-pane active" id="price">
                     <div class="result-medicine" id="shop-result" >
 						
@@ -105,8 +107,11 @@
 					</div>
 	
                 </div>
+				
+				
+				
 			
-				<!--Event Tab-->
+			<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
 				<?php if($this->session->userdata('user_id')) { ?>
 			  <!-- Events Modal -->
@@ -259,12 +264,11 @@
 					  </div>
 				 <?php }?>  				
 			
-				
 			  </div>
 			  
+			  
+			  <!--Blog Tab-->
 			  <div role="tabpanel" class="tab-pane" id="blog">
-			  
-			  
 			  <!--Blog Post Modal -->
 			  
 			  <?php if($this->session->userdata('user_id')) { ?>
@@ -343,13 +347,12 @@
 				
 				
 			  <!-- All Blog and News -->
-			  <h3>Blog</h3>	
-			  
+			 		  
 				 <?php foreach($blogs as $blog){?>
 					<div class="row">
 						<div class="col-md-12">
 						<h3><a href="<?=  base_url()?>blog/post/<?= $blog->post_id;?>"> <?php echo $blog->post_title;?></a></h3>
-						<p>Author: </p>
+						<!-- <p>Author: </p> -->
 						<?php if($this->session->userdata('user_id')) { ?>
 						<p>
 							<a href="<?=  base_url()?>blog/editpost/<?= $blog->post_id;?>"><span class="glyphicon glyphicon-edit" title="Edit post"></span></a> | 
@@ -364,7 +367,7 @@
 			  
 			  
 			  
-			  
+			  <!--Doctor Tab-->
 				<div role="tabpanel" class="tab-pane" id="doctor">
 				
 				<div class="row">
@@ -394,24 +397,132 @@
 							 <?php }?>  			
 						</div>	
 				
-
-					<div id="more-doctor-content-container"></div>	
+			<?php foreach($all_doctors as $product){?>	
+					<div class="panel-group" id="accordion">
+	
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<div data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $product->doctor_id ; ?>">                        
+									<h4><?php echo $product->doctor_name ; ?> 
+									
+									
+									<sup>		
+									<?php foreach($doctors_rating as $doc_rating){?>							
+										<?php echo $doc_rating->RSB;?> RSB (Auto add from history update by admin)
+									<?php } ?>
+									<sup></h4>
+									<img src="<?php echo base_url("assets/images/avatar.png"); ?>" alt="" height="100" width="100"/>
+									<p>Title/Degree : <?php echo $product->doctor_title ; ?></p>
+									<p>Specialist: Cardiologist</p>
+								</div>	
+							</div>
+						</div>
+						<div id="collapse<?php echo $product->doctor_id ; ?>" class="panel-collapse collapse">
+							<div class="panel-body">
+							
+									<div class="col-md-12 doctor-description">							
+										<div class="col-md-6">
+											
+											<p>New Visit Fee: 500</p>
+											<p>Revisit Fee: 300</p>
+															
+										</div>
+										
+										<div class="col-md-6">
+										<p>Phone: <?php echo $product->doctor_phone ; ?></p>
+											<p>Email: <?php echo $product->doctor_title ; ?></p>
+											<p>Call/SMS Appointment: 01720223388</p>
+											<p>Website: www.example.com</p>
+										</div>
+									</div>
+							
+							
+							
+							   <table border="1" style="width:100%">
+								  <tr>
+									<td></td>
+									<td>Address 1</td>		
+									<td>Address 2</td>		
+									<td>Address 3</td>						
+								  </tr> 
+								  
+								  <tr>
+									<td>Saturday</td>
+									<td>4:30PM - 10PM</td>		
+									<td></td>
+									<td></td>
+								  </tr>
+								  <tr>
+									<td>Sunday</td>
+									<td></td>		
+									<td></td>
+									<td>4:30PM - 10PM</td>
+								  </tr>
+								  <tr>
+									<td>Monday</td>
+									<td>4:30PM - 10PM</td>		
+									<td></td>
+									<td></td>
+								  </tr>
+								  <tr>
+									<td>Tuesday</td>
+									<td></td>		
+									<td></td>
+									<td>4:30PM - 10PM</td>
+								  </tr> 
+								  
+								  <tr>
+									<td>Wednesday</td>
+									<td></td>		
+									<td>4:30PM - 10PM</td>
+									<td></td>
+								  </tr>
+								  
+								  <tr>
+									<td>Thursday</td>
+									<td></td>		
+									<td>4:30PM - 10PM</td>
+									<td></td>
+								  </tr>
+								  
+								  <tr>
+									<td>Friday</td>
+									<td></td>		
+									<td>4:30PM - 10PM</td>
+									<td></td>
+								  </tr>
+								  
+								</table>
+								
+								<h4>Click To View RSB History<sup>(by admin)</sup></h4>
+								<table border="1" style="width:100%">
+								  <tr>								
+									<td>Date</td>		
+									<td>Descriptin</td>		
+									<td>RSB Points</td>						
+								  </tr> 
+								  
+								  <tr>
+									<td>(+Add New Field by Admin)</td>
+									<td>+Add New Field by Admin)</td>		
+									<td>+Add New Field by Admin)</td>								
+								  </tr>						  
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>	
+			<?php } ?>
 				</div>
 				
+				
+				
+				
+				<!-- Healthcare Center Start -->
 				<div role="tabpanel" class="tab-pane" id="healthcare">
-			  
-				<h3>Healthcare Centers</h3>				 
-				<?php foreach($companys as $company){?>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="col-md-4" id="finalResult">						
-								<p><a href="healthcare/index"><?php echo $company->company_name;?></a><br />
-							</div>								
-						</div>								
-					</div>
-				 <?php }?> 
-				 
-			  <div class="row">
+				<?php if($this->session->userdata('user_id')) { ?>
+				<div class="row">
 				<!-- Trigger the modal with a button -->
 				<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#healthcare-modal">+</button>
 
@@ -504,7 +615,77 @@
 
 
 				</div>
+				<?php } ?>
+				<!--End Modal for Healthcare Details-->
+				
+				<h3>Healthcare Centers By Category</h3>	
+				
+				<div class="btn-group" data-toggle="buttons" id="filters"> 
+					<?php foreach($company_category as $company){?>									
+						<label class="btn btn-primary">
+						<input type="radio" name="district" class="track-order-change" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name;?>">
+						 <?php echo $company->company_cat_name;?>
+						</label> 
+					 <?php }?>  			
+				</div>	
+	
+
+				<?php foreach($companys as $company){?>	
+				<!--Doctors Details-->
+
+					<div class="panel-group" id="accordion">
+					
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="panel-title">
+									<div data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $company->company_id ; ?>">                        
+										<h4><?php echo $company->company_name ; ?> <sup>0 RSB (Auto add from history update by admin)<sup></h4>
+										
+										<p>About(facilities) : <?php echo $company->company_description ; ?></p>
+									</div>	
+								</div>
+							</div>
+							<div id="collapse<?php echo $company->company_id ; ?>" class="panel-collapse collapse">
+								<div class="panel-body">
+								
+										<div class="col-md-12 doctor-description">							
+											
+											
+											<div class="col-md-6">
+											<p>Phone: <?php echo $company->company_mobile ; ?></p>
+												<p>Email: <?php echo $company->company_email ; ?></p>
+												<p>Address: <?php echo $company->company_address ; ?></p>
+												<p>Website: <?php echo $company->company_website ; ?></p>
+											</div>
+										</div>
+								
+								
+								
+								   
+									
+									<h4>Click To View RSB History<sup>(by admin)</sup></h4>
+									<table border="1" style="width:100%">
+									  <tr>								
+										<td>Date</td>		
+										<td>Descriptin</td>		
+										<td>RSB Points</td>						
+									  </tr> 
+									  
+									  <tr>
+										<td>(+Add New Field by Admin)</td>
+										<td>+Add New Field by Admin)</td>		
+										<td>+Add New Field by Admin)</td>								
+									  </tr>						  
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+			  
 			  </div>
+			  
+			  <!-- Healthcare Center Start -->
               <div role="tabpanel" class="tab-pane" id="discount">
 					<h3>Find Discount By Category</h3>
 					<div class="btn-group" data-toggle="buttons" id="division"> 
@@ -697,6 +878,10 @@
 			  <!-- Contact Tab -->
 				
 			  </div>
+			  
+			  
+			  
+
             </div>
 
           </div>

@@ -12,8 +12,7 @@ class company_model extends CI_Model
     //Get All Posts
 	function getCompanyCategory(){
 	  $this->db->select('*');
-	  $this->db->from('company');
-	  $this->db->join('company_category', 'company_category.company_cat_id = company.company_business_type');	  
+	  $this->db->from('company_category');	  	  
 	  $query = $this->db->get();
 	  return $query->result();
 	}

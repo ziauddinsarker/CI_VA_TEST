@@ -35,6 +35,18 @@ class doctor_model extends CI_Model
 	  return $query->result();
 		
 	}
+	
+	public function getDoctorsRating(){
+	  $this->db->select('doctor_name,SUM(rating_value) as RSB');
+	  $this->db->from('doctor_rating');
+	  $this->db->join('doctors', 'doctor_rating.doctor_id = doctors.doctor_id');	  
+	  $this->db->join('rating', 'doctor_rating.rating_id = rating.rating_id');	
+	  $query = $this->db->get();
+	  return $query->result();
+		
+	}
+	
+	
 
 	
 	//get_all_doctor_from_category

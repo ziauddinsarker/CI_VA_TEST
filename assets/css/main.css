@@ -350,12 +350,12 @@ th, td {
 .big {
     height: auto;
 }
-.event-single .banner{
-    padding: 23px 0 0;
+.row .event-single .banner{
+    padding: 23px 11px 0;
 	margin:10px
     text-align: center;
 }
 
-.event-single .col-md-12.banner > img {
-    padding: 23px 0 0;
+.row .event-single .col-md-12.banner > img {
+    padding: 23px 0px 0;
 }

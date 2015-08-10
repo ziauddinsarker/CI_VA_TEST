@@ -28,15 +28,16 @@ class Home extends CI_Controller {
 		//Get Company Data
 		$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
 		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
-		//$this->data['blog_category'] = $this->blog_model->get_blog_category(); // calling Blog model method getPosts()
-
+		
+		$this->data['doctors_rating'] = $this->doctor_model->getDoctorsRating(); // calling Blog model method getPosts()
+				
 		//Get All Districts
 		$this->data['district'] = $this->home_model->getDistrict();
 		
 		//Get Doctors Data
 		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
-		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();	
-		
+		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();		
+		$this->data['all_doctors'] = $this->home_model->get_all_doctor();
 		//Get All Discount
 		$this->data['all_discount'] = $this->home_model->getAllDiscount();
 		
@@ -48,10 +49,27 @@ class Home extends CI_Controller {
 	//Index Function
 	public function index()	
 	{		
+	
+	
 			$this->load->view('template/view_header');								
-			$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file		
+			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
+
+			$this->load->view('template/view_about', $this->data);			
+			$this->load->view('template/view_brand', $this->data);			
+			$this->load->view('template/view_events', $this->data);			
+			$this->load->view('template/view_review_news', $this->data);			
+			$this->load->view('template/view_doctor', $this->data);			
+			$this->load->view('template/view_discount', $this->data);			
+			$this->load->view('template/view_healthcare', $this->data);			
+			$this->load->view('template/view_faq', $this->data);			
+			$this->load->view('template/view_contact', $this->data);			
 			$this->load->view('template/view_footer');		
+			
+			
+			
 	}
+	
+	
 
 	public function get_brand(){			
 			$data = $this->search_model->get();
