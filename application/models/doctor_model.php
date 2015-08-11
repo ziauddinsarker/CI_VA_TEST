@@ -41,6 +41,7 @@ class doctor_model extends CI_Model
 	  $this->db->from('doctor_rating');
 	  $this->db->join('doctors', 'doctor_rating.doctor_id = doctors.doctor_id');	  
 	  $this->db->join('rating', 'doctor_rating.rating_id = rating.rating_id');	
+	  $this->db->group_by('doctor_name');
 	  $query = $this->db->get();
 	  return $query->result();
 		

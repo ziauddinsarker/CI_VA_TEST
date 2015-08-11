@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1_3306
+Source Server         : localhost_3306
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : bhaloachee
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-08-11 01:12:34
+Date: 2015-08-11 16:47:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -17755,25 +17755,6 @@ CREATE TABLE `brand_strength_from_price` (
 INSERT INTO `brand_strength_from_price` VALUES ('1', '1', '1', '1', '1', '50', '378', '8');
 
 -- ----------------------------
--- Table structure for cities
--- ----------------------------
-DROP TABLE IF EXISTS `cities`;
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `city` varchar(255) DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_country` (`id_country`),
-  CONSTRAINT `fk_country` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of cities
--- ----------------------------
-INSERT INTO `cities` VALUES ('1', 'Dhaka', '1');
-INSERT INTO `cities` VALUES ('2', 'Comilla', '1');
-
--- ----------------------------
 -- Table structure for comments
 -- ----------------------------
 DROP TABLE IF EXISTS `comments`;
@@ -17888,20 +17869,24 @@ CREATE TABLE `company_discount` (
 INSERT INTO `company_discount` VALUES ('1', '325', '6');
 
 -- ----------------------------
--- Table structure for countries
+-- Table structure for day_time
 -- ----------------------------
-DROP TABLE IF EXISTS `countries`;
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Country` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `day_time`;
+CREATE TABLE `day_time` (
+  `day_time_id` int(11) NOT NULL AUTO_INCREMENT,
+  `day_time_saturday` varchar(255) DEFAULT NULL,
+  `day_time_sunday` varchar(255) DEFAULT NULL,
+  `day_time_monday` varchar(255) DEFAULT NULL,
+  `day_time_tuesday` varchar(255) DEFAULT NULL,
+  `day_time_wednesday` varchar(255) DEFAULT NULL,
+  `day_time_thursday` varchar(255) DEFAULT NULL,
+  `day_time_friday` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`day_time_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of countries
+-- Records of day_time
 -- ----------------------------
-INSERT INTO `countries` VALUES ('1', 'Bangladesh');
-INSERT INTO `countries` VALUES ('2', 'India');
 
 -- ----------------------------
 -- Table structure for discount
@@ -18037,29 +18022,25 @@ CREATE TABLE `doctors` (
   `doctor_email` varchar(255) DEFAULT NULL,
   `doctor_phone` varchar(255) DEFAULT NULL,
   `doctor_specialist` int(11) DEFAULT NULL,
-  `doctor_address_1` varchar(255) DEFAULT NULL,
-  `doctor_address_2` varchar(255) DEFAULT NULL,
-  `doctor_address_3` varchar(255) DEFAULT NULL,
-  `doctor_address_4` varchar(255) DEFAULT NULL,
   `doctor_district` int(11) DEFAULT NULL,
+  `doctor_website` varchar(255) DEFAULT NULL,
+  `doctor_chamber` int(11) DEFAULT NULL,
   `doctor_user_name` int(11) NOT NULL,
   PRIMARY KEY (`doctor_id`),
   KEY `fk_doctor_specialist` (`doctor_specialist`),
   KEY `fk_doctor_district` (`doctor_district`),
   KEY `fk_doctor_user` (`doctor_user_name`),
+  KEY `fk_doctor_chamber` (`doctor_chamber`),
+  CONSTRAINT `fk_doctor_chamber` FOREIGN KEY (`doctor_chamber`) REFERENCES `doctors_chamber` (`doctors_chambers_id`),
   CONSTRAINT `fk_doctor_district` FOREIGN KEY (`doctor_district`) REFERENCES `district` (`district_id`),
-  CONSTRAINT `fk_doctor_specialist` FOREIGN KEY (`doctor_specialist`) REFERENCES `doctors_category` (`doctor_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_doctor_specialist` FOREIGN KEY (`doctor_specialist`) REFERENCES `doctors_category` (`doctor_category_id`),
+  CONSTRAINT `fk_doctor_user` FOREIGN KEY (`doctor_user_name`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doctors
 -- ----------------------------
-INSERT INTO `doctors` VALUES ('3', 'Ziauddin ', 'MBBS', 'Male', 'FAGED', 'ziauddin.sarker@gmail.com', '01720223388', '2', 'Khilgaon, Dhaka', null, null, null, '3', '3');
-INSERT INTO `doctors` VALUES ('4', 'Samin', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '4', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '4');
-INSERT INTO `doctors` VALUES ('5', 'Aslam', 'MBBS', 'male', 'ABDG', 'ziauddin@siz.com', '01720223388', '7', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, null, '5');
-INSERT INTO `doctors` VALUES ('6', 'Timir', 'MBBS FCPS', 'male', 'AGVVAE', 'ziauddisn@siz.com', '01720223388', '4', 'Djakak', null, null, null, null, '6');
-INSERT INTO `doctors` VALUES ('7', 'ziauddin sarker', 'MBBS FCPS', 'female', 'AGVVAE', 'ziauddin@siz.com', '01720223388', '6', 'Djakak', null, null, null, '15', '7');
-INSERT INTO `doctors` VALUES ('8', 'Sohel', '', null, '', 'ziauddin@siz.com', '01720223388', '3', 'Hakajlsdjf salfkjslf sdaflkj', null, null, null, '7', '8');
+INSERT INTO `doctors` VALUES ('1', 'Ziauddin Sarker', 'MBBS', 'Male', 'ASDFG', 'ziauddin.sarker@gmail.com', '01720223388', '5', '17', null, '1', '4');
 
 -- ----------------------------
 -- Table structure for doctors_category
@@ -18090,25 +18071,61 @@ INSERT INTO `doctors_category` VALUES ('8', 'Dermatologist  \r\n', '(For skin, h
 DROP TABLE IF EXISTS `doctors_chamber`;
 CREATE TABLE `doctors_chamber` (
   `doctors_chambers_id` int(11) NOT NULL AUTO_INCREMENT,
-  `doctors_chambers_doctor_name` int(11) DEFAULT NULL,
-  `doctors_chambers_name` varchar(255) DEFAULT NULL,
-  `doctors_chambers_address` varchar(255) DEFAULT NULL,
-  `doctors_chambers_day` varchar(255) DEFAULT NULL,
-  `doctors_chembers_time` time DEFAULT NULL,
+  `doctors_chambers_address` int(11) DEFAULT NULL,
   `doctors_chambers_fee` int(255) DEFAULT NULL,
   `doctors_chambers_new_visit` int(11) DEFAULT NULL,
   `doctors_chambers_re_visit` int(11) DEFAULT NULL,
   `doctors_chambers_phone` varchar(255) DEFAULT NULL,
   `doctors_chambers_email` varchar(255) DEFAULT NULL,
   `doctors_chambers_call_for_apointment` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_11` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_12` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_13` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_21` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_22` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_23` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_31` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_32` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_33` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_41` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_42` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_43` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_51` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_52` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_53` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_61` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_62` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_63` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_71` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_72` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_73` varchar(255) DEFAULT NULL,
+  `doctors_chambers_time_74` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`doctors_chambers_id`),
-  KEY `fk_doctors_name` (`doctors_chambers_doctor_name`),
-  CONSTRAINT `fk_doctors_name` FOREIGN KEY (`doctors_chambers_doctor_name`) REFERENCES `doctors` (`doctor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_doctor_address` (`doctors_chambers_address`),
+  CONSTRAINT `fk_doctor_address` FOREIGN KEY (`doctors_chambers_address`) REFERENCES `doctors_chamber_address` (`doctors_chamber_address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doctors_chamber
 -- ----------------------------
+INSERT INTO `doctors_chamber` VALUES ('1', '1', '250', '450', '230', '01720223388', 'ziauddin.sarker@gmail.com', '72114242', '3:20PM', '2:30PM', '3:40pm', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for doctors_chamber_address
+-- ----------------------------
+DROP TABLE IF EXISTS `doctors_chamber_address`;
+CREATE TABLE `doctors_chamber_address` (
+  `doctors_chamber_address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `doctors_chamber_address_1` varchar(255) DEFAULT NULL,
+  `doctors_chamber_address_2` varchar(255) DEFAULT NULL,
+  `doctors_chamber_address_3` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`doctors_chamber_address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of doctors_chamber_address
+-- ----------------------------
+INSERT INTO `doctors_chamber_address` VALUES ('1', 'Khilgaon', 'Badda', 'Dhanmondi');
 
 -- ----------------------------
 -- Table structure for doctor_rating
@@ -18155,25 +18172,6 @@ CREATE TABLE `events` (
 -- ----------------------------
 INSERT INTO `events` VALUES ('1', 'Nothing Events', '2015-08-01', '258 Nabinbagh, Khilgaon , Dhaka', '01720223388', '12:90', 'ziauddin.sarker@gmail.com', '1');
 INSERT INTO `events` VALUES ('2', 'Another Nothing Events', '2015-07-30', 'Khilgaon Badda Kustia', '7211434', '3:20', 'info@simkam.com', '1');
-
--- ----------------------------
--- Table structure for node
--- ----------------------------
-DROP TABLE IF EXISTS `node`;
-CREATE TABLE `node` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `created` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of node
--- ----------------------------
-INSERT INTO `node` VALUES ('1', 'My name is Khan', 'article', '2015-07-30');
-INSERT INTO `node` VALUES ('2', 'This is image', 'image', '2015-08-07');
-INSERT INTO `node` VALUES ('3', 'This is Another Post', 'article', '2015-08-04');
 
 -- ----------------------------
 -- Table structure for posts

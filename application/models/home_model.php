@@ -19,13 +19,21 @@ class home_model extends CI_Model
 	
 	
 	function get_all_doctor(){
-		$this->db->select();
+		$this->db->select('*');
         $this->db->from('doctors');
 		$this->db->join('doctors_category','doctors.doctor_specialist = doctors_category.doctor_category_id');
+		$this->db->join('doctors_chamber','doctors.doctor_chamber = doctors_chamber.doctors_chambers_id');		
+		$this->db->join('doctors_chamber_address','doctors_chamber.doctors_chambers_address = doctors_chamber_address.doctors_chamber_address_id');
         $query = $this->db->get();
         return $query->result();
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 	//Get Doctor by Category
 	function get_doctor_by_cateogry($category_name) {

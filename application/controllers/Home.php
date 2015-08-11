@@ -37,7 +37,9 @@ class Home extends CI_Controller {
 		//Get Doctors Data
 		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
 		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();		
+		//Get All Doctors Data
 		$this->data['all_doctors'] = $this->home_model->get_all_doctor();
+		//var_dump($this->data['all_doctors']);
 		//Get All Discount
 		$this->data['all_discount'] = $this->home_model->getAllDiscount();
 		
@@ -49,8 +51,6 @@ class Home extends CI_Controller {
 	//Index Function
 	public function index()	
 	{		
-	
-	
 			$this->load->view('template/view_header');								
 			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
 
@@ -64,12 +64,7 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_faq', $this->data);			
 			$this->load->view('template/view_contact', $this->data);			
 			$this->load->view('template/view_footer');		
-			
-			
-			
-	}
-	
-	
+	}	
 
 	public function get_brand(){			
 			$data = $this->search_model->get();
