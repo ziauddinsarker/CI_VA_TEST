@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class profile_model extends CI_Model
+class Profile_model extends CI_Model
 {
     
     function get_post($post_id)

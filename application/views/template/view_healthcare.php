@@ -98,16 +98,18 @@
 				
 				<h3>Healthcare Centers By Category</h3>	
 				
-				<div class="btn-group" data-toggle="buttons" id="filters"> 
+				<div class="btn-group" id="filters"> 
 					<?php foreach($company_category as $company){?>									
 						<label class="btn btn-primary">
-						<input type="radio" name="district" class="track-order-change" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name;?>">
-						 <?php echo $company->company_cat_name;?>
+						<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
 						</label> 
 					 <?php }?>  			
 				</div>	
 	
-
+	
+				<div id="healthcare_content"></div>
+			<?php /*
+				
 				<?php foreach($companys as $company){?>	
 				<!--Doctors Details-->
 
@@ -135,12 +137,7 @@
 												<p>Address: <?php echo $company->company_address ; ?></p>
 												<p>Website: <?php echo $company->company_website ; ?></p>
 											</div>
-										</div>
-								
-								
-								
-								   
-									
+										</div>	
 									<h4>Click To View RSB History<sup>(by admin)</sup></h4>
 									<table border="1" style="width:100%">
 									  <tr>								
@@ -159,7 +156,9 @@
 							</div>
 						</div>
 					</div>
+					
 				<?php } ?>
-			  
-			  </div>
-			  
+
+				
+				*/?>
+</div>

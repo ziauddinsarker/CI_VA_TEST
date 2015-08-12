@@ -1,6 +1,7 @@
 </div>
     
 				</article>
+				
 				<article class="row">
 				<div class="col-md-4">
 					<h3>Top Pharmacists</h3>
@@ -111,7 +112,7 @@
 		
 		<!-- Get More doctor  -->
 		<script>
-			function filter(type) {
+			/* function filter(type) {
 				var url = "http://127.0.0.1/CI_VA/home/give_more_doctor";
 				var postdata = {type: type};
 				$.post(url, postdata, function(data) {
@@ -125,7 +126,7 @@
 			$('#filters input').click(function() {
 				var type = $(this).val();
 				filter(type);
-			});
+			}); */
 		</script>
 		
 		
@@ -151,7 +152,68 @@
 		
 	
 	
-		<script type="text/javascript">// <![CDATA[
+		<script type="text/javascript">
+		//Get Doctors By Category
+			function getHealthcareByCat(catId){     
+				var currentValue = catId.value;	
+							
+				
+				  $.ajax({
+						type: "POST",
+						url: "<?php echo site_url('home/get_com_by_cat') ?>",
+						data: { data: currentValue },
+						dataType:'json',
+						success: function(result){
+				
+						document.getElementById("healthcare_content").innerHTML = "";
+						var company = $("#healthcare_content");
+
+
+						// here is a simpe way
+						$.each(result, function (i, me) {
+							// create a p tag
+							// insert it to the 
+							// html element with an id of load_company_name
+							var p = $('<p/>');
+								// you can access the current iterate element
+								// of the array
+								// me = current iterated object
+								// you can access its property using
+								// me.company_name or me['company_name']
+								//company.innerHTML = company.innerHTML('<p>' + this.company_name + '</p>');
+								//company.innerHTML('<p>Company Name: ' + me.company_name + '</p>');
+								 p.html('Company: ' + me.company_name);
+								company.prepend(p); 
+						});
+					},
+						
+						/* success: function(result){
+							
+							
+							document.getElementById("healthcare_content").innerHTML = "";
+							var com = $("#healthcare_content");
+							//var company = $("#load_company_name");
+							//var com = document.getElementById('healthcare_content');
+							// here is a simpe way
+							
+							$.each(result, function (i, me) {
+								// create a p tag
+								var p = $('<p/>');
+								
+									//company.innerHTML('<p>Company Name: ' + this.company_name + '</p>' ) ;
+									com.innerHTML = com.innerHTML + '<p>' + this.company_name + '</p>';
+							});
+						}, */
+						error: function() {
+							alert('Not OKay');
+						}
+					
+					});
+				}
+				
+		
+		
+		/* // <![CDATA[
 			$(document).ready(function(){       
 				$('#get_doctor_cat').change(function(){
 					$("#classes > option").remove();
@@ -174,7 +236,7 @@
 
 				});
 			});
-			// ]]>
+			// ]]> */
 		</script>
     </body>
 </html>

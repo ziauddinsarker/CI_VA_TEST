@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class blog_model extends CI_Model
+class Blog_model extends CI_Model
 {
     function get_posts($number = 10, $start = 0)
     {

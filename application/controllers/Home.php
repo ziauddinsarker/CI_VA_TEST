@@ -17,6 +17,7 @@ class Home extends CI_Controller {
 		$this->load->model('home_model'); // load Home model
 		$this->load->model('location_model'); // load Location model
 		$this->load->model('search_model');
+		$this->load->model('healthcare_model');
 		
 		//Get Blog Data
 		//$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()
@@ -28,6 +29,13 @@ class Home extends CI_Controller {
 		//Get Company Data
 		$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
 		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
+		
+		//var_dump($this->data['company_category']);
+		//var_dump($this->data['companys']);
+		
+		
+		
+		
 		
 		$this->data['doctors_rating'] = $this->doctor_model->getDoctorsRating(); // calling Blog model method getPosts()
 				
@@ -51,7 +59,7 @@ class Home extends CI_Controller {
 	//Index Function
 	public function index()	
 	{		
-			$this->load->view('template/view_header');								
+			 $this->load->view('template/view_header');								
 			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
 
 			$this->load->view('template/view_about', $this->data);			
@@ -59,17 +67,26 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_events', $this->data);			
 			$this->load->view('template/view_review_news', $this->data);			
 			$this->load->view('template/view_doctor', $this->data);			
-			$this->load->view('template/view_discount', $this->data);			
+			$this->load->view('template/view_discount', $this->data);	 	
 			$this->load->view('template/view_healthcare', $this->data);			
 			$this->load->view('template/view_faq', $this->data);			
-			$this->load->view('template/view_contact', $this->data);			
-			$this->load->view('template/view_footer');		
+			$this->load->view('template/view_contact', $this->data);				
+			$this->load->view('template/view_footer');	 
 	}	
 
 	public function get_brand(){			
 			$data = $this->search_model->get();
 			echo json_encode($data);
 	}
+
+	
+	public function get_com_by_cat(){		
+		$catgory = $this->input->post('data');	
+		$data = $this->company_model->get_company_by_category($catgory);		
+		echo json_encode($data);
+	}
+	
+	
 	//Get Doctors From Category
 	/* function getDoctorsFromCategory(){		
 
