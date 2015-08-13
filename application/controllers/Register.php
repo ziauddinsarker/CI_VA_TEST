@@ -8,12 +8,19 @@ class Register extends CI_Controller {
         parent::__construct();
      	$this->load->database(); // load database			
 		$this->load->model('model_user'); // load Users model
+		$this->load->model('user_model'); // load Users model
     }
 
 	
 	function index()
     {
-        $data['error'] = NULL;
+		
+		
+		
+		
+		
+        /* $data['error'] = NULL;
+		
         if($this->input->post())
         {
 
@@ -71,10 +78,14 @@ class Register extends CI_Controller {
             'login_class' =>'', 
             'register_class' => 'current',
             'upload_class'=>'',
-            'contact_class'=>'');
-        
-        $this->load->view('template/view_header',$class_name);
-        $this->load->view('user/view_register',$data);
+            'contact_class'=>''); */
+        $data['error'] = NULL;
+		
+		$data['specility'] = $this->user_model->get_doctors_specility();
+		$data['district'] = $this->user_model->get_district();
+		
+        $this->load->view('template/view_header');
+        $this->load->view('user/view_registers', $data);
         $this->load->view('template/view_footer');
     }
 	
@@ -84,7 +95,64 @@ class Register extends CI_Controller {
 	
 	
 	
-	
+	// Register Doctors
+	public function register_doctor(){
+		
+		//Create Validation Rules
+		$this->form_validation->set_rules('doctor_full_name', 'Doctors Full Name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('doctor_title', 'Doctors Title', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_gender', 'Doctors Gender', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_bmdc', 'Doctors BMDC', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_user_email', 'Doctors Email', 'required');
+        $this->form_validation->set_rules('doctor_phone', 'Doctors Phone', 'required|numeric');
+        $this->form_validation->set_rules('doctor_specility', 'Doctors Specility', 'required|xss_clean');		
+        $this->form_validation->set_rules('doctor_address', 'Doctors Address', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_district', 'Doctors District', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_user_name', 'Doctors User Name', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_user_password_new', 'Doctors Password New', 'required');
+        $this->form_validation->set_rules('doctor_user_password_repeat', 'Doctors Repeat Password', 'required');
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			$data['error'] = validation_errors();
+			//fail validation
+            $this->load->view('template/view_header');
+            $this->load->view('user/view_registers', $data);
+            $this->load->view('template/view_footer');
+		}
+		else 
+		{
+			$data = array(				
+				'username' => $this->input->post('doctor_user_name'),
+				'password' => sha1($this->input->post('doctor_user_password_new')),
+				'email' => $this->input->post('doctor_user_email'),
+				'user_type' => $this->input->post('user_type'),
+			);
+			
+			$user_id = $this->model_user->create_user($data);
+			
+			$data = array(
+				'doctor_name' => $this->input->post('doctor_full_name'),
+				'doctor_title' => $this->input->post('doctor_title'),
+				'doctor_gender' => $this->input->post('doctor_gender'),
+				'doctor_bmdc_no' => $this->input->post('doctor_bmdc'),
+				'doctor_email' => $this->input->post('doctor_user_email'),
+				'doctor_phone' => $this->input->post('doctor_phone'),
+				'doctor_specialist' => $this->input->post('doctor_specility'),
+				'doctor_address' => $this->input->post('doctor_address'),
+				'doctor_district' => $this->input->post('doctor_district'),
+				'doctor_user_name' => $this->input->post($user_id),
+			);
+			$this->session->set_userdata('user_id',$user_id);
+			$this->session->set_userdata('username',$this->input->post('username'));
+			$this->session->set_userdata('user_type',$this->input->post('user_type'));
+			redirect(base_url());
+		}
+		
+		
+		
+		
+	}
 	
 	
 	

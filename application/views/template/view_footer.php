@@ -103,6 +103,7 @@
 		<script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js'); ?>"></script>
 		
 		<script src="<?php echo base_url('assets/js/typeahead.bundle.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/validator.min.js'); ?>"></script>
 		
 		
 		<script src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>

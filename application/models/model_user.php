@@ -1,11 +1,18 @@
 <?php
 class Model_user extends CI_Model
 {
+
+	
+	function create_doctor($data){
+		$this->db->insert('doctors',$data);
+	}
+	
     function create_user($data)
     {
         $this->db->insert('users', $data);
-        return $this->db->insert_id();;
+        return $this->db->insert_id();
     }
+	
 	
     function login($username, $password, $user_type)
     {
