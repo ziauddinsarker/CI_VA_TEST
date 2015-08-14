@@ -14,71 +14,6 @@ class Register extends CI_Controller {
 	
 	function index()
     {
-		
-		
-		
-		
-		
-        /* $data['error'] = NULL;
-		
-        if($this->input->post())
-        {
-
-            $config = array(
-                array(
-                    'field' => 'username',
-                    'label' => 'Username',
-                    'rules' => 'trim|required|min_length[3]|is_unique[users.username]'//is unique username in the user's table of DB
-                ),
-                array(
-                    'field' => 'password',
-                    'label' => 'Password',
-                    'rules' => 'trim|required|min_length[5]|max_length[20]'
-                ),
-                array(
-                    'field' => 'passconf',
-                    'label' => 'Password confirmed',
-                    'rules' => 'trim|required|matches[password]',
-                ),
-                array(
-                    'field' => 'user_type',
-                    'label' => 'User type',
-                    'rules' => 'trim|required',
-                ),
-                array(
-                    'field' => 'email',
-                    'label' => 'Email',
-                    'rules' => 'trim|required|is_unique[users.email]|valid_email',//is unique email in the user's table of DB
-                ),
-            );
-         
-            $this->form_validation->set_rules($config);
-            if($this->form_validation->run() == FALSE)
-            {
-                $data['error'] = validation_errors();
-            }
-            else 
-            {
-                $data = array(
-                    'username' => $this->input->post('username'),
-                    'email' => $this->input->post('email'),
-                    'password' => sha1($this->input->post('password')),
-                    'user_type' => $this->input->post('user_type'),
-                );
-                $user_id = $this->model_user->create_user($data);
-                $this->session->set_userdata('user_id',$user_id);
-                $this->session->set_userdata('username',$this->input->post('username'));
-                $this->session->set_userdata('user_type',$this->input->post('user_type'));
-                redirect(base_url());
-            }
-            
-        }
-        $class_name = array(
-            'home_class'=>'', 
-            'login_class' =>'', 
-            'register_class' => 'current',
-            'upload_class'=>'',
-            'contact_class'=>''); */
         $data['error'] = NULL;
 		
 		$data['specility'] = $this->user_model->get_doctors_specility();
@@ -88,10 +23,6 @@ class Register extends CI_Controller {
         $this->load->view('user/view_registers', $data);
         $this->load->view('template/view_footer');
     }
-	
-	
-	
-	
 	
 	
 	
@@ -155,13 +86,72 @@ class Register extends CI_Controller {
 			
 			redirect(base_url());
 		}
-		
-		
-		
-		
+
 	}
 	
 	
+	// Register Pharmacist
+	public function register_pharmacist(){
+		
+		//Create Validation Rules
+		$this->form_validation->set_rules('doctor_full_name', 'Doctors Full Name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('doctor_title', 'Doctors Title', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_gender', 'Doctors Gender', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_bmdc', 'Doctors BMDC', 'trim|xss_clean');
+        $this->form_validation->set_rules('doctor_user_email', 'Doctors Email', 'required');
+        $this->form_validation->set_rules('doctor_phone', 'Doctors Phone', 'required|numeric');
+        $this->form_validation->set_rules('doctor_specility', 'Doctors Specility', 'xss_clean');		
+        $this->form_validation->set_rules('doctor_address', 'Doctors Address', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_district', 'Doctors District', 'xss_clean');
+        $this->form_validation->set_rules('doctor_user_name', 'Doctors User Name', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_user_password_new', 'Doctors Password New', 'required');
+        $this->form_validation->set_rules('doctor_user_password_repeat', 'Doctors Repeat Password', 'required');
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			
+			$data['error'] = validation_errors();
+			//fail validation
+            $this->load->view('template/view_header');
+            $this->load->view('user/view_registers', $data);
+            $this->load->view('template/view_footer');
+		}
+		else 
+		{
+		
+			$user_data = array(				
+				'username' => $this->input->post('doctor_user_name'),
+				'password' => sha1($this->input->post('doctor_user_password_new')),
+				'email' => $this->input->post('doctor_user_email'),
+				'user_type' => $this->input->post('doctor_user_type'),
+			);
+			
+			$this->db->insert('users', $user_data);			
+			$user_id = $this->db->insert_id();
+			
+			$doctor_data = array(
+				'doctor_name' => $this->input->post('doctor_full_name'),
+				'doctor_title' => $this->input->post('doctor_title'),
+				'doctor_gender' => $this->input->post('doctor_gender'),
+				'doctor_bmdc_no' => $this->input->post('doctor_bmdc'),
+				'doctor_email' => $this->input->post('doctor_user_email'),
+				'doctor_phone' => $this->input->post('doctor_phone'),
+				'doctor_specialist' => $this->input->post('doctor_specility'),
+				'doctor_address' => $this->input->post('doctor_address'),
+				'doctor_district' => $this->input->post('doctor_district'),
+				'doctor_user_name' => $user_id
+			);
+					
+			$this->model_user->create_doctor($doctor_data);
+			
+			$this->session->set_userdata('user_id',$user_id);
+			$this->session->set_userdata('username',$this->input->post('username'));
+			$this->session->set_userdata('user_type',$this->input->post('user_type')); 
+			
+			redirect(base_url());
+		}
+
+	}
 	
 	
 	

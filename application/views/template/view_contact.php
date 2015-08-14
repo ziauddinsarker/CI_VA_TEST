@@ -1,12 +1,11 @@
 <div role="tabpanel" class="tab-pane" id="contact">
 			  <!-- Contact Tab -->
 				<div class="row">
-					<div class="col-md-4">
-					<h4>Contact Us</h4>
-						<form role="form">
-						<div class="form-group">
+					<div class="col-md-6">
+						<?php echo form_open("home/send_contact");?>
+							<div class="form-group">
 								<label for="subject">Subject:</label>
-								<select class="form-control" name="subject">
+								<select class="form-control" name="contact_subject">
 									<option value="advertisement">For Advertisement</option>
 									<option value="error" selected>Report An Error</option>
 									<option value="event" >Submit and Event</option>
@@ -19,33 +18,29 @@
 							</div>
 							<div class="form-group">
 								<label for="name">Name*:</label>
-								<input type="text" class="form-control" id="name">
+								<input type="text" class="form-control" name="contact_name" id="name">
 							</div>
 							<div class="form-group">
 								<label for="email">Email address*:</label>
-								<input type="email" class="form-control" id="email">
+								<input type="email" class="form-control" name="contact_email" id="email">
 							</div>
 							<div class="form-group">
 								<label for="phone">Phone:</label>
-								<input type="text" class="form-control" id="phone">
+								<input type="text" class="form-control" name="contact_phone" id="phone">
 							</div>
 							<div class="form-group">
 								<label for="submittext">Submit Text:</label>
-								<textarea type="textarea" class="form-control" id="submittext"></textarea>
+								<textarea type="textarea" class="form-control" name="contact_text" id="submittext"></textarea>
 							</div>
-							<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
 							  <button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>
 					
-					<div class="col-md-4"> 
+					<div class="col-md-6"> 
 					
 					
 					</div>
-					
-					<div class="col-md-4">
-					
-					</div>
+				
 				</div>
 			  <!-- Contact Tab -->
 				

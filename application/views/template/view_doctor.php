@@ -27,8 +27,8 @@
 				</div>	
 				
 			
-			<!-- Get All Doctor -->	
-			<?php foreach($all_doctors as $doctor){?>	
+				<!-- Get All Doctor -->	
+				<?php foreach($all_doctors as $doctor){?>	
 					<div class="panel-group" id="accordion">
 	
 					<div class="panel panel-default">
@@ -46,24 +46,22 @@
 						<div id="collapse<?php echo $doctor->doctor_id ; ?>" class="panel-collapse collapse">
 							<div class="panel-body">
 							
-									<div class="col-md-12 doctor-description">							
-										<div class="col-md-6">											
-											<p>New Visit Fee: <?php echo $doctor->doctors_chambers_new_visit ; ?></p>
-											<p>Revisit Fee: <?php echo $doctor->doctors_chambers_re_visit ; ?></p>
-															
-										</div>
-										
-										<div class="col-md-6">
-										<p>Phone: <?php echo $doctor->doctor_phone; ?></p>
-											<p>Email: <?php echo $doctor->doctor_email; ?></p>
-											<p>Call/SMS Appointment: <?php echo $doctor->doctors_chambers_call_for_apointment; ?></p>
-											<p>Website: <?php echo $doctor->doctor_website ; ?></p>
-										</div>
+								<div class="col-md-12 doctor-description">							
+									<div class="col-md-6">											
+										<p>New Visit Fee: <?php echo $doctor->doctors_chambers_new_visit ; ?></p>
+										<p>Revisit Fee: <?php echo $doctor->doctors_chambers_re_visit ; ?></p>
+														
 									</div>
+									
+									<div class="col-md-6">
+									<p>Phone: <?php echo $doctor->doctor_phone; ?></p>
+										<p>Email: <?php echo $doctor->doctor_email; ?></p>
+										<p>Call/SMS Appointment: <?php echo $doctor->doctors_chambers_call_for_apointment; ?></p>
+										<p>Website: <?php echo $doctor->doctor_website ; ?></p>
+									</div>
+								</div>
 							
-							
-							
-							   <table border="1" style="width:100%">
+								<table border="1" style="width:100%">
 								  <tr>
 									<td></td>
 									<td><?php echo $doctor->doctors_chamber_address_1 ; ?></td>		
@@ -118,6 +116,7 @@
 								  </tr>
 								  
 								</table>
+								
 								<?php if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin') { ?>
 									<h4>Click To View RSB History<sup>(by admin)</sup></h4>
 									<table border="1" style="width:100%">
@@ -134,12 +133,14 @@
 									  </tr>
 									</table>
 								<?php }?>  
+								
+								<!-- Doctor Modal-->
 								<div class="row">
-									<!-- Trigger the modal with a button -->
-									<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#doctor_rsb<?php echo $doctor->doctor_id ; ?>">+</button>
+								<!-- Trigger the modal with a button -->
+								<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#doctor_rsb<?php echo $doctor->doctor_id ; ?>">+</button>
 
 									<!-- Modal -->
-									<div id="doctor_rsb<?php echo $doctor->doctor_id ; ?>" class="modal fade" role="dialog">
+								<div id="doctor_rsb<?php echo $doctor->doctor_id ; ?>" class="modal fade" role="dialog">
 								  <div class="modal-dialog">
 
 									<!-- Modal content-->
@@ -210,12 +211,13 @@
 
 									</div>
 
-								  </div>
-							</div>
+									</div>
 								</div>
-					</div>
-						</div>	
+							</div>
+							<!-- Row End-->
+						</div>
+					</div>	
+				</div>
+			</div>
 			<?php } ?>
-		</div>
-	</div>
 </div>

@@ -108,15 +108,10 @@ class Home_model extends CI_Model
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//Get Contact
+	function post_contact_text($data){
+		$this->db->insert('contact',$data);
+	}
 	
 
     //get the username & password from tbl_usrs

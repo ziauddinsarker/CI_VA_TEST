@@ -7,6 +7,7 @@ class Home extends CI_Controller {
     {
         parent::__construct();        
 		$this->load->helper('captcha');	
+		$this->load->library('email');
 		
 		$this->load->database(); // load database		
 		$this->load->model('blog_model'); // load Blog model
@@ -66,7 +67,7 @@ class Home extends CI_Controller {
 	//Index Function
 	public function index()	
 	{		
-			 $this->load->view('template/view_header');								
+			 $this->load->view('template/view_header', $this->data);								
 			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
 			$this->load->view('template/view_about', $this->data);			
 			$this->load->view('template/view_brand', $this->data);			
@@ -77,7 +78,7 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_healthcare', $this->data);			
 			$this->load->view('template/view_faq', $this->data);			
 			$this->load->view('template/view_contact', $this->data);				
-			$this->load->view('template/view_footer');	 
+			$this->load->view('template/view_footer', $this->data);	 
 	}	
 
 	public function get_brand(){			
@@ -91,7 +92,65 @@ class Home extends CI_Controller {
 		$data = $this->company_model->get_company_by_category($catgory);		
 		echo json_encode($data);
 	}
-	
+
+	public function send_contact(){
+		
+		//Create Validation Rules
+		$this->form_validation->set_rules('contact_subject', 'Subject', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('contact_name', 'Doctors Title', 'trim|xss_clean');
+        $this->form_validation->set_rules('contact_email', 'Doctors Gender', 'trim|xss_clean');
+        $this->form_validation->set_rules('contact_phone', 'Doctors BMDC', 'trim|xss_clean');
+        $this->form_validation->set_rules('contact_text', 'Doctors Email', 'required');
+        
+		if($this->form_validation->run() == FALSE)
+		{			
+			$data['error'] = validation_errors();
+			//fail validation
+            $this->load->view('template/view_header');
+            $this->load->view('template/view_contact', $data);
+            $this->load->view('template/view_footer');
+		}
+		else 
+		{
+			$contact_data = array(				
+				'contact_subject' => $this->input->post('contact_subject'),
+				'contact_name' => $this->input->post('contact_name'),
+				'contact_email' => $this->input->post('contact_email'),
+				'contact_phone' => $this->input->post('contact_phone'),
+				'contact_text' => $this->input->post('contact_text')
+			);
+			
+			
+			
+			$this->db->insert('contact', $contact_data);
+			
+			// Email configuration
+			  $config = Array(
+				 'protocol' => 'smtp',
+				 'smtp_host' => 'smtp.bhalo-achee.com.',
+				 'smtp_port' => 465,
+				 'smtp_user' => 'admin@bhalo-achee.com', // change it to yours
+				 'smtp_pass' => '19A14t1&', // change it to yours
+				 'mailtype' => 'html',
+				 'charset' => 'iso-8859-1',
+				 'wordwrap' => TRUE
+			  ); 
+			 
+			  $this->load->library('email', $config);
+			  $this->email->from($this->input->post('contact_email'), $this->input->post('contact_name'));
+			  $this->email->to("ziauddin.sarker@gmail.com");
+			  
+			  $this->email->subject($this->input->post('contact_subject'));
+			  $this->email->message($this->input->post('contact_text'));
+			   
+			  $data['message'] = "Sorry Unable to send email..."; 
+			  if($this->email->send()){     
+			   $data['message'] = "Mail sent...";   
+			  } 
+			
+			redirect(base_url());
+		}
+	}
 	
 	//Get Doctors From Category
 	/* function getDoctorsFromCategory(){		
