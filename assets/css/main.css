@@ -359,3 +359,26 @@ th, td {
 .row .event-single .col-md-12.banner > img {
     padding: 23px 0px 0;
 }
+
+
+.top-pharmacist {
+    background: mintcream none repeat scroll 0 0;
+    opacity: 0.76;
+	min-height:250px
+}
+
+.top-doctor {
+    background: mintcream none repeat scroll 0 0;
+    opacity: 0.76;
+	min-height:250px
+}
+
+.top-company {
+    background: mintcream none repeat scroll 0 0;
+    opacity: 0.76;
+	min-height:250px
+}
+
+.all-top {
+    margin-bottom: 28px;
+}

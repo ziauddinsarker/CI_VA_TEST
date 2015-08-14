@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : 127.0.0.1_3306
 Source Server Version : 50621
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : bhaloachee
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-08-12 18:18:06
+Date: 2015-08-14 07:12:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -12921,9 +12921,10 @@ CREATE TABLE `doctors` (
   `doctor_phone` varchar(255) DEFAULT NULL,
   `doctor_specialist` int(11) DEFAULT NULL,
   `doctor_district` int(11) DEFAULT NULL,
+  `doctor_address` varchar(255) DEFAULT NULL,
   `doctor_website` varchar(255) DEFAULT NULL,
   `doctor_chamber` int(11) DEFAULT NULL,
-  `doctor_user_name` int(11) NOT NULL,
+  `doctor_user_name` int(11) DEFAULT NULL,
   PRIMARY KEY (`doctor_id`),
   KEY `fk_doctor_specialist` (`doctor_specialist`),
   KEY `fk_doctor_district` (`doctor_district`),
@@ -12933,13 +12934,16 @@ CREATE TABLE `doctors` (
   CONSTRAINT `fk_doctor_district` FOREIGN KEY (`doctor_district`) REFERENCES `district` (`district_id`),
   CONSTRAINT `fk_doctor_specialist` FOREIGN KEY (`doctor_specialist`) REFERENCES `doctors_category` (`doctor_category_id`),
   CONSTRAINT `fk_doctor_user` FOREIGN KEY (`doctor_user_name`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doctors
 -- ----------------------------
-INSERT INTO `doctors` VALUES ('1', 'Ziauddin Sarker', 'MBBS', 'Male', 'ASDFG', 'ziauddin.sarker@gmail.com', '01720223388', '5', '17', null, '1', '4');
-INSERT INTO `doctors` VALUES ('2', 'Aslam', 'MBBS, FCPS', 'Male', 'ADEXG', 'aslam@gmail.com', '01720223355', '7', '45', null, '1', '3');
+INSERT INTO `doctors` VALUES ('1', 'Ziauddin Sarker', 'MBBS', 'Male', 'ASDFG', 'ziauddin.sarker@gmail.com', '01720223388', '5', '17', null, null, '1', '4');
+INSERT INTO `doctors` VALUES ('2', 'Aslam', 'MBBS, FCPS', 'Male', 'ADEXG', 'aslam@gmail.com', '01720223355', '7', '45', null, null, '1', '3');
+INSERT INTO `doctors` VALUES ('3', 'Timir', 'salfjlksaj', 'male', 'dsfsdf', 'sfsadf@fgnauk.com', '01420225566', '6', '8', 'sdfsd vsf ssdfs', null, '1', '5');
+INSERT INTO `doctors` VALUES ('4', 'Rafiq', 'sfsadf', 'male', 'sdfsdaf', 'sfsadf@fgnauk.com', '01420225566', '8', '9', 'sdfsd', null, '1', '10');
+INSERT INTO `doctors` VALUES ('5', 'asdas', 'sgfsg', 'male', 'sdfgsdf', 'sfsadf@fgnauk.com', '01420225566', '3', '5', 'sdfsd vsf ssdfs', null, '1', '9');
 
 -- ----------------------------
 -- Table structure for doctors_category
@@ -13039,7 +13043,7 @@ CREATE TABLE `doctor_rating` (
   KEY `fk_rating_id` (`rating_id`),
   CONSTRAINT `fk_doctor_rating` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`),
   CONSTRAINT `fk_rating_id` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doctor_rating
@@ -13047,6 +13051,15 @@ CREATE TABLE `doctor_rating` (
 INSERT INTO `doctor_rating` VALUES ('1', '3', '2');
 INSERT INTO `doctor_rating` VALUES ('2', '3', '1');
 INSERT INTO `doctor_rating` VALUES ('3', '5', '2');
+INSERT INTO `doctor_rating` VALUES ('4', '1', '2');
+INSERT INTO `doctor_rating` VALUES ('5', '3', '2');
+INSERT INTO `doctor_rating` VALUES ('6', '2', '1');
+INSERT INTO `doctor_rating` VALUES ('7', '2', '2');
+INSERT INTO `doctor_rating` VALUES ('8', '1', '2');
+INSERT INTO `doctor_rating` VALUES ('9', '3', null);
+INSERT INTO `doctor_rating` VALUES ('10', '3', null);
+INSERT INTO `doctor_rating` VALUES ('11', '3', null);
+INSERT INTO `doctor_rating` VALUES ('12', '3', '6');
 
 -- ----------------------------
 -- Table structure for events
@@ -13099,17 +13112,19 @@ INSERT INTO `posts` VALUES ('14', 'Getting Thru the day…', 'I don’t know any
 DROP TABLE IF EXISTS `rating`;
 CREATE TABLE `rating` (
   `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating_description` varchar(255) DEFAULT NULL,
   `rating_value` varchar(255) DEFAULT NULL,
   `rating_date` datetime DEFAULT NULL,
   `rating_update_date` datetime DEFAULT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rating
 -- ----------------------------
-INSERT INTO `rating` VALUES ('1', '10', '2015-08-11 00:11:58', '2015-08-11 00:12:02');
-INSERT INTO `rating` VALUES ('2', '5', '2015-08-10 00:12:12', '2015-08-11 00:12:16');
+INSERT INTO `rating` VALUES ('1', null, '10', '2015-08-11 00:11:58', '2015-08-11 00:12:02');
+INSERT INTO `rating` VALUES ('2', null, '5', '2015-08-10 00:12:12', '2015-08-11 00:12:16');
+INSERT INTO `rating` VALUES ('6', 'NO descriotnono', '20', '2015-08-14 00:00:00', null);
 
 -- ----------------------------
 -- Table structure for shop
@@ -13663,7 +13678,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `user_type` enum('admin','doctor','pharmacist','business') NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
@@ -13675,3 +13690,11 @@ INSERT INTO `users` VALUES ('4', 'admin@gmail.com', 'admin', 'd033e22ae348aeb566
 INSERT INTO `users` VALUES ('5', 'chand@gmail.com', 'chand', '6f4a9c7287503510eb9ab662ed116c0272bf4ae1', 'admin');
 INSERT INTO `users` VALUES ('6', 'ziauddin.sarker@gmail.com', 'ziauddin', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'admin');
 INSERT INTO `users` VALUES ('7', 'ziauddin_sarker@live.com', 'bdzia', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('9', 'sfsadf@fgnauk.com', 'names', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('10', 'xsdf@gmail.com', 'google', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('11', 'sfsadf@fgnauk.com', 'names', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('12', 'sfsadf@fgnauk.com', 'bdziai', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('13', 'ziaudd@gmail.com', 'jkjfkdj', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('14', 'sfsadf@fgnauk.com', 'sdfsdf', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('15', 'sfsadf@fgnauk.com', 'sdfsdf', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');
+INSERT INTO `users` VALUES ('16', 'sfsadf@fgnauk.com', 'usern', '8235bc2ef1ad8fd830046290b062cfb4fb7bc3a8', 'doctor');

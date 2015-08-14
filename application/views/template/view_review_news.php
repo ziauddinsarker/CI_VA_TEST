@@ -72,7 +72,7 @@
 
 				  </div>
 				</div>
-				</div>
+			</div>
 			  <?php } ?>
 				
 				
@@ -93,4 +93,4 @@
 						</div>								
 					</div>
 				 <?php }?>  
-			  </div>
+</div>

@@ -30,7 +30,7 @@
 						
 							<div class="form-group">
 							<!-- the name input field -->
-								<label for="doctor_full_name">Name(Full Name)</label>
+								<label for="doctor_full_name">Name (Full Name)*</label>
 								<input id="doctor_full_name" class="form-control login_input" type="text" name="doctor_full_name" />
 							</div>
 							
@@ -55,7 +55,7 @@
 							
 							<div class="form-group">
 								<!-- the email input field uses a HTML5 email type check -->
-								<label for="doctor_user_email">Email Address</label>
+								<label for="doctor_user_email">Email Address*</label>
 								<input id="doctor_user_email" class="form-control  login_input" type="email" name="doctor_user_email" required />
 							</div>
 							
@@ -96,20 +96,21 @@
 							
 							<div class="form-group">
 								<!-- the user name input field uses a HTML5 pattern check -->
-								<label for="doctor_user_name">Username (only letters and numbers, 2 to 64 characters)</label>
+								<label for="doctor_user_name">Username*</label>
 								<input id="doctor_user_name" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="doctor_user_name" required />
 							</div>
 							
 							<div class="form-group">
 								<!-- the Password input field -->
-								<label for="doctor_user_password_new">Password (min. 6 characters)</label>
+								<label for="doctor_user_password_new">Password (min. 6 characters)*</label>
 								<input id="doctor_user_password_new" class="form-control login_input" type="password" name="doctor_user_password_new" pattern=".{6,}" required autocomplete="off" />
 							</div>
 							
 							<div class="form-group">
-								<label for="doctor_user_password_repeat">Repeat password</label>
+								<label for="doctor_user_password_repeat">Repeat password*</label>
 								<input id="doctor_user_password_repeat" class="form-control login_input" type="password" name="doctor_user_password_repeat" pattern=".{6,}" required autocomplete="off" />
 							</div>
+							<input id="doctor_user_type" type="hidden" name="doctor_user_type" value="doctor">
 							<!-- the Submit input field -->
 							<input class="btn btn-default" type="submit"  name="registerDoctor" value="Register Doctor" />
 							<div class="form-group">
@@ -279,11 +280,3 @@
 			
 		</section>
 
-
-			
-		</div>
-
-	 	<!--End Container -->	
-		<!--Footer Start Here -->
-
-	</div>

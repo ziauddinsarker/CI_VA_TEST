@@ -8,8 +8,6 @@ class Doctor_model extends CI_Model
         parent::__construct();
     }
 
-	
-	
     //get the username & password from tbl_usrs
     //Get All Posts
 	function getDoctors(){
@@ -43,12 +41,26 @@ class Doctor_model extends CI_Model
 	  $this->db->join('rating', 'doctor_rating.rating_id = rating.rating_id');	
 	  $this->db->group_by('doctor_name');
 	  $query = $this->db->get();
-	  return $query->result();
-		
+	  return $query->result();	
 	}
 	
+	public function add_rsb_to_doctor($rating){
+		$this->db->insert('rating',$rating);
+        return $this->db->insert_id();
+	}
 	
-
+	public function add_rating_to_doctor($doctor_rating){
+		$this->db->insert('doctor_rating',$doctor_rating);
+		return $this->db->insert_id();
+	}
+	
+	public function get_rating_for_doctor($doctor_id){
+		$this->db->select();
+		$this->db->from('doctor_rating');
+		$this->db->join('doctors','doctor_rating.doctor_id = doctors.doctor_id');
+		$this->db->join('rating','doctor_rating.rating_id = rating.rating_id');
+		$this->db->where('doctor_id', $doctor_id);	
+	}
 	
 	//get_all_doctor_from_category
 	/* function get_all_doctor_from_category($doc_cat_id){

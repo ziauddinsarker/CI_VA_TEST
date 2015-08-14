@@ -105,15 +105,16 @@ class Register extends CI_Controller {
         $this->form_validation->set_rules('doctor_bmdc', 'Doctors BMDC', 'trim|xss_clean');
         $this->form_validation->set_rules('doctor_user_email', 'Doctors Email', 'required');
         $this->form_validation->set_rules('doctor_phone', 'Doctors Phone', 'required|numeric');
-        $this->form_validation->set_rules('doctor_specility', 'Doctors Specility', 'required|xss_clean');		
+        $this->form_validation->set_rules('doctor_specility', 'Doctors Specility', 'xss_clean');		
         $this->form_validation->set_rules('doctor_address', 'Doctors Address', 'required|xss_clean');
-        $this->form_validation->set_rules('doctor_district', 'Doctors District', 'required|xss_clean');
+        $this->form_validation->set_rules('doctor_district', 'Doctors District', 'xss_clean');
         $this->form_validation->set_rules('doctor_user_name', 'Doctors User Name', 'required|xss_clean');
         $this->form_validation->set_rules('doctor_user_password_new', 'Doctors Password New', 'required');
         $this->form_validation->set_rules('doctor_user_password_repeat', 'Doctors Repeat Password', 'required');
 		
 		if($this->form_validation->run() == FALSE)
 		{
+			
 			$data['error'] = validation_errors();
 			//fail validation
             $this->load->view('template/view_header');
@@ -122,16 +123,18 @@ class Register extends CI_Controller {
 		}
 		else 
 		{
-			$data = array(				
+		
+			$user_data = array(				
 				'username' => $this->input->post('doctor_user_name'),
 				'password' => sha1($this->input->post('doctor_user_password_new')),
 				'email' => $this->input->post('doctor_user_email'),
-				'user_type' => $this->input->post('user_type'),
+				'user_type' => $this->input->post('doctor_user_type'),
 			);
 			
-			$user_id = $this->model_user->create_user($data);
+			$this->db->insert('users', $user_data);			
+			$user_id = $this->db->insert_id();
 			
-			$data = array(
+			$doctor_data = array(
 				'doctor_name' => $this->input->post('doctor_full_name'),
 				'doctor_title' => $this->input->post('doctor_title'),
 				'doctor_gender' => $this->input->post('doctor_gender'),
@@ -141,11 +144,15 @@ class Register extends CI_Controller {
 				'doctor_specialist' => $this->input->post('doctor_specility'),
 				'doctor_address' => $this->input->post('doctor_address'),
 				'doctor_district' => $this->input->post('doctor_district'),
-				'doctor_user_name' => $this->input->post($user_id),
+				'doctor_user_name' => $user_id
 			);
+					
+			$this->model_user->create_doctor($doctor_data);
+			
 			$this->session->set_userdata('user_id',$user_id);
 			$this->session->set_userdata('username',$this->input->post('username'));
-			$this->session->set_userdata('user_type',$this->input->post('user_type'));
+			$this->session->set_userdata('user_type',$this->input->post('user_type')); 
+			
 			redirect(base_url());
 		}
 		

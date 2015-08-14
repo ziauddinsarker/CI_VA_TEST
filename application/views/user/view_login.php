@@ -46,5 +46,3 @@
 		</div>
 	 	<!--End Container -->	
 		<!--Footer Start Here -->
-
-	</div>

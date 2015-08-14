@@ -38,21 +38,28 @@ class Home extends CI_Controller {
 		
 		
 		$this->data['doctors_rating'] = $this->doctor_model->getDoctorsRating(); // calling Blog model method getPosts()
-				
+		//var_dump($this->data['doctors_rating']);
+		
 		//Get All Districts
 		$this->data['district'] = $this->home_model->getDistrict();
 		
 		//Get Doctors Data
 		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
-		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();		
+		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();	
+		
+		$this->data['get_top_ten_doctor'] = $this->home_model->getTopTenDoctor();	
+		//$this->data['get_rating_for_doctor'] = $this->doctor_model->get_rating_for_doctor();	
+		
 		//Get All Doctors Data
 		$this->data['all_doctors'] = $this->home_model->get_all_doctor();
 		//var_dump($this->data['all_doctors']);
+		
 		//Get All Discount
 		$this->data['all_discount'] = $this->home_model->getAllDiscount();
 		
 		  //Get Divistion
          $this->data['divisions'] = $this->location_model->get_division();
+
 		 
     }
 
@@ -61,7 +68,6 @@ class Home extends CI_Controller {
 	{		
 			 $this->load->view('template/view_header');								
 			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
-
 			$this->load->view('template/view_about', $this->data);			
 			$this->load->view('template/view_brand', $this->data);			
 			$this->load->view('template/view_events', $this->data);			
@@ -111,6 +117,48 @@ class Home extends CI_Controller {
 		}
 	}
 	
+	
+	function add_rsb(){
+		//Create Validation Rules
+		$this->form_validation->set_rules('rsb_description', 'RSB Description', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('rsb_date', 'RSB Input Date', 'trim|xss_clean');
+        $this->form_validation->set_rules('rsb_point', 'RSB Point', 'trim|xss_clean');
+		
+		if($this->form_validation->run() == FALSE)
+		{			
+			$data['error'] = validation_errors();
+			//fail validation
+            $this->load->view('template/view_header');
+            $this->load->view('user/view_home', $data);
+            $this->load->view('template/view_footer');
+		}
+		else 
+		{
+			
+			$rsb_data = array(				
+				'rating_description' => $this->input->post('rsb_description'),
+				'rating_value' => $this->input->post('rsb_point'),
+				'rating_date' => $this->input->post('rsb_date')
+			);
+			
+			$this->db->insert('rating', $rsb_data);	
+			
+			$rating_id = $this->db->insert_id();
+			
+			$doctor_rating_data = array(
+				'doctor_id' => $this->input->post('doctor_id'),
+				'rating_id' => $rating_id
+			);
+					
+			$this->doctor_model->add_rating_to_doctor($doctor_rating_data);
+			
+			redirect(base_url());
+		}
+		
+		
+		
+		
+	}
 	
 	
 	//Get doctors from category when click

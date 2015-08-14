@@ -23,6 +23,8 @@ class Login extends CI_Controller {
 		$this->load->model('company_model'); // load Company model
 		$this->load->model('doctor_model'); // load Doctor model
 		$this->load->model('user_model'); // load Users model
+		$this->load->model('home_model'); // load Users model
+		$this->data['get_top_ten_doctor'] = $this->home_model->getTopTenDoctor();
     }
 
 	//Index Function
@@ -31,7 +33,7 @@ class Login extends CI_Controller {
 			
 		$this->load->view('template/view_header');
 		$this->load->view('user/view_login');
-		$this->load->view('template/view_footer');
+		$this->load->view('template/view_footer',$this->data);
 		
 		/* // create the data object
 		$data = new stdClass();

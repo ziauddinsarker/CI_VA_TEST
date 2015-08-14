@@ -16,7 +16,7 @@
 				</div>
 				
 				<!-- Find Doctors by Category-->
-				<h3>Doctor By Category</h3>					
+				<h3>Doctors By Category</h3>					
 				<div class="btn-group" data-toggle="buttons" id="filters"> 
 					<?php foreach($doctors_category as $category){?>									
 						<label class="btn btn-primary">
@@ -35,20 +35,14 @@
 						<div class="panel-heading">
 							<div class="panel-title">
 								<div data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $doctor->doctor_id ; ?>">                        
-									<h4><?php echo $doctor->doctor_name ; ?> 
-									
-									
-									<sup>		
-									<?php foreach($doctors_rating as $doc_rating){?>							
-										<?php echo $doc_rating->RSB;?> RSB (Auto add from history update by admin)
-									<?php } ?>
-									<sup></h4>
+									<h4><?php echo $doctor->doctor_name ; ?><sup><?php echo $doctor->RSB;?> RSB<sup></h4>
 									<img src="<?php echo base_url("assets/images/avatar.png"); ?>" alt="" height="100" width="100"/>
 									<p>Title/Degree : <?php echo $doctor->doctor_title ; ?></p>
 									<p>Specialist: <?php echo $doctor->doctor_category_name ; ?></p>
 								</div>	
 							</div>
 						</div>
+						
 						<div id="collapse<?php echo $doctor->doctor_id ; ?>" class="panel-collapse collapse">
 							<div class="panel-body">
 							
@@ -124,25 +118,104 @@
 								  </tr>
 								  
 								</table>
-								<?php if($this->session->userdata('user_id')) { ?>
-								<h4>Click To View RSB History<sup>(by admin)</sup></h4>
-								<table border="1" style="width:100%">
-								  <tr>								
-									<td>Date</td>		
-									<td>Descriptin</td>		
-									<td>RSB Points</td>						
-								  </tr> 
-								  
-								  <tr>
-									<td>(+Add New Field by Admin)</td>
-									<td>+Add New Field by Admin)</td>		
-									<td>+Add New Field by Admin)</td>								
-								  </tr>						  
-								</table>
+								<?php if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin') { ?>
+									<h4>Click To View RSB History<sup>(by admin)</sup></h4>
+									<table border="1" style="width:100%">
+									  <tr>								
+										<td>Date</td>		
+										<td>Descriptin</td>		
+										<td>RSB Points</td>						
+									  </tr> 
+									  
+									  <tr>
+										<td>14-8-15</td>
+										<td>He make a good event</td>		
+										<td>20</td>								
+									  </tr>
+									</table>
 								<?php }?>  
+								<div class="row">
+									<!-- Trigger the modal with a button -->
+									<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#doctor_rsb<?php echo $doctor->doctor_id ; ?>">+</button>
+
+									<!-- Modal -->
+									<div id="doctor_rsb<?php echo $doctor->doctor_id ; ?>" class="modal fade" role="dialog">
+								  <div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content">
+									  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										
+									  </div>
+									  <div class="modal-body">
+										<div class="">
+											  <legend>Add RSB for Doctor</legend>
+											<?= form_open('home/add_rsb') ?>
+											<fieldset>
+
+												<div class="form-group">
+													<div class="row colbox">
+														<div class="col-lg-4 col-sm-4">
+															<label for="rsb_description" class="control-label">Description</label>
+														</div>
+														<div class="col-lg-8 col-sm-8">
+															<input id="rsb_description" name="rsb_description" placeholder="RSB Description" type="text" class="form-control"  value="<?php echo set_value('rsb_description'); ?>" />
+															<span class="text-danger"><?php echo form_error('rsb_description'); ?></span>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="row colbox">
+														<div class="col-lg-4 col-sm-4">
+															<label for="rsb_date" class="control-label">Date</label>
+														</div>
+														<div class="col-lg-8 col-sm-8">
+															<input id="rsb_date" name="rsb_date" placeholder="Date" type="text" class="form-control"  value="<?php echo set_value('rsb_date'); ?>" />
+															<span class="text-danger"><?php echo form_error('rsb_date'); ?></span>
+														</div>
+													</div>
+												</div>	
+												
+												<div class="form-group">
+													<div class="row colbox">
+														<div class="col-lg-4 col-sm-4">
+															<label for="rsb_point" class="control-label">Point</label>
+														</div>
+														<div class="col-lg-8 col-sm-8">
+															<input id="rsb_point" name="rsb_point" placeholder="RSB Point" type="text" class="form-control"  value="<?php echo set_value('rsb_point'); ?>" />
+															<span class="text-danger"><?php echo form_error('rsb_point'); ?></span>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="row colbox">
+														<div class="col-lg-4 col-sm-4">
+															<input id="doctor_id" type="hidden" name="doctor_id" value="<?php echo $doctor->doctor_id; ?>">
+														</div>
+														<div class="col-lg-8 col-sm-8"><!-- the Submit input field -->
+														<input class="btn btn-default" type="submit"  name="submit" value="Publish" />
+															
+														</div>
+													</div>
+												</div>
+											</fieldset>
+											<?php echo form_close(); ?>
+											<?php echo $this->session->flashdata('msg'); ?>
+											
+										</div>
+									  </div>
+
+									</div>
+
+								  </div>
 							</div>
-						</div>
+								</div>
 					</div>
-				</div>	
+						</div>	
 			<?php } ?>
-				</div>
+		</div>
+	</div>
+</div>

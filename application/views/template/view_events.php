@@ -20,9 +20,8 @@
 					  <legend>Add New Event</legend>
 					<?= form_open('home/new_event') ?>
 					<fieldset>
-
 						<div class="form-group">
-							<div class="row colbox">
+						<div class="row colbox">
 								<div class="col-lg-4 col-sm-4">
 									<label for="event_name" class="control-label">Event Name</label>
 								</div>
@@ -124,7 +123,7 @@
 
 		  </div>
 		</div>
-		
+	</div>
 		<?php } ?>
 		
 		
@@ -152,4 +151,4 @@
 			  </div>
 		 <?php }?>  				
 	
-	  </div>
+  </div>

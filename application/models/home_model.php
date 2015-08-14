@@ -17,24 +17,36 @@ class Home_model extends CI_Model
         return $query->result();
     }
 	
-	
+	//Get All doctors from Doctors table
 	function get_all_doctor(){
 		$this->db->select('*');
-        $this->db->from('doctors');
+		$this->db->select('Sum(rating.rating_value) AS RSB');
+        $this->db->from('doctor_rating');
+		$this->db->join('rating','doctor_rating.rating_id = rating.rating_id');
+		$this->db->join('doctors','doctor_rating.doctor_id = doctors.doctor_id');
 		$this->db->join('doctors_category','doctors.doctor_specialist = doctors_category.doctor_category_id');
 		$this->db->join('doctors_chamber','doctors.doctor_chamber = doctors_chamber.doctors_chambers_id');		
 		$this->db->join('doctors_chamber_address','doctors_chamber.doctors_chambers_address = doctors_chamber_address.doctors_chamber_address_id');
+		$this->db->group_by('doctor_name');
+		$this->db->order_by('RSB', 'DESC');
         $query = $this->db->get();
         return $query->result();
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+	// Get Top Ten Doctors by RSB
+	public function getTopTenDoctor(){
+		$this->db->select();
+		$this->db->select('doctor_name,Sum(rating.rating_value) AS RSB');
+        $this->db->from('doctor_rating');
+		$this->db->join('rating','doctor_rating.rating_id = rating.rating_id');
+		$this->db->join('doctors','doctor_rating.doctor_id = doctors.doctor_id');
+		$this->db->group_by('doctor_name');
+		$this->db->order_by('RSB', 'DESC');
+		 $query = $this->db->get();
+        return $query->result();
+	}
+
 	//Get Doctor by Category
 	function get_doctor_by_cateogry($category_name) {
         $this->db->select();
