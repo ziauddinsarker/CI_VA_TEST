@@ -176,7 +176,7 @@
 							// create a p tag
 							// insert it to the 
 							// html element with an id of load_company_name
-							var p = $('<p/>');
+							var div = $('<div/>');
 								// you can access the current iterate element
 								// of the array
 								// me = current iterated object
@@ -184,8 +184,50 @@
 								// me.company_name or me['company_name']
 								//company.innerHTML = company.innerHTML('<p>' + this.company_name + '</p>');
 								//company.innerHTML('<p>Company Name: ' + me.company_name + '</p>');
-								 p.html('Company: ' + me.company_name);
-								company.prepend(p); 
+								 div.html('<div class="panel-group" id="accordion">'+					
+											'<div class="panel panel-default">'+
+											'<div class="panel-heading">'+
+												'<div class="panel-title">'+
+													'<div data-toggle="collapse" data-parent="#accordion" href="#collapse'+ me.company_id+'">' +                       
+														'<h4>'+ me.company_name +' <sup>0 RSB (Auto add from history update by admin)<sup></h4>'+
+														
+														'<p>About (facilities) : '+ me.company_description +'</p>'+
+													'</div>'+
+												'</div>'+
+											'</div>'+
+											'<div id="collapse'+ me.company_id+'" class="panel-collapse collapse">'+
+												'<div class="panel-body">'+
+												
+														'<div class="col-md-12 doctor-description">'+							
+															
+															
+															'<div class="col-md-6">'+
+															'<p>Phone: '+ me.company_mobile +'</p>'+
+																'<p>Email: '+ me.company_email +'</p>'+
+																'<p>Address: '+ me.company_address +'</p>'+
+																'<p>Website: '+ me.company_website +'</p>'+
+															'</div>'+
+														'</div>'+
+													'<h4>Click To View RSB History<sup>(by admin)</sup></h4>'+
+													'<table border="1" style="width:100%">'+
+													  '<tr>'+					
+														'<td>Date</td>'+		
+														'<td>Descriptin</td>'+		
+														'<td>RSB Points</td>'+						
+													 '</tr>'+
+													  
+													  '<tr>'+
+														'<td>(+Add New Field by Admin)</td>'+
+														'<td>+Add New Field by Admin)</td>'+		
+														'<td>+Add New Field by Admin)</td>'+								
+													  '</tr>'+						  
+													'</table>'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+									'</div>');
+								company.prepend(div); 
+								
 						});
 					},
 						

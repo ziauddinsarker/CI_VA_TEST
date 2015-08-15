@@ -81,18 +81,22 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_footer', $this->data);	 
 	}	
 
+	
+	//Load all data from brand table and show as json 
 	public function get_brand(){			
 			$data = $this->search_model->get();
 			echo json_encode($data);
 	}
 
 	
+	//Get company by category 
 	public function get_com_by_cat(){		
 		$catgory = $this->input->post('data');	
 		$data = $this->company_model->get_company_by_category($catgory);		
 		echo json_encode($data);
 	}
 
+	//Function for Sending contact information form contact form
 	public function send_contact(){
 		
 		//Create Validation Rules
@@ -119,7 +123,6 @@ class Home extends CI_Controller {
 				'contact_phone' => $this->input->post('contact_phone'),
 				'contact_text' => $this->input->post('contact_text')
 			);
-			
 			
 			
 			$this->db->insert('contact', $contact_data);

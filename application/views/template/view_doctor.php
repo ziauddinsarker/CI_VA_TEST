@@ -3,7 +3,7 @@
 				<div class="row">
 					<div class="col-md-12">
 					<!-- Find Doctors by Districts-->
-					<h3>Find Doctors by District</h3>
+					<h4>Find Doctors by District</h4>
 						<div class="btn-group" data-toggle="buttons" id="division"> 
 							<?php foreach($district as $dist){?>									
 								<label class="btn btn-primary">
@@ -16,7 +16,7 @@
 				</div>
 				
 				<!-- Find Doctors by Category-->
-				<h3>Doctors By Category</h3>					
+				<h4>Doctors By Category</h4>					
 				<div class="btn-group" data-toggle="buttons" id="filters"> 
 					<?php foreach($doctors_category as $category){?>									
 						<label class="btn btn-primary">
@@ -35,10 +35,16 @@
 						<div class="panel-heading">
 							<div class="panel-title">
 								<div data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $doctor->doctor_id ; ?>">                        
-									<h4><?php echo $doctor->doctor_name ; ?><sup><?php echo $doctor->RSB;?> RSB<sup></h4>
-									<img src="<?php echo base_url("assets/images/avatar.png"); ?>" alt="" height="100" width="100"/>
-									<p>Title/Degree : <?php echo $doctor->doctor_title ; ?></p>
-									<p>Specialist: <?php echo $doctor->doctor_category_name ; ?></p>
+									<div class="row">
+										<div class="col-md-3">
+											<img src="<?php echo base_url("assets/images/avatar.png"); ?>" alt="" height="100" width="100"/>
+										</div>
+										<div class="col-md-9">
+											<h4><?php echo $doctor->doctor_name ; ?><sup> <?php echo $doctor->RSB;?> RSB<sup></h4>									
+											<p><b>Title/Degree :</b> <?php echo $doctor->doctor_title ; ?></p>
+											<p><b>Specialist :</b> <?php echo $doctor->doctor_category_name ; ?></p>
+										</div>
+									</div>
 								</div>	
 							</div>
 						</div>
@@ -48,16 +54,15 @@
 							
 								<div class="col-md-12 doctor-description">							
 									<div class="col-md-6">											
-										<p>New Visit Fee: <?php echo $doctor->doctors_chambers_new_visit ; ?></p>
-										<p>Revisit Fee: <?php echo $doctor->doctors_chambers_re_visit ; ?></p>
-														
+										<p><b>New Visit Fee :</b> <?php echo $doctor->doctors_chambers_new_visit ; ?></p>
+										<p><b>Revisit Fee :</b> <?php echo $doctor->doctors_chambers_re_visit ; ?></p>														
 									</div>
 									
 									<div class="col-md-6">
-									<p>Phone: <?php echo $doctor->doctor_phone; ?></p>
-										<p>Email: <?php echo $doctor->doctor_email; ?></p>
-										<p>Call/SMS Appointment: <?php echo $doctor->doctors_chambers_call_for_apointment; ?></p>
-										<p>Website: <?php echo $doctor->doctor_website ; ?></p>
+										<p><b>Phone :</b> <?php echo $doctor->doctor_phone; ?></p>
+										<p><b>Email :</b> <?php echo $doctor->doctor_email; ?></p>
+										<p><b>Call/SMS Appointment :</b> <?php echo $doctor->doctors_chambers_call_for_apointment; ?></p>
+										<p><b>Website :</b> <?php echo $doctor->doctor_website ; ?></p>
 									</div>
 								</div>
 							
@@ -70,46 +75,46 @@
 								  </tr> 
 								  
 								  <tr>
-									<td>Saturday</td>
+									<td><b>Saturday</b></b></td>
 									<td><?php echo $doctor->doctors_chambers_time_11; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_12; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_13; ?></td>
 								  </tr>
 								  <tr>
-									<td>Sunday</td>
+									<td><b>Sunday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_21; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_22; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_23; ?></td>
 								  </tr>
 								  <tr>
-									<td>Monday</td>
+									<td><b>Monday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_31; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_32; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_33; ?></td>
 								  </tr>
 								  <tr>
-									<td>Tuesday</td>
+									<td><b>Tuesday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_41; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_42; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_43; ?></td>
 								  </tr> 
 								  
 								  <tr>
-									<td>Wednesday</td>
+									<td><b>Wednesday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_51; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_52; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_53; ?></td>
 								  </tr>
 								  
 								  <tr>
-									<td>Thursday</td>
+									<td><b>Thursday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_61; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_62; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_63; ?></td>
 								  </tr>
 								  
 								  <tr>
-								  <td>Friday</td>
+								  <td><b>Friday</b></td>
 									<td><?php echo $doctor->doctors_chambers_time_71; ?></td>		
 									<td><?php echo $doctor->doctors_chambers_time_72; ?></td>
 									<td><?php echo $doctor->doctors_chambers_time_73; ?></td>
@@ -118,7 +123,11 @@
 								</table>
 								
 								<?php if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin') { ?>
+								
 									<h4>Click To View RSB History<sup>(by admin)</sup></h4>
+									<!-- Trigger the modal with a button -->
+								<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#doctor_rsb<?php echo $doctor->doctor_id ; ?>">+</button>
+
 									<table border="1" style="width:100%">
 									  <tr>								
 										<td>Date</td>		
@@ -136,9 +145,7 @@
 								
 								<!-- Doctor Modal-->
 								<div class="row">
-								<!-- Trigger the modal with a button -->
-								<button type="button" title="Hooray!" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#doctor_rsb<?php echo $doctor->doctor_id ; ?>">+</button>
-
+								
 									<!-- Modal -->
 								<div id="doctor_rsb<?php echo $doctor->doctor_id ; ?>" class="modal fade" role="dialog">
 								  <div class="modal-dialog">

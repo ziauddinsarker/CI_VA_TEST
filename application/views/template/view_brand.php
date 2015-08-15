@@ -6,7 +6,7 @@
 				<div class="col-md-6 col-md-offset-2">
 					<div class="form-group table-input">
 					   <label class="sr-only" for="name">Tablet Name</label>
-					   <input type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="name" id="name" placeholder="Enter Brand Name or Generic Name">
+					   <input type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="name" id="name" placeholder="Enter Name">
 					</div>
 				</div>	
 			</form>

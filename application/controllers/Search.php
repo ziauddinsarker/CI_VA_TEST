@@ -9,17 +9,20 @@ class Search extends CI_Controller {
 		$this->load->database();
 		$this->load->model('search_model');
 		
-	}
-	
-	
-	public function index() {
+		$config['uri_protocol']	= 'PATH_INFO';
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
 		
-		$this->load->view('search');		
+	}
+
+	public function get_brand_form_strength(){
+		$brand_name = $this->input->get('name', TRUE);
+		$data = $this->search_model->search_brand_form_strength($brand_name);
+		echo json_encode($data);
 	}
 	
-		public function get_brand(){			
-			$data = $this->search_model->get();
-			echo json_encode($data);
-			}
-	
+	public function get_brand(){			
+		$data = $this->search_model->get();
+		echo json_encode($data);
+	}
+
 }

@@ -1,68 +1,29 @@
+/*  // Instantiate the Bloodhound suggestion engine
+	var countries = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		prefetch: {
+			url: 'http://127.0.0.1/CI_VA/home/get_brand',
+			filter: function (countries) {
+				return $.map(countries, function (country) {
+					return {
+						name: country
+					};
+				});
+			}
+		}
+	});
 
+	// Initialize the Bloodhound suggestion engine
+	countries.initialize();
 
-	
+	// Instantiate the Typeahead UI
+	$('.typeahead').typeahead(null, {
+		displayKey: 'name',
+		source: countries.ttAdapter()
+	});
 
-// Instantiate the Bloodhound suggestion engine
-var countries = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: {
-        url: 'http://127.0.0.1/CI_VA/home/get_brand',
-        filter: function (countries) {
-            return $.map(countries, function (country) {
-                return {
-                    name: country
-                };
-            });
-        }
-    }
-});
-
-// Initialize the Bloodhound suggestion engine
-countries.initialize();
-
-// Instantiate the Typeahead UI
-$('.typeahead').typeahead(null, {
-    displayKey: 'name',
-    source: countries.ttAdapter()
-});
-
-
-
-/* $(document).ready(function () {
-    $("#country").keyup(function () {
-        $.ajax({
-            type: "POST",
-            url: "http://localhost/autocomplete/GetCountryName",
-            data: {
-                keyword: $("#country").val()
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.length > 0) {
-                    $('#DropdownCountry').empty();
-                    $('#country').attr("data-toggle", "dropdown");
-                    $('#DropdownCountry').dropdown('toggle');
-                }
-                else if (data.length == 0) {
-                    $('#country').attr("data-toggle", "");
-                }
-                $.each(data, function (key,value) {
-                    if (data.length >= 0)
-                        $('#DropdownCountry').append('<li role="presentation" ><a role="menuitem dropdownnameli" class="dropdownlivalue">' + value['name'] + '</a></li>');
-                });
-            }
-        });
-    });
-    $('ul.txtcountry').on('click', 'li a', function () {
-        $('#country').val($(this).text());
-    });
-});
  */
-
-
-
-
  
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
@@ -80,32 +41,32 @@ $('.typeahead').typeahead(null, {
 	  });
 	});
 
+	//This is for search option
+	 	$(document).ready(function(){
 		
-	/* 	$(document).ready(function(){
-		
-			$('input.typeahead').typeahead({
+			$('input[name="typeahead"]').typeahead({
 				name: 'typeahead',
 				//header:'<h2>Name</h2>',
-				valueKey: 'brand_name_fk',
-				minLength: 3,
-				template: '<p>{{brand_name_fk}} - {{strength_name_fk}} - ({{form_name_fk}})</p>',
+				valueKey: 'brand_name',
+				//minLength: 3,
+				template: '<p>{{brand_name}} - {{brand_dosage_form_name}} - ({{brand_strength_name}})</p>',
 				engine: Hogan,
-				remote:'db/search.php?key=%QUERY',
+				remote: 'http://127.0.0.1/CI_VA/search/get_brand_form_strength?name=' + $(this).val(),
 				limit : 10
 			}).on('typeahead:selected', function($e, datum) {  // suggestion selected
 			
 			//.on('typeahead:selected',function(event,suggestions){	$myTextarea.append(suggestions.value, ' ');$('.typeahead').val('');});
 			
-					 var brandname = datum['brand_name_fk'];
-					 var strengthname = datum['strength_name_fk'];
-					 var formname = datum['form_name_fk'];
+					 var brandname = datum['brand_name'];
+					 var strengthname = datum['brand_strength_name'];
+					 var formname = datum['brand_dosage_form_name'];
 			
-					  console.log('Brand: ' + brandname + 'Strength:'+ strengthname + 'Form:'+ formname ) ;
+					  console.log('Brand: ' + brandname + 'Strength:'+ strengthname + 'Form:'+ formname );
 					  
-					  //var brand = datum['brand_name_fk']);
-					  //document.write(brand);
+					  var brand = datum['brand_name'];
+					  document.write(brand);
 		  });
-		}); */
+		}); 
 		
 
 		/*
