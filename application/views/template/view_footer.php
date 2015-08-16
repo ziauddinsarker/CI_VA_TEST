@@ -254,7 +254,145 @@
 					
 					});
 				}
+	/* 			
+		 
+		// Instantiate the Bloodhound suggestion engine
+		var movies = new Bloodhound({
+			datumTokenizer: function (datum) {
+				return Bloodhound.tokenizers.whitespace(datum.brand_name);
+			},
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			remote: {
+				url: 'http://127.0.0.1/CI_VA/search/get_brand_form_strength',
+				filter: function (movies) {
+					// Map the remote source JSON array to a JavaScript object array
+					return $.map(movies.results, function (movie) {
+						return {
+							value: movie.brand_name
+						};
+					});
+				}
+			}
+		});
+
+		// Initialize the Bloodhound suggestion engine
+		movies.initialize();
+
+		// Instantiate the Typeahead UI
+		$('.typeahead').typeahead(null, {
+			displayKey: 'value',
+			source: movies.ttAdapter()
+		}); 
+		
+		 */
+		
+		
+		 
+		
+		
+		/* //Search Branding
+			//This is for search option
+	 	$(document).ready(function(){
+		
+			$('input.typeahead').typeahead({
+				name: 'typeahead',
+				//header:'<h2>Name</h2>',
+				valueKey: 'name',
+				prefetch: 'http://127.0.0.1/CI_VA/search/get_brand_form_strength',
+				//minLength: 3,
+				template: '<p>{{brand_name}} - {{brand_dosage_form_name}} - ({{brand_strength_name}})</p>',
+				engine: Hogan,
+				remote: 'http://127.0.0.1/CI_VA/search/get_brand_form_strength?name=',
+				limit : 10
+			}).on('typeahead:selected', function($e, datum) {  // suggestion selected
+			
+			//.on('typeahead:selected',function(event,suggestions){	$myTextarea.append(suggestions.value, ' ');$('.typeahead').val('');});
+			
+					 var brandname = datum['brand_name'];
+					 var strengthname = datum['brand_strength_name'];
+					 var formname = datum['brand_dosage_form_name'];
+			
+					  console.log('Brand: ' + brandname + 'Strength:'+ strengthname + 'Form:'+ formname );
+					/*   
+					  var brand = datum['brand_name'];
+					  document.write(brand);
+		  });
+		}); 
+		  */
+		 
+		 
+		 
+		 
+		 
+		
+		//Get Districts
+		function getDistrictFromDivision(divisionId){     
+				var currentValue = divisionId.value;					
+				  $.ajax({
+						type: "POST",
+						url: "<?php echo site_url('home/get_dist_from_division') ?>",
+						data: { data: currentValue },
+						dataType:'json',
+						success: function(result){
 				
+						document.getElementById("location").innerHTML = "";
+						var location = $("#location");
+						
+						// here is a simpe way
+						$.each(result, function (i, dist) {
+					
+							var div = $('<division/>');
+							
+								 div.html('<div class="btn-group"  id="district">'+
+								 '<label class="btn btn-primary">'+
+								'<input type="radio" name="division" class="track-order-change" id="' + dist.district_id + '" value="' + dist.district_name + '" onclick="getThanaFromDistrict(this)" >'+ dist.district_name +''+
+								'</label>' );
+								location.prepend(div); 
+								
+						});
+					},
+						error: function() {
+							alert('Not OKay');
+						}
+					
+					});
+				}
+				
+				
+				
+				//Get Thana
+				function getThanaFromDistrict(distId){     
+						var currentValue = distId.value;					
+						  $.ajax({
+								type: "POST",
+								url: "<?php echo site_url('home/get_thana_from_district') ?>",
+								data: { data: currentValue },
+								dataType:'json',
+								success: function(result){
+						
+								document.getElementById("location").innerHTML = "";
+								var location = $("#location");
+								
+								// here is a simpe way
+								$.each(result, function (i, thana) {
+							
+									var div = $('<thana/>');
+									
+										 div.html('<div class="btn-group" id="thana">'+
+										 '<label class="btn btn-primary">'+
+										'<input type="radio" name="division" class="track-order-change" id="' + thana.thana_id + '" value="' + thana.thana_name + '">'+ thana.thana_name +''+
+										'</label>' );
+										location.prepend(div); 
+										
+								});
+							},
+								error: function() {
+									alert('Not OKay');
+								}
+							
+							});
+						}
+		
 		
 		
 		/* // <![CDATA[
@@ -282,5 +420,7 @@
 			});
 			// ]]> */
 		</script>
+		
+
     </body>
 </html>

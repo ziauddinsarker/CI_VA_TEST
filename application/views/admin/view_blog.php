@@ -12,16 +12,14 @@
 				<table class="table table-striped table-bordered table-hover" id="dataTables-example"><thead>
 				<tr>			
 					<th>Blog Title</th>
-					<th>Blog Description</th>
-					<th>Blog Category</th>	
+					<th>Blog Description</th>	
 				 </tr> 
 				</thead>
 				<tbody>		
 				<?php foreach($blogs as $blog){?>
 					<tr class="odd gradeX">					
-						<td><?php echo $blog->blog_title;?></td>
-						<td><?php echo $blog->blog_description;?></td>
-						<td><?php echo $blog->blog_category_name;?></td>
+						<td><?php echo $blog->post_title;?></td>
+						<td><?php echo $blog->post;?></td>
 											
 						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
 					</tr>

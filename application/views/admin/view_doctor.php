@@ -21,7 +21,7 @@
 					<tr class="odd gradeX">					
 						<td><?php echo $doctor->doctor_name;?></td>
 						<td><?php echo $doctor->doctor_title;?></td>
-						<td><?php echo $doctor->doctor_address_1;?></td>
+						<td><?php echo $doctor->doctors_chamber_address_1;?></td>
 						<td><?php echo $doctor->doctor_category_name;?></td>
 											
 						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
@@ -31,10 +31,7 @@
 				
 				</table>		
 					 
-					 
-					 
-					 
-<p><a href="new.php">Add a new Doctor</a></p>
+					<p><a href="new.php">Add a new Doctor</a></p>
                     
                     <!-- /.panel -->
                 </div>

@@ -82,7 +82,7 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-<?php if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin') { ?>
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
 				
@@ -113,30 +113,6 @@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-<?php }elseif($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'doctor') { ?>
-			
-		<div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-				
-                    <ul class="nav" id="side-menu">
-              
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-				
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Post Blog</a>
-                        </li>
-						 <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Post Event</a>
-                        </li>                       
-                 
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>	
-			
-<?php } ?>
             <!-- /.navbar-static-side -->
         </nav>
 		

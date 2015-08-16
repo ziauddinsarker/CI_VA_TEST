@@ -19,8 +19,8 @@
 				<tbody>		
 				<?php foreach($users as $user){?>
 					<tr class="odd gradeX">					
-						<td><?php echo $user->user_name;?></td>
-						<td><?php echo $user->user_email;?></td>
+						<td><?php echo $user->username;?></td>
+						<td><?php echo $user->email;?></td>
 											
 						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
 					</tr>

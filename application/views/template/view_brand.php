@@ -16,21 +16,15 @@
 			<div class="col-md-1 col-md-offset-2">
 			<h4>Division</h4>
 			</div>
-				<div class="col-md-7">
-				
-					<div class="btn-group" data-toggle="buttons" id="division">
-					
-					<?php foreach($divisions as $division){?>
-						<label class="btn btn-primary">
-						<input type="radio" name="division" class="track-order-change" id="<?php echo $division->division_name;?>" value="<?php echo $division->division_name;?>" onchange="showDistrict(this.value)">
-						<?php echo $division->division_name;?>
-						</label>
-					<?php }?>
-	
-					</div>
-				</div>
-				
-				<div id="ajax-content-container"></div>
+			<div class="col-md-7" id="location">				
+				<div class="btn-group" id="division">					
+				<?php foreach($divisions as $division){?>
+					<label class="btn btn-primary">
+					<input type="radio" name="division" class="track-order-change" id="<?php echo $division->division_name;?>" value="<?php echo $division->division_name;?>" onclick="getDistrictFromDivision(this)"><?php echo $division->division_name;?>
+					</label>
+				<?php }?>	
+				</div>				
+			</div>
 		</article>						
 	</div>
 

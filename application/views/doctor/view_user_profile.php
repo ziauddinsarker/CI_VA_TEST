@@ -1,4 +1,4 @@
-<?php if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin') { ?>
+<?php if($this->session->userdata('user_id') && ($this->session->userdata('user_type') == 'doctor') || $this->session->userdata('user_type') == 'pharmacist')||$this->session->userdata('user_type') == 'business')){ ?>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Dashboard</h1>
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="admin/medicine">
+                        <a href="http://localhost/dev_final/deshboard/pages/medicine.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="admin/shop">
+                        <a href="http://localhost/dev_final/deshboard/pages/shop.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="admin/doctor">
+                        <a href="http://localhost/dev_final/deshboard/pages/doctors.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="admin/blog">
+                        <a href="http://localhost/dev_final/deshboard/pages/blog.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -108,10 +108,9 @@
                     </div>
                 </div>
             </div>
-<?php }else if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'doctor'){ ?>
+<?php }else if($this->session->userdata('user_id') && $this->session->userdata('user_type') == 'admin'){ ?>
 
 <h1>Hello Doctor</h1>
-<p> This page is under construction</p>
 <?php	
 }
 ?>

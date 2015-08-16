@@ -29,6 +29,8 @@ class Doctor_model extends CI_Model
 	  $this->db->select('*');
 	  $this->db->from('doctors');
 	  $this->db->join('doctors_category', 'doctors.doctor_specialist = doctors_category.doctor_category_id');	  
+	  $this->db->join('doctors_chamber', 'doctors.doctor_chamber = doctors_chamber.doctors_chambers_id');	  
+	  $this->db->join('doctors_chamber_address', 'doctors_chamber.doctors_chambers_address = doctors_chamber_address.doctors_chamber_address_id');	  
 	  $query = $this->db->get();
 	  return $query->result();
 		

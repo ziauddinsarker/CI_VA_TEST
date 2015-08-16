@@ -1,8 +1,12 @@
 <div role="tabpanel" class="tab-pane" id="faqs">
 			  
 			  <div class="row">
+			  <div class="col-md-12">
 				<h3>Frequently Asked Questions (FAQs)</h4>
+			  </div>
+				
 				<div class="col-md-6 about-page">
+				
 				<h4>1. Is the membership on Bhalo-Achee.com free?</h4>
 				<p>Answer:  Yes, any kind of membership on Bhalo-Achee.com is always free.</p>
 
@@ -39,28 +43,39 @@
 					<div class="col-md-6">
 						<h3>For pharmacists</h3>
 						To get RSB points for the answers to individual questions: 
-						1.	Please visit www.facebook.com/BhaloAchee
-						2.	Select a medicine-related question to answer.
-						3.	Post with the following information below:
-						•	Your answer:
-						•	Your Bhalo-Achee.com ID:
-						•	Tag: #‎BhaloAchee‬_QA_Pharmacist
-
+						<ol>
+							<li>Please visit www.facebook.com/BhaloAchee</li>
+							<li>Select a medicine-related question to answer.</li>
+							<li>Post with the following information below:</li>
+							<li>
+								<ol>
+									<li>Your answer:</li>
+									<li>Your Bhalo-Achee.com ID:</li>
+									<li>Tag: #‎BhaloAchee‬_QA_Pharmacist</li>
+								</ol>
+							</li>
+						</ol>
 						(We will update your RSB point within 48 hours.)
-
+						
 						To get RSB points by submitting new or updated medicine price: 
-						1.	Please visit www.facebook.com/BhaloAchee
-						2.	Post with the following information below:
-						•	Brand Name*:
-						•	Generic Name*:
-						•	Manufacturer*:
-						•	Dosage Form*:
-						•	Strength:
-						•	Amount/volume:
-						•	Quantity per pack*:
-						•	Price*:
-						•	Your Bhalo-Achee.com ID:
-						•	Tag: ‪#‎BhaloAchee‬_Price_Update‬‬‬
+						<ol>
+							<li>Please visit www.facebook.com/BhaloAchee</li>
+							<li>Post with the following information below:</li>
+							<li>
+								<ol>
+									<li>Brand Name*:</li>
+									<li>Generic Name*:</li>
+									<li>Manufacturer*:</li>
+									<li>Dosage Form*:</li>
+									<li>Strength:</li>
+									<li>Amount/volume:</li>
+									<li>Quantity per pack*:</li>
+									<li>Price*:</li>
+									<li>Your Bhalo-Achee.com ID:</li>
+									<li>Tag: ‪#‎BhaloAchee‬_Price_Update‬‬‬</li>
+								</ol>
+							</li>
+						</ol>
 
 						(We will update your RSB point within 48 hours.)
 					</div>

@@ -16,8 +16,8 @@ class User_model extends CI_Model
 	}
 	
 	function get_all_users(){		
-	  $this->db->select('user_name,user_email');
-	  $this->db->from('user_login');	  	  
+	  $this->db->select('username,email');
+	  $this->db->from('users');	  	  
 	  $query = $this->db->get();
 	  return $query->result();	
 		

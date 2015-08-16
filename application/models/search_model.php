@@ -20,9 +20,29 @@ class Search_model extends CI_Model {
 		$this->db->join('brand_dosage_form','brand_strength_from_price.brand_dosage_form = brand_dosage_form.brand_dosage_form_id');
 		$this->db->join('brand_dosage_amount','brand_strength_from_price.brand_dosage_amount = brand_dosage_amount.brand_dosage_amount_id');
 		$this->db->join('brand_strength','brand_strength_from_price.brand_strength = brand_strength.brand_strength_id');
-	$this->db->like('brand.brand_name', $brand_name, 'before');
+		$this->db->like('brand.brand_name', $brand_name, 'before');
 		$query = $this->db->get();
 		return $query->result_array();
+	}
+	
+	
+	public function search_brand_strength(){
+		$this->db->select('brand.brand_name,brand_dosage_form_name,brand_strength_name');
+		$this->db->from('brand_strength_from_price');
+		$this->db->join('brand','brand_strength_from_price.brand_name = brand.brand_id');
+		$this->db->join('brand_dosage_form','brand_strength_from_price.brand_dosage_form = brand_dosage_form.brand_dosage_form_id');
+		$this->db->join('brand_dosage_amount','brand_strength_from_price.brand_dosage_amount = brand_dosage_amount.brand_dosage_amount_id');
+		$this->db->join('brand_strength','brand_strength_from_price.brand_strength = brand_strength.brand_strength_id');
+		$query = $this->db->get();
+			
+		$brand_array = array();
+		  foreach ($query->result() as $row) {
+		   $brand_array[0] = $row->brand_name;
+		   $brand_array[1] = $row->brand_dosage_form_name;
+		   $brand_array[1] = $row->brand_strength_name;
+		  }
+		  $data = $brand_array;
+	  return $data;
 	}
 	
 	

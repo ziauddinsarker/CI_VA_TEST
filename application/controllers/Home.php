@@ -34,10 +34,6 @@ class Home extends CI_Controller {
 		//var_dump($this->data['company_category']);
 		//var_dump($this->data['companys']);
 		
-		
-		
-		
-		
 		$this->data['doctors_rating'] = $this->doctor_model->getDoctorsRating(); // calling Blog model method getPosts()
 		//var_dump($this->data['doctors_rating']);
 		
@@ -84,7 +80,7 @@ class Home extends CI_Controller {
 	
 	//Load all data from brand table and show as json 
 	public function get_brand(){			
-			$data = $this->search_model->get();
+			$data = $this->search_model->search_brand_strength();
 			echo json_encode($data);
 	}
 
@@ -95,6 +91,21 @@ class Home extends CI_Controller {
 		$data = $this->company_model->get_company_by_category($catgory);		
 		echo json_encode($data);
 	}
+	
+	//Get company by category 
+	public function get_dist_from_division(){		
+		$division = $this->input->post('data');	
+		$data = $this->location_model->get_distrct_from_division($division);		
+		echo json_encode($data);
+	}
+	
+	//Get company by category 
+	public function get_thana_from_district(){		
+		$district = $this->input->post('data');	
+		$data = $this->location_model->get_thana_from_district($district);		
+		echo json_encode($data);
+	}
+	
 
 	//Function for Sending contact information form contact form
 	public function send_contact(){

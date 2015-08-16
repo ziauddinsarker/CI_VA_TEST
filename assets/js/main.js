@@ -1,4 +1,4 @@
-/*  // Instantiate the Bloodhound suggestion engine
+ // Instantiate the Bloodhound suggestion engine
 	var countries = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -23,7 +23,7 @@
 		source: countries.ttAdapter()
 	});
 
- */
+ 
  
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()

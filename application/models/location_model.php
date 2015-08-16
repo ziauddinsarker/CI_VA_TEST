@@ -30,6 +30,27 @@ class Location_model extends CI_Model
 		
 	}
 	
+	public function get_distrct_from_division($dist){
+		$this->db->select('*');		
+		$this->db->from('division');
+		$this->db->join('district','district.division = division.division_id');
+		$this->db->where('division.division_name', $dist);
+		$query = $this->db->get();			
+		return $query->result();
+	}	
+	
+	public function get_thana_from_district($thana){
+		$this->db->select('*');		
+		$this->db->from('district');
+		$this->db->join('thana','thana.district_name = district.district_id');
+		$this->db->where('district.district_name', $thana);
+		$query = $this->db->get();			
+		return $query->result();
+	}
+	
+	
+	
+	
 	
 	// Get Thana
 	public function get_thana(){
