@@ -25,7 +25,12 @@
 				<?php }?>	
 				</div>				
 			</div>
-		</article>						
+		</article>	
+		
+		<!-- Medicine Description -->
+						
+
+		
 	</div>
 
 </div>

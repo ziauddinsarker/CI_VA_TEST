@@ -19,6 +19,7 @@ class Home extends CI_Controller {
 		$this->load->model('location_model'); // load Location model
 		$this->load->model('search_model');
 		$this->load->model('healthcare_model');
+		$this->load->model('shop_model');
 		
 		//Get Blog Data
 		//$this->data['blogs'] = $this->blog_model->getPosts(); // calling Blog model method getPosts()
@@ -106,7 +107,20 @@ class Home extends CI_Controller {
 		echo json_encode($data);
 	}
 	
+	
+	//Get shop based on thana and brand
+	public function get_shop_based_on_thana_and_brand(){
+		$thana = $this->input->post('thana');		
+		$brand = $this->input->post('brand');
+		$data['thana'] = $this->shop_model->get_shop_from_thana($thana);
+		$data['brand']= $this->shop_model->get_shop_based_on_thana_and_brand($brand);
+		echo json_encode($data);
+	}
 
+	
+	
+	
+	
 	//Function for Sending contact information form contact form
 	public function send_contact(){
 		

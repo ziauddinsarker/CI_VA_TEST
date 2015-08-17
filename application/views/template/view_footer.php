@@ -325,7 +325,7 @@
 		 
 		 
 		
-		//Get Districts
+		//Get Districts from Division
 		function getDistrictFromDivision(divisionId){     
 				var currentValue = divisionId.value;					
 				  $.ajax({
@@ -360,7 +360,7 @@
 				
 				
 				
-				//Get Thana
+				//Get Thana from District
 				function getThanaFromDistrict(distId){     
 						var currentValue = distId.value;					
 						  $.ajax({
@@ -380,9 +380,84 @@
 									
 										 div.html('<div class="btn-group" id="thana">'+
 										 '<label class="btn btn-primary">'+
-										'<input type="radio" name="division" class="track-order-change" id="' + thana.thana_id + '" value="' + thana.thana_name + '">'+ thana.thana_name +''+
+										'<input type="radio" name="division" class="track-order-change" id="' + thana.thana_id + '" value="' + thana.thana_name + '" onclick="getShopBasedOnThanaAndBrand(this)">'+ thana.thana_name +''+
 										'</label>' );
 										location.prepend(div); 
+										
+								});
+							},
+								error: function() {
+									alert('Not OKay');
+								}
+							
+							});
+						}
+		
+		
+				
+				//Get shop based on thana and brand
+				function getShopBasedOnThanaAndBrand(thanaId){     
+						var thanaValue = thanaId.value;	
+						var brandValue = document.getElementById("name").value;
+							
+						console.log(thanaValue);
+					
+						  $.ajax({
+								type: "POST",
+								url: "<?php echo site_url('home/get_shop_based_on_thana_and_brand') ?>",
+								data: { thana: thanaValue, brand: brandValue  },
+								dataType:'json',
+								success: function(result){
+						
+								document.getElementById("shop-result").innerHTML = "";
+								var shop = $("#shop-result");
+								
+								// here is a simpe way
+								$.each(result, function (i, brand) {
+							
+									var div = $('<div/>');
+									
+										 div.html('<article class="row medicine-description">' +
+													'<div class="col-md-4 medicine-desc-image">' +
+														'<img class="img-responsive" src="http://127.0.0.1/CI_VA/assets/images/naftin.jpg" alt="" />' +
+													'</div>' +
+													'<div class="col-md-4">' +							
+														'<h3>Brand Name</h3>' +
+														'<a href="#">Ace</a> ' +
+														'<span class="medicine-result-generic">(<a href="#" id="genericname">+generic+</a>)</span>'+
+																					
+													'</div>' +							
+													'<div class="col-md-4">' +							
+														'<h4>Packaging</h4>' +
+														'<p>Dosage Form: Syrup<p>' +
+														'<p>Strength: 50mg/ml<p>' +
+														'<p>Amount: 100ml<p>' +
+														'<p>Piece(s): 1<p>' +
+														'<p>Manufacturer: Square Pharmacuticals<p>' +
+														'<p>Retail price(+/-):100 BDT</p>' +								
+													'</div>' +
+													'</article>' +
+													
+													
+						'<article class="row">' +
+							'<div class="col-md-4 col-md-offset-1 shop-single">' +
+							'<div>shopname: ' + brand.shop_name + '</div>'+
+							
+							'</div>' +
+							
+							'<div class="col-md-7 medicine-price-graph" id="price-filter">' +								
+								'<div>' +
+											'<h5><a href="#">Brand Name</a><span class="brand-rating"> <a href="">(2)</a></span>' +
+											'<br/><a href="#">Company Name</a><span class=" brand-rating company-rating"> <a href="#">(2)</a></span></h5>' +
+											'<div class="progress">' +
+											'<div class="progress-bar" style="width:20%">' +
+											'</div>' +
+											'<span>$row["brand_name"]</span>'+									
+										'</div>' +
+									'</div>' +
+							 '</div>' +	
+						 '</article>' );
+										shop.prepend(div); 
 										
 								});
 							},

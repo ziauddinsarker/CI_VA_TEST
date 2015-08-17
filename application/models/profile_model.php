@@ -3,6 +3,19 @@
 class Profile_model extends CI_Model
 {
     
+	
+	function get_profile(/* $profile_id, $user_type */){
+		$this->db->select('user_id,username,email');
+        $this->db->from('users');
+        $this->db->get_where('user_id', '4');
+        $this->db->get_where('user_type', 'admin');
+        $query = $this->db->get();
+        return $query->first_row('array');
+}
+	
+	
+	
+	
     function get_post($post_id)
     {
         $this->db->select('*');

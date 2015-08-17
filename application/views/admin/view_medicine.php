@@ -12,7 +12,7 @@
 			<table class="table table-striped table-bordered table-hover" id="dataTables-example"><thead>
 				<tr>
 					<th>Brand Name</th>
-					<th>Generic Name</th>
+					<!-- <th>Generic Name</th> -->
 					<th>Company</th>
 					<th>Form</th>
 					<th>Strength</th>
@@ -25,12 +25,12 @@
 				<?php foreach($medicines as $medicine){?>		
 					
 						<tr class="odd gradeX">
-						<td><?php echo $medicine->brand_name;?></td>
-						<td><?php echo $medicine->brand_generic_name;?></td>
-						<td><?php echo $medicine->manufacturer_name;?></td>
-						<td><?php echo $medicine->brand_dosage_form_name;?></td>
-						<td><?php echo $medicine->brand_strength_name;?></td>
-						<td><?php echo $medicine->brand_quantity;?></td>
+						<td><?php echo $medicine->brand_name; ?></td>
+						<td><?php //echo $medicine->brand_generic_name; ?></td>
+						<td><?php echo $medicine->manufacturer_name; ?></td>
+						<td><?php echo $medicine->brand_dosage_form_name; ?></td>
+						<td><?php echo $medicine->brand_strength_name; ?></td>
+						<td><?php echo $medicine->brand_quantity; ?></td>
 						<td><?php echo $medicine->brand_price;?></td>
 						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>';					
 						</tr>

@@ -41,7 +41,7 @@
 	  });
 	});
 
-	//This is for search option
+	/* //This is for search option
 	 	$(document).ready(function(){
 		
 			$('input[name="typeahead"]').typeahead({
@@ -66,7 +66,7 @@
 					  var brand = datum['brand_name'];
 					  document.write(brand);
 		  });
-		}); 
+		});  */
 		
 
 		/*

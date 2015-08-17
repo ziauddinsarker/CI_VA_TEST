@@ -12,7 +12,8 @@ class Location_model extends CI_Model
 	// Get Division
 	public function get_division(){	
 		$this->db->select('division_id,division_name');
-        $this->db->from('division'); 
+        $this->db->from('division');
+		$this->db->order_by('division_name', 'ASC');
         $query = $this->db->get();
 	  return $query->result();
 	}
@@ -35,6 +36,7 @@ class Location_model extends CI_Model
 		$this->db->from('division');
 		$this->db->join('district','district.division = division.division_id');
 		$this->db->where('division.division_name', $dist);
+		$this->db->order_by('district_name', 'DESC');
 		$query = $this->db->get();			
 		return $query->result();
 	}	
@@ -43,7 +45,8 @@ class Location_model extends CI_Model
 		$this->db->select('*');		
 		$this->db->from('district');
 		$this->db->join('thana','thana.district_name = district.district_id');
-		$this->db->where('district.district_name', $thana);
+		$this->db->where('district.district_name', $thana);		
+		$this->db->order_by('thana_name', 'DESC');
 		$query = $this->db->get();			
 		return $query->result();
 	}

@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
 		$this->load->model('doctor_model');
 		$this->load->model('user_model');
 		$this->load->model('blog_model');
+		$this->load->model('profile_model');
     }
 
 	public function index()
@@ -25,10 +26,11 @@ class Admin extends CI_Controller {
 	
 	public function medicine()
 	{ 		
-		$data['medicines'] = $this->brand_model->index();
+		$data['medicines'] = $this->brand_model->get_shop_based_on_thana_and_brand();
 		$this->load->view('admin/view_header');
        	$this->load->view('admin/view_medicine',$data);
         $this->load->view('admin/view_footer');
+		echo json_encode($data);
 		
 	}
 	
@@ -69,11 +71,11 @@ class Admin extends CI_Controller {
 	}
 	
 	public function profile(){
-		$data['profile'] = $this->profile_model->getSingleProfile();
+		$data['profiles'] = $this->profile_model->get_profile( 4,'admin' );
 		$this->load->view('admin/view_header');
-       	$this->load->view('admin/view_profile',$data);
+       	$this->load->view('admin/view_user_profile',$data);
         $this->load->view('admin/view_footer');
-		
+		//echo json_encode($data);
 	}
 	
 }
