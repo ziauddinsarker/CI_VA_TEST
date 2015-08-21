@@ -68,22 +68,24 @@ class Home_model extends CI_Model
 	}
 	
 	//Get Doctors Category 
-	public function getAllDoctorsCategory(){		
+	public function getAllDoctorsCategory($limit = 22, $offset = 0){		
 	  $this->db->select('doctor_category_id,doctor_category_name,COUNT(doctors_category.doctor_category_id) doctors_count');
-	  $this->db->from('doctors_category');
+	  //$this->db->from('doctors_category');
 	  $this->db->join('doctors', 'doctors.doctor_specialist = doctors_category.doctor_category_id');
 	  $this->db->group_by('doctors_category.doctor_category_id'); 
 	  $this->db->order_by('doctor_category_name','ASC');
-	  $query = $this->db->get();
+	  //$query = $this->db->get();
+	  $query = $this->db->get('doctors_category',$limit,$offset);
 	  return $query->result();
 	} 
 	
 	//Get Doctors Category without Counting the Doctors
-	public function getDoctorsCategoryOnly(){
+	public function getDoctorsCategoryOnly($limit = 22, $offset = 0){
 	  $this->db->select("doctor_category_id,doctor_category_name");
-	  $this->db->from('doctors_category');
+	  //$this->db->from('doctors_category');
 	  $this->db->order_by('doctor_category_name','ASC');
-	  $query = $this->db->get();
+	  //$query = $this->db->get();	  
+	  $query = $this->db->get('doctors_category',$limit,$offset);
 	  return $query->result();
 	}
 	
