@@ -12,38 +12,29 @@
 
 .main{
 	/* padding-top:120px; */
-	min-height:100vh;
+	height:100vh;
 	/* height:100%; */
 	background-color:#e7e7e7;
 	background-image: url("../images/hero-map@2x.jpg");
 }
 
-#footer{
-	position:relative;	
-}
-
 /* Set the fixed height of the footer here */
-/* #footer {
+#footer {
     background-color: #f5f5f5;
     height: auto;
     padding: 10px 0;
 }
-footer {
-  /* position: fixed; */
-  /* Set the fixed height of the footer here */
-  /*bottom: 0;
-  width: 100%;
-  
-  height: 60px;
-  background-color: #f5f5f5;
-} */
-
-
-
 #doctors, #company {
     padding: 17px;
 }
-
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
 .copyright{
 	text-align:right;
 }
@@ -95,10 +86,6 @@ footer {
     margin: 2px;
     padding: 4px 6px;
 }
-#healthcare .btn-group .row .col-md-4 .btn.btn-primary {
-	text-align: left;
-    width: 200px;
-}
 
 .row.shop-list-single {
     background: none repeat scroll 0 0 red;
@@ -137,7 +124,7 @@ color: #000;
     color: #fff;
 }
 .navbar.navbar-default.navbar-fixed-top {
-    background: none repeat scroll 0 0 #404040;
+    background: none repeat scroll 0 0 #4282BC;
 	opacity:0.90;
 }
 
@@ -147,7 +134,7 @@ color: #000;
     margin: 10px 0 8px;
 }
 #main-tab {
-    background: none repeat scroll 0 0 #404040;
+    background: none repeat scroll 0 0 #4282BC;
     padding:20px 20px;
 	border-radius:10px;
 	margin-bottom:60px;

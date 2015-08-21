@@ -1,6 +1,4 @@
-<?php 
-
-/*<div role="tabpanel" class="tab-pane" id="contact">
+<div role="tabpanel" class="tab-pane" id="contact">
 			  <!-- Contact Tab -->
 				<div class="row">
 					<div class="col-md-6">
@@ -47,5 +45,3 @@
 			  <!-- Contact Tab -->
 				
 			  </div>
-			  */
-			  ?>

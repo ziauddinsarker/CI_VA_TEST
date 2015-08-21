@@ -1,0 +1,260 @@
+manufacturer_id,manufacturer_name_short,manufacturer_name
+,Lundbeck,A/S Lundbeck
+,Abbott,Abbott Healthcare Products
+,Abbott,"Abbott Laboratories, Pakistan"
+,Abbott,"Abbott Laboratories, UK"
+,Abbott,"Abbott Laboratories, USA"
+,ACI,ACI ltd.
+,Acme,Acme Laboratories 
+,Acme,Acme Specialized Pharmaceuticals 
+,Ad din,Ad din Pharmaceuticals 
+,Aexim,Aexim Pharmaceuticals 
+,Albion,Albion Laboratories 
+,Alco,Alco Pharma 
+,Allergan,Allergan Inc. USA
+,Allergan,"Allergan Pharmaceuticals, Ireland"
+,Alpha,"Alpha Therapeutic Corporation, USA"
+,Ambee,Ambee Pharmaceuticals 
+,Amico,Amico Laboratories 
+,Amulet,Amulet Pharmaceuticals 
+,APC,APC Pharma 
+,Apex,Apex Pharmaceuticals 
+,Apollo,Apollo Pharmaceutical Laboratories 
+,Aristopharma,Aristopharma 
+,Asiatic,Asiatic Laboratories 
+,Aspen,"Aspen Bad Oldesloe, Germany"
+,Astra,Astra Biopharmaceuticals 
+,Astrazeneca,Astrazeneca Pharmaceutical
+,Aventis,"Aventis Pharma Dagenham, UK"
+,Aventis,"Aventis Pharma, France"
+,Aventis,"Aventis Pharma, UK"
+,Avert,Avert Pharma 
+,Ayerst,Ayerst Wyeth Pharmaceuticals Inc.
+,B.Braun,"B.Braun Melsungen, Germany"
+,Bangladesh Immu.,Bangladesh Immunity Co.
+,Baxter,"Baxter Oncology Gmbh AG, Germany"
+,Beacon,Beacon Pharmaceuticals 
+,Belsen,Belsen Pharmaceuticals 
+,Bengal,Bengal Drugs & Chemical Works Pharm. 
+,Benham,Benham Pharmaceuticals 
+,Beximco,Beximco Pharmaceuticals 
+,Bio Pharma,Bio Pharma Laboratories 
+,Boehringer,Boehringer Ingelheim Pharmaceutical
+,Bristol,"Bristol Myers Squibb Pvt., USA"
+,Bristol,Bristol Pharma 
+,Central,Central Pharmaceutical 
+,Chemist,Chemist Laboratories 
+,Choongwae,"Choongwae Pharma Corporation, Korea"
+,Cilag,"Cilag AG, Switzerland"
+,Cipla,Cipla 
+,City chem.,City Chemicals & Pharmaceuticals 
+,City,City overseas
+,Concord,Concord Pharmaceuticals 
+,Cosmic,Cosmic Chemical Industries 
+,Cosmo,Cosmo Pharma Laboratories 
+,Crystal,Crystal Pharmaceuticals 
+,CSL,"CSL Behring Ag, Switzeland"
+,CSL,"CSL Behring GmbH, Germany"
+,Decent,Decent Pharma Laboratories 
+,Delta,Delta Pharma 
+,Desh,Desh Pharmaceuticals 
+,Doctor Tims,Doctor Tims Pharmaceuticals 
+,Doctor's,Doctor's Chemicals Works 
+,Dolphin,Dolphin Pharmaceuticals 
+,Drug International,Drug International Ltd.
+,Eastern,Eastern Pharmaceuticals 
+,Ebew,"Ebew Pharma, Austria"
+,EDCL,EDCL
+,Edruc,Edruc 
+,Egis,"Egis Pharmaceuticals, Hungary"
+,Eli Lilly,"Eli Lilly and Company, USA"
+,Eli Lilly,"Eli Lilly France SA, France"
+,Elixir,Elixir
+,Eskayef,Eskayef Bangladesh
+,Ethical,Ethical Drug 
+,Euro Pharma ,Euro Pharma 
+,Everest,Everest Pharmaceuticals 
+,Excella,Excella Germany
+,F. Hoffmann,"F. Hoffmann La Roche, Germany"
+,F. Hoffmann,"F. Hoffmann La Roche, Switzerland"
+,Ferring,"Ferring GmbH, Germany"
+,Fisons,"Fisons, UK"
+,Fresenius,"Fresenius Kabi Austria GmbH, Austria"
+,Fresenius,"Fresenius Kabi Deutschland GmbH, Germany"
+,GA,GA Company 
+,Richter,Gedeon Richter Hungary
+,General,General Pharmaceuticals 
+,Glaxo,"Glaxo Operations, UK"
+,Glaxo,"Glaxo Smith Kline Biologicals S.A., Belgium"
+,Glaxo,"Glaxo Smith Kline, Australia"
+,Glaxo,Glaxo SmithKline Bangladesh 
+,Glaxo,"Glaxo Wellcome GmbH, Germany"
+,Glaxo,"GlaxoSmithKline Biologicals, Germany"
+,Globe,Globe Pharmaceuticals 
+,Globex,Globex Pharmaceuticals 
+,Gonoshasthaya,Gonoshasthaya Pharmaceuticals 
+,Gosun,"Gosun Pharma Co., China"
+,Grifols,"Grifols Biologicals Inc., USA"
+,Grunenthal,Grunenthal/UniMed
+,Gruppo,"Gruppo Lepetit Srl, Italy"
+,H. Lundbeck,"H. Lundbeck & Co., Denmark"
+,Hallmark,Hallmark Pharmaceuticals 
+,Healthcare,Healthcare Pharmaceuticals 
+,Hexal,Hexal ag Germany
+,Hoffman,"Hoffman La Roche, Switzerland"
+,Hudson,Hudson Pharmaceuticals 
+,Ibn-Sina,Ibn Sina Pharmaceutical
+,Incepta,Incepta Pharmaceuticals 
+,Indobangla,Indobangla Pharmaceuticals
+,Institute,Institute of Public Health
+,IPH,IPH
+,Jalalabad,Jalalabad Pharmaceuticals 
+,Jams,Jams Pharmaceuticals 
+,Janata,Janata Pharma
+,Janseen,"Janseen Pharmaceutica, Belgium"
+,Jayson,Jayson Pharmaceuticals 
+,JHP,"JHP Pharmaceuticals, USA"
+,JMI,JMI Pharma
+,JMI,JMI Syringes & Medical Devices 
+,Kawser,Kawser Chemicals
+,Kazi,Kazi Chemicals
+,KDH,KDH Laboratories 
+,Kemiko,Kemiko Pharmaceuticals 
+,Kumudini,Kumudini Pharma 
+,Kyowa,"Kyowa Hakko Kogyo Co., Japan"
+,Labaid,Labaid Pharmaceuticals 
+,Laboratories,"Laboratories Panpharma, France"
+,Laboratorio,"Laboratorio Aldo Union, Spain"
+,Laboratorio,"Laboratorio Varifarma, Argentina"
+,Lek,"Lek dd Ljubljana Pharmaceutical & Chemical Co., Slovenia"
+,Leo,"Leo Pharmaceutical Products, Denmark"
+,Leon,Leon Pharmaceuticals 
+,Les,"Les Laboratories Servier Industrie, France"
+,Libra,Libra Pharmaceuticls 
+,Lilly,Lilly France
+,Lilly,"Lilly France SA, France"
+,M.R Chemicals,M.R Chemicals
+,Marksman,Marksman Pharmaceutical 
+,Medac,"Medac Gesellschaft fur Klinischespezialpraparate, Germany"
+,Medicon,Medicon Pharmaceuticals 
+,Medimet,Medimet Pharmaceuticals 
+,Merck,"Merck KGaA, Germany"
+,Merck,"Merck Serono S.A., Switzerland"
+,Merck,"Merck, Italy"
+,Merz,Merz Pharmaceuticals
+,Millat,Millat Pharmaceuticals 
+,Modern,Modern Pharmaceuticals 
+,Monicopharma,Monicopharma 
+,Mundipharma,Mundipharma
+,Mystic,Mystic Pharmaceuticals 
+,N.V. Organon,N.V. Organon Netherlands
+,National Laboratories,National Laboratories 
+,Navana,Navana Pharmaceuticals 
+,Nicholas,Nicholas
+,Nipa,Nipa Pharmaceuticals 
+,Nippon,"Nippon Kayaku Co Ltd., Japan"
+,NIPRO JMI,NIPRO JMI Pharma 
+,North,North Bengal Pharmaceuticals 
+,Novartis,Novartis
+,Novartis,"Novartis Farma SP. A., Italy"
+,Novartis,Novartis Farmaceutica S.A. Spain
+,Novartis,Novartis Pharma Ag. Germany
+,Novartis,"Novartis Pharma AG., Switzerland"
+,Novartis,"Novartis Pharma GmbH, Germany"
+,Novartis,"Novartis Pharma SA, China"
+,Novartis,"Novartis Pharma SA, France"
+,Novartis,"Novartis Pharma, Switzerland"
+,Novartis,"Novartis Pharmaceuticals, UK"
+,Novartis,Novartis Vaccines & Diagnostics Italy
+,Novelta,Novelta Bestway Pharmaceuticals 
+,Novo,Novo Healthcare and Pharma 
+,Novo,Novo Nordisk
+,Novo,"Novo Nordisk A/S, Denmark"
+,Novus,Novus Pharmaceuticals 
+,Nuvista,Nuvista Pharma Ltd
+,Octapharma,"Octapharma Pharmazeutika, Germany"
+,Opso,Opso Saline 
+,Opsonin,Opsonin Pharma 
+,Organic,Organic Health Care
+,Organon,"Organon, Ireland"
+,Orion,"Orion Corporation, Finland"
+,Orion,Orion Infusion 
+,Orion,Orion Pharma 
+,Oyster,Oyster Pharmaceuticals 
+,Pacific,Pacific Pharmaceuticals 
+,Peoples,Peoples Pharma 
+,Pfizer,"Pfizer Italia Srl, Italy"
+,Pfizer,"Pfizer Manufacturing, Belgium"
+,Pfizer,"Pfizer PGM, France"
+,Pfizer,"Pfizer Pharmaceuticals, Ireland"
+,Pfizer,"Pfizer Puus SP.A., Belgium"
+,Pfizer,"Pfizer, Australia"
+,Pfizer,"Pfizer, Belgium"
+,Pharmachemie,"Pharmachemie B. V., Netherlands"
+,Pharmaco,Pharmaco International 
+,Pharmadesh,Pharmadesh Laboratories 
+,Pharmasia,Pharmasia 
+,Plasmapharm,Plasmapharm Sera GmbH & Co. Austria
+,Popular,Popular Pharmaceuticals 
+,Procter,"Procter & Gumble, Germany"
+,R.P. Scherer,"R.P. Scherer GmbH, Germany"
+,Radiant,Radiant Pharmaceutical 
+,RAK,RAK Pharmaceuticals 
+,Rangs,Rangs Pharmaceuticals 
+,Reckitt & Benckiser,"Reckitt & Benckiser, Bangladesh "
+,Reliance,Reliance Pharmaceuticals 
+,Reman,Reman Drug Laboratories 
+,Renata,Renata 
+,Rephco,Rephco Pharmaceuticals 
+,Roche,Roche Bangladesh Pharmaceutical
+,Roche,"Roche Diagnostics GmbH, Germany"
+,Roche,Roche Fontenay France
+,Roche,"Roche SpA, Italy"
+,Rotexmedica,Rotexmedica GmbH Germany
+,S.A. Alcon,"S.A. Alcon Couvreur N.V., Belgium"
+,S.C Sindan,"S.C Sindan Pharma S.R.l, Romania"
+,Salton,Salton Pharmaceuticals 
+,Sandoz,"Sandoz GmbH, Austria"
+,Sandoz,"Sandoz Private,  India"
+,Sanofi,Sanofi Aventis
+,Sanofi,"Sanofi aventis Deutschland GmbH, Germany"
+,Sanofi,"Sanofi Aventis Pasteur SA, France"
+,Sanofi,"Sanofi Aventis, Germany"
+,Sanofi,"Sanofi Pasteur Lyon, France"
+,Sanofi,"Sanofi Pasteur S. A.,France"
+,Sanofi,"Sanofi Winthrop Industries, France"
+,SBL Vaccin,"SBL Vaccin AB, Sweden"
+,Schering,Schering A.G Germany
+,Schering,"Schering Oy Pansiontie, Finland"
+,Seba,Seba Laboratories 
+,Seema,Seema Pharmaceuticals 
+,Serono,"Serono Pharma, UK"
+,Shamsul Al Amin,Shamsul Al Amin Pharmaceuticals 
+,Sharif,Sharif Pharmaceuticals 
+,Silva,Silva Pharmaceuticals 
+,Skylab,Skylab 
+,SN Pharma.,SN Pharmaceuticals 
+,Social,Social Marketing Company
+,Solvay,"Solvay Pharmaceuticals, Netherlands"
+,Somatec,Somatec Pharmaceuticals 
+,Sonear,Sonear Laboratories 
+,Square,Square Cephalosporins 
+,Square,Square Pharmaceuticals 
+,Stiefel,"Stiefel Laboratories Ptd ,Ireland"
+,Stiefel,"Stiefel Laboratories Ptd, Singapore"
+,Sun Pharma.,Sun Pharmaceutical
+,Supreme,Supreme Pharmaceuticals 
+,Syntho,Syntho Laboratories 
+,Takeda,"Takeda Pharmaceutical Company, Japan"
+,Techno,Techno Drugs 
+,Theraputics,Theraputics
+,UniDerma,UniDerma
+,Unimed & Unihealth,Unimed & Unihealth Manufacturers 
+,Unique,Unique Pharmaceutical 
+,United,United Chemicals & Pharmaceuticals 
+,Vifor Inc.,"Vifor Inc., Switzerland"
+,Virgo,Virgo Pharmaceuticals 
+,White,White Horse Pharma
+,Wyeth,"Wyeth Pharma GmbH, Germany"
+,Zenith,Zenith Pharmaceuticals 
+,Ziska,Ziska Pharmaceuticals 

@@ -18,7 +18,7 @@ class Home extends CI_Controller {
 		$this->load->model('home_model'); // load Home model
 		$this->load->model('location_model'); // load Location model
 		$this->load->model('search_model');
-		//$this->load->model('healthcare_model');
+		$this->load->model('healthcare_model');
 		$this->load->model('shop_model');
 		
 		//Get Blog Data
@@ -29,9 +29,7 @@ class Home extends CI_Controller {
 		$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
 		
 		//Get Company Data
-		$this->data['company_category_4'] = $this->company_model->getCompanyCategory(4,0); // calling Company model method getPosts()
-		$this->data['company_category_3_1'] = $this->company_model->getCompanyCategory(3,4); // calling Company model method getPosts()
-		$this->data['company_category_3_2'] = $this->company_model->getCompanyCategory(3,7); // calling Company model method getPosts()
+		$this->data['company_category'] = $this->company_model->getCompanyCategory(); // calling Company model method getPosts()
 		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
 		
 		//var_dump($this->data['company_category']);
@@ -44,8 +42,7 @@ class Home extends CI_Controller {
 		$this->data['district'] = $this->home_model->getDistrict();
 		
 		//Get Doctors Data
-		$this->data['doctors_category_22_1'] = $this->home_model->getDoctorsCategoryOnly(22,0);			
-		$this->data['doctors_category_22_2'] = $this->home_model->getDoctorsCategoryOnly(22,23);			
+		$this->data['doctors_category'] = $this->home_model->getAllDoctorsCategory();			
 		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();	
 		
 		$this->data['get_top_ten_doctor'] = $this->home_model->getTopTenDoctor();	
@@ -75,9 +72,9 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_review_news', $this->data);			
 			$this->load->view('template/view_doctor', $this->data);			
 			$this->load->view('template/view_discount', $this->data);	 	
-			$this->load->view('template/view_healthcare');			
+			$this->load->view('template/view_healthcare', $this->data);			
 			$this->load->view('template/view_faq', $this->data);			
-			//$this->load->view('template/view_contact', $this->data);				
+			$this->load->view('template/view_contact', $this->data);				
 			$this->load->view('template/view_footer', $this->data);	 
 	}	
 
@@ -95,9 +92,6 @@ class Home extends CI_Controller {
 		$data = $this->company_model->get_company_by_category($catgory);		
 		echo json_encode($data);
 	}
-	
-	
-	
 	
 	//Get company by category 
 	public function get_dist_from_division(){		

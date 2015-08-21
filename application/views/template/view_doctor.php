@@ -1,5 +1,5 @@
 <div role="tabpanel" class="tab-pane" id="doctor">
-				<?php /*
+				
 				<div class="row">
 					<div class="col-md-12">
 					<!-- Find Doctors by Districts-->
@@ -14,39 +14,18 @@
 						</div>					
 					</div>			
 				</div>
-				*/
-				?>
-				<!-- Find Doctors by Category-->
-				<h4>Doctors By Category</h4>
-				<div class="row">
 				
-					<div class="col-md-6">
-						<div class="btn-group" data-toggle="buttons" id="filters"> 
-						<?php foreach($doctors_category_22_1 as $category){?>									
+				<!-- Find Doctors by Category-->
+				<h4>Doctors By Category</h4>					
+				<div class="btn-group" data-toggle="buttons" id="filters"> 
+					<?php foreach($doctors_category as $category){?>									
 						<label class="btn btn-primary">
 						<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
 						 <?php echo $category->doctor_category_name;?>
 						</label> 
-						 <?php }?>  			
-						</div>	
-					</div>
-					
-					<div class="col-md-6">
-						<div class="btn-group" data-toggle="buttons" id="filters"> 
-						<?php foreach($doctors_category_22_2 as $category){?>									
-							<label class="btn btn-primary">
-							<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
-							 <?php echo $category->doctor_category_name;?>
-							</label> 
-						 <?php }?>  			
-						</div>	
-					</div>
-				</div>
-
-
+					 <?php }?>  			
+				</div>	
 				
-				
-				<?php /*
 			
 				<!-- Get All Doctor -->	
 				<?php foreach($all_doctors as $doctor){?>	
@@ -248,6 +227,4 @@
 				</div>
 			</div>
 			<?php } ?>
-			
-			*/?>
 </div>

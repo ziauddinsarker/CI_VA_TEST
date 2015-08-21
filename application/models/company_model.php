@@ -2,16 +2,20 @@
 
 class Company_model extends CI_Model
 {
+    function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
+
+    //get the username & password from tbl_usrs
     //Get All Posts
-	function getCompanyCategory($limit = 4, $offset = 0){		
+	function getCompanyCategory(){
 	  $this->db->select('*');
-	  $this->db->order_by('company_cat_name','ASC');
-	  $query = $this->db->get('company_category',$limit,$offset);
+	  $this->db->from('company_category');	  	  
+	  $query = $this->db->get();
 	  return $query->result();
 	}
-	
-	
-	
 	
 	function getCompanys(){
 	  $this->db->select('*');
