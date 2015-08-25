@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/* $(document).ready(function () {
     $("#country").keyup(function () {
         $.ajax({
             type: "POST",
@@ -26,4 +26,4 @@ $(document).ready(function () {
     $('ul.txtcountry').on('click', 'li a', function () {
         $('#country').val($(this).text());
     });
-});
+}); */

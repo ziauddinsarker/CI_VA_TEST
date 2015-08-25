@@ -2,7 +2,7 @@
 	<div class="result-medicine" id="shop-result" >
 		
 		<article class="row">
-			<form class="form-inline large-search form-search form-emphasis" role="form" method="post"  action="getshop.php">
+			<form class="form-inline large-search form-search form-emphasis" role="form" method="post">
 				<div class="col-md-6 col-md-offset-2">
 					<div class="form-group table-input">
 					   <label class="sr-only" for="name">Tablet Name</label>

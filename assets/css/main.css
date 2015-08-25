@@ -340,18 +340,6 @@ th, td {
 
 /************Typeahed file*************/
 
-
-
-.typeahead, .tt-query, .tt-hint {
-	/* border: 2px solid #CCCCCC;
-	border-radius: 8px; */
-	font-size: 18px;
-	height: 50px;
-	line-height: 30px;
-	outline: medium none;
-	padding: 8px 12px;
-	margin:10px 0 0 0;
-}
 .typeahead {
 	background-color: #FFFFFF;
 	margin: 36px 0 11px;

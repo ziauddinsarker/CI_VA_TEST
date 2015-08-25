@@ -82,7 +82,19 @@ class Home extends CI_Controller {
 	}	
 
 	
+	
+	
+	
+	
 	//Load all data from brand table and show as json 
+	/*
+	* @var data
+	*
+	*@model search_model
+	*@method search_brand_strength
+	*
+	*Get Brand name from search_brand_strength table
+	*/
 	public function get_brand(){			
 			$data = $this->search_model->search_brand_strength();
 			echo json_encode($data);
@@ -96,17 +108,14 @@ class Home extends CI_Controller {
 		echo json_encode($data);
 	}
 	
-	
-	
-	
-	//Get company by category 
+	//Get District by Division 
 	public function get_dist_from_division(){		
 		$division = $this->input->post('data');	
 		$data = $this->location_model->get_distrct_from_division($division);		
 		echo json_encode($data);
 	}
 	
-	//Get company by category 
+	//Get Thana from District 
 	public function get_thana_from_district(){		
 		$district = $this->input->post('data');	
 		$data = $this->location_model->get_thana_from_district($district);		

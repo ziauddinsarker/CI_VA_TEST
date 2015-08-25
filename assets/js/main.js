@@ -1,29 +1,32 @@
+
  // Instantiate the Bloodhound suggestion engine
 	var countries = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('brand_name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch: {
 			url: 'http://127.0.0.1/CI_VA/home/get_brand',
 			filter: function (countries) {
-				return $.map(countries, function (country) {
+				return $.map(countries, function (brand_name) {
 					return {
-						name: country
+						name: brand_name
 					};
 				});
 			}
+		},
+		remote:{
+			url:'http://127.0.0.1/CI_VA/home/get_brand'
 		}
 	});
 
 	// Initialize the Bloodhound suggestion engine
 	countries.initialize();
-
 	// Instantiate the Typeahead UI
 	$('.typeahead').typeahead(null, {
-		displayKey: 'name',
+		displayKey: 'brand_name',
 		source: countries.ttAdapter()
 	});
 
- 
+
  
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
@@ -41,6 +44,32 @@
 	  });
 	});
 
+	/* 
+	 $(document).ready(function () {
+	 $('#name .typeahead').typeahead({
+		source: function(query) {
+		  var result = [];
+		 $.ajax({
+		  url: "<?php echo base_url().'search/get_brand_form_strength'; ?>",
+		  type: "post",
+		  data: "name=" + query,
+		  dataType: "json",
+		  async: true,
+		  success: function(data) {
+		   //typeahead.process(data);
+		   alert(data);
+		   result = data;
+		  }
+		 });
+		 return result;
+		}
+	   });
+	}); 
+	 */
+	
+	
+	
+	
 	/* //This is for search option
 	 	$(document).ready(function(){
 		
