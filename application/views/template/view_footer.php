@@ -100,6 +100,9 @@
 		
 		<script src="<?php echo base_url('assets/js/jquery-1.11.3.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/typeahead.jquery.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/bloodhound.min.js'); ?>"></script>
 		<?php 
 		/*
 		<script src="<?php echo base_url('assets/js/simple-expand.min.js'); ?>"></script>	
@@ -112,41 +115,37 @@
 		
 		<script src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 
-		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/typeahead.jquery.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/bloodhound.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
+
+
+<!--		<script src="--><?php ////echo base_url('assets/js/main.js'); ?><!--"></script>-->
 
 		<script>
 
 			var brands = new Bloodhound({
-				datumTokenizer: Bloodhound.tokenizers.whitespace,
+				//datumTokenizer: Bloodhound.tokenizers.whitespace,
+				datumTokenizer: function(d) {
+					return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
+				},
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
 				prefetch: '<?php echo base_url().'search/get_brand_form_strength'; ?>',
 				remote: {
-					url: '<?php echo base_url().'search/get_brand_form_strength?search=%QUERY' ?>',
+					url: '<?php echo base_url().'search/get_brand_form_strength?name=%QUERY' ?>',
 					wildcard: '%QUERY'
-				}
+			}
 			});
-
+			brands.initialize();
 			$('.table-input .typeahead').typeahead(null, {
-				//name: 'brands',
+				name: 'typeahead',
 				valueKey:'brand_name',
-				//display:'brand_name',
-				source: brands,
+				//source: brands,
+				source: brands.ttAdapter(),
+				template: [
+					'<p class="course_area">{{brand_name}}</p>',
+					'<p class="course_title">{{brand_strength_name}}</p>',
+					'<p class="course_description">{{brand_dosage_form_name}}</p>'
+				].join(''),
 				engine: Hogan,
-				template: '<p>{{brand_name}} - {{brand_dosage_form_name}} - ({{brand_strength_name}})</p>',
-				hint: true,
-				highlight: true,
-				minLength: 1
 
-			}).on('typeahead:selected', function($e, datum) {
-
-				var brandname = datum['brand_name'];
-				var strengthname = datum['brand_dosage_form_name'];
-				var formname = datum['brand_strength_name'];
-
-				console.log('Brand: ' + brandname + 'Strength:' + strengthname + 'Form:' + formname);
 			});
 		</script>
 
