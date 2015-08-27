@@ -8,10 +8,10 @@ class Search extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('search_model');
-		
+
 		$config['uri_protocol']	= 'PATH_INFO';
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
-		
+
 	}
 
 	public function get_brand_form_strength(){

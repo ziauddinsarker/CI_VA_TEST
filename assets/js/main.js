@@ -1,5 +1,5 @@
 
- // Instantiate the Bloodhound suggestion engine
+ /*// Instantiate the Bloodhound suggestion engine
 	var countries = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('brand_name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -20,12 +20,12 @@
 
 	// Initialize the Bloodhound suggestion engine
 	countries.initialize();
-	// Instantiate the Typeahead UI
-	$('.typeahead').typeahead(null, {
-		displayKey: 'brand_name',
-		source: countries.ttAdapter()
-	});
-
+	 // Instantiate the Typeahead UI
+	 $('.typeahead').typeahead(null, {
+		 displayKey: 'brand_name',
+		 source: countries.ttAdapter()
+	 });
+*/
 
  
 	$('#myTab a').click(function (e) {

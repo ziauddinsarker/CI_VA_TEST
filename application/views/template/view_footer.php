@@ -104,19 +104,55 @@
 		/*
 		<script src="<?php echo base_url('assets/js/simple-expand.min.js'); ?>"></script>	
 		<script src="<?php echo base_url('assets/js/validator.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/tinymce/tinymce.min.js'); ?>"></script>		
-		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
-		
+		<script src="<?php echo base_url('assets/js/tinymce/tinymce.min.js'); ?>"></script>
+
+		<script src="<?php echo base_url('assets/js/typeahead.bundle.min.js'); ?>"></script>
+
 		*/?>
 		
 		<script src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
-		
-		<script src="<?php echo base_url('assets/js/typeahead.bundle.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/js/bloodhound.min.js'); ?>"></script>
+
+		<script src="<?php echo base_url('assets/js/hogan-3.0.2.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/typeahead.jquery.min.js'); ?>"></script>
-		
+		<script src="<?php echo base_url('assets/js/bloodhound.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
-		
+
+		<script>
+
+			var brands = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.whitespace,
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				prefetch: '<?php echo base_url().'search/get_brand_form_strength'; ?>',
+				remote: {
+					url: '<?php echo base_url().'search/get_brand_form_strength?search=%QUERY' ?>',
+					wildcard: '%QUERY'
+				}
+			});
+
+			$('.table-input .typeahead').typeahead(null, {
+				//name: 'brands',
+				valueKey:'brand_name',
+				//display:'brand_name',
+				source: brands,
+				engine: Hogan,
+				template: '<p>{{brand_name}} - {{brand_dosage_form_name}} - ({{brand_strength_name}})</p>',
+				hint: true,
+				highlight: true,
+				minLength: 1
+
+			}).on('typeahead:selected', function($e, datum) {
+
+				var brandname = datum['brand_name'];
+				var strengthname = datum['brand_dosage_form_name'];
+				var formname = datum['brand_strength_name'];
+
+				console.log('Brand: ' + brandname + 'Strength:' + strengthname + 'Form:' + formname);
+			});
+		</script>
+
+
+
+
 		<!-- Get More doctor  -->
 		<script>
 			/* function filter(type) {

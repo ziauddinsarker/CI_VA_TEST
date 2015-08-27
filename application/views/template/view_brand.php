@@ -2,14 +2,11 @@
 	<div class="result-medicine" id="shop-result" >
 		
 		<article class="row">
-			<form class="form-inline large-search form-search form-emphasis" role="form" method="post">
-				<div class="col-md-6 col-md-offset-2">
-					<div class="form-group table-input">
-					   <label class="sr-only" for="name">Tablet Name</label>
-					   <input type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="name" id="name" placeholder="Enter Name">
+					<div class="col-md-6 col-md-offset-2">
+						<div class="form-group table-input">
+						   <input type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="name" id="name" placeholder="Enter Name">
+						</div>
 					</div>
-				</div>	
-			</form>
 		</article>
 	
 		<article class="row" id="div-dis-tha">
@@ -26,11 +23,7 @@
 				</div>				
 			</div>
 		</article>	
-		
-		<!-- Medicine Description -->
-						
 
-		
 	</div>
 
 </div>
