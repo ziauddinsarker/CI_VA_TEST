@@ -18,29 +18,43 @@
 				?>
 				<!-- Find Doctors by Category-->
 				<h4>Doctors By Category</h4>
-				<div class="row">
-				
-					<div class="col-md-6">
-						<div class="btn-group" data-toggle="buttons" id="filters"> 
-						<?php foreach($doctors_category_22_1 as $category){?>									
+				<div class="row doctor-category-filter">
+					<div class="col-md-3">
+						<div class="btn-group" data-toggle="buttons" id="filters">
+							<?php foreach($doctors_category_22_1 as $category){?>
 						<label class="btn btn-primary">
 						<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
 						 <?php echo $category->doctor_category_name;?>
-						</label> 
-						 <?php }?>  			
-						</div>	
+						</label>
+						</br>
+						 <?php }?>
+						</div>
 					</div>
-					
-					<div class="col-md-6">
-						<div class="btn-group" data-toggle="buttons" id="filters"> 
-						<?php foreach($doctors_category_22_2 as $category){?>									
+
+					<div class="col-md-3">
+						<div class="btn-group" data-toggle="buttons" id="filters">
+							<?php foreach($doctors_category_22_2 as $category){?>
 							<label class="btn btn-primary">
 							<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
 							 <?php echo $category->doctor_category_name;?>
-							</label> 
-						 <?php }?>  			
-						</div>	
+							</label>
+							</br>
+						 <?php }?>
+						</div>
 					</div>
+
+					<div class="col-md-3">
+						<div class="btn-group" data-toggle="buttons" id="filters">
+							<?php foreach($doctors_category_22_3 as $category){?>
+							<label class="btn btn-primary">
+							<input type="radio" name="district" class="track-order-change" id="<?php echo $category->doctor_category_name;?>" value="<?php echo $category->doctor_category_name;?>">
+							 <?php echo $category->doctor_category_name;?>
+							</label>
+							</br>
+						 <?php }?>
+						</div>
+					</div>
+					<div class="col-md-3"></div>
 				</div>
 
 

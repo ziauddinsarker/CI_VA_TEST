@@ -99,7 +99,10 @@
 	</header>
 	<div class="container banner">
 		<div class="row">
-			<img class="img-responsive" src="<?php echo base_url("assets/images/banner.jpg"); ?>">			
+			<div class="top-banner">
+					<h1>Space for Ad</h1>
+			</div>
+<!--			<img class="img-responsive" src="--><?php //echo base_url("assets/images/banner.jpg"); ?><!--">			-->
 		</div>
 	</div>
 	<!--Main Starts Here -->	
@@ -117,13 +120,15 @@
             <ul class="nav nav-tabs" role="tablist">
 			  <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
               <li role="presentation" class="active"><a href="#price" aria-controls="home" role="tab" data-toggle="tab">Medicine Price & Shops</a></li>
-              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Free Events</a></li>			  
-              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Review</a></li>			  
-              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Discount</a></li>
-              <li role="presentation"><a href="#doctor" aria-controls="messages" role="tab" data-toggle="tab">Doctor</a></li>
-              <li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Center</a></li>			  
-              <li role="presentation"><a href="#faqs" aria-controls="profile" role="tab" data-toggle="tab">FAQ</a></li>
-              <!-- <li role="presentation"><a href="#contact" aria-controls="settings" role="tab" data-toggle="tab">Contact Us</a></li> -->
+              <li role="presentation"><a href="#pharmacist" aria-controls="pharmacist" role="tab" data-toggle="tab">Pharmacist</a></li>
+			  <li role="presentation"><a href="#doctor" aria-controls="messages" role="tab" data-toggle="tab">Doctor</a></li>
+				<li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Center</a></li>
+              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Free Events</a></li>
+				<li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Discount</a></li>
+              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Blog</a></li>
+
+				<!-- <li role="presentation"><a href="#faqs" aria-controls="profile" role="tab" data-toggle="tab">FAQ</a></li>
+                   <li role="presentation"><a href="#contact" aria-controls="settings" role="tab" data-toggle="tab">Contact Us</a></li> -->
             </ul>
 
             <!-- Tab panes -->

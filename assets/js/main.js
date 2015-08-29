@@ -1,5 +1,5 @@
 
- // Instantiate the Bloodhound suggestion engine
+ /*// Instantiate the Bloodhound suggestion engine
 	var countries = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('brand_name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -20,14 +20,14 @@
 
 	// Initialize the Bloodhound suggestion engine
 	countries.initialize();
-	// Instantiate the Typeahead UI
-	$('.typeahead').typeahead(null, {
-		displayKey: 'brand_name',
-		source: countries.ttAdapter()
-	});
+	 // Instantiate the Typeahead UI
+	 $('.typeahead').typeahead(null, {
+		 displayKey: 'brand_name',
+		 source: countries.ttAdapter()
+	 });
+*/
 
 
- 
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
@@ -35,14 +35,7 @@
 	
 	
 
-	$(document).ready(function(){
-	  $('.slider1').bxSlider({
-		slideWidth: 200,
-		minSlides: 2,
-		maxSlides: 5,
-		slideMargin: 10
-	  });
-	});
+
 
 	/* 
 	 $(document).ready(function () {
@@ -120,8 +113,8 @@
 		* Show the Districs on the homepage when clicking on the division 
 		*
 		*/
-		
-		
+
+
 		
 		function showDistrict(str)
 		{
@@ -332,7 +325,7 @@
 
 */
 	
-	//To Open Modal 
+	//To Open Modal
 	$('#openBtn').click(function(){
 		$('.modal-body').load('/render/62805',function(result){
 			$('#myModal').modal({show:true});
@@ -391,6 +384,5 @@
 
 						 */
 		
-		
-		
-		
+
+

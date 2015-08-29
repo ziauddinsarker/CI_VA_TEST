@@ -133,26 +133,20 @@ class Home_model extends CI_Model
 	}
 	
 	
-	public function get() {
-  	  $office = $this->input->post('search');
-	  $this->db->select('full_name');
-	  $this->db->from('members');
-	  $this->db->like('full_name', $office);
-	  $query = $this->db->get();
-	  $office_array = array();
-	  foreach ($query->result() as $row) {
-	   $office_array[] = $row->full_name;
-	  }
-	  $data = $office_array;
-	  return $data;
-  }
-  
-
-	
-	
-	
-	
-	
+	public function get()
+	{
+		$office = $this->input->post('search');
+		$this->db->select('full_name');
+		$this->db->from('members');
+		$this->db->like('full_name', $office);
+		$query = $this->db->get();
+		$office_array = array();
+		foreach ($query->result() as $row) {
+			$office_array[] = $row->full_name;
+		}
+		$data = $office_array;
+		return $data;
+	}
 }
 
 ?>

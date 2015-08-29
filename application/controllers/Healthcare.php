@@ -10,6 +10,7 @@ class Healthcare extends CI_Controller {
 		$this->load->model('company_model'); // load Company model
 		$this->load->model('healthcare_model'); // load Company model
 
+		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
 		$this->data['healthcares'] = $this->healthcare_model->get_single_healthcare(); // calling Company model method getPosts()
 	
     }
