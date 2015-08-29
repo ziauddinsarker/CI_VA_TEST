@@ -27,7 +27,7 @@
 	 });
 */
 
- 
+
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
@@ -35,14 +35,7 @@
 	
 	
 
-	$(document).ready(function(){
-	  $('.slider1').bxSlider({
-		slideWidth: 200,
-		minSlides: 2,
-		maxSlides: 5,
-		slideMargin: 10
-	  });
-	});
+
 
 	/* 
 	 $(document).ready(function () {
@@ -120,8 +113,8 @@
 		* Show the Districs on the homepage when clicking on the division 
 		*
 		*/
-		
-		
+
+
 		
 		function showDistrict(str)
 		{
@@ -332,7 +325,7 @@
 
 */
 	
-	//To Open Modal 
+	//To Open Modal
 	$('#openBtn').click(function(){
 		$('.modal-body').load('/render/62805',function(result){
 			$('#myModal').modal({show:true});
@@ -391,6 +384,5 @@
 
 						 */
 		
-		
-		
-		
+
+

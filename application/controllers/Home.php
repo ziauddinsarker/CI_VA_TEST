@@ -27,16 +27,16 @@ class Home extends CI_Controller {
 		
 		//Get Events Data
 		$this->data['events'] = $this->event_model->getEvents(); // calling Event model method getPosts()
-		
+
 		//Get Company Data
-		$this->data['company_category_4'] = $this->company_model->getCompanyCategory(4,0); // calling Company model method getPosts()
-		$this->data['company_category_3_1'] = $this->company_model->getCompanyCategory(3,4); // calling Company model method getPosts()
-		$this->data['company_category_3_2'] = $this->company_model->getCompanyCategory(3,7); // calling Company model method getPosts()
-		$this->data['companys'] = $this->company_model->getCompanys(); // calling Company model method getPosts()
-		
+		$this->data['company_category_8'] = $this->company_model->getCompanyCategory(7,0); // calling Company model method getPosts()
+		$this->data['company_category_5'] = $this->company_model->getCompanyCategory(6,8); // calling Company model method getPosts()
+
 		//var_dump($this->data['company_category']);
 		//var_dump($this->data['companys']);
-		
+
+
+
 		$this->data['doctors_rating'] = $this->doctor_model->getDoctorsRating(); // calling Blog model method getPosts()
 		//var_dump($this->data['doctors_rating']);
 		
@@ -44,9 +44,11 @@ class Home extends CI_Controller {
 		$this->data['district'] = $this->home_model->getDistrict();
 		
 		//Get Doctors Data
-		$this->data['doctors_category_22_1'] = $this->home_model->getDoctorsCategoryOnly(22,0);			
-		$this->data['doctors_category_22_2'] = $this->home_model->getDoctorsCategoryOnly(22,23);			
-		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();	
+		$this->data['doctors_category_22_1'] = $this->home_model->getDoctorsCategoryOnly(15,0);
+		$this->data['doctors_category_22_2'] = $this->home_model->getDoctorsCategoryOnly(15,16);
+		$this->data['doctors_category_22_3'] = $this->home_model->getDoctorsCategoryOnly(15,30);
+
+		$this->data['doctors_category_only'] = $this->home_model->getDoctorsCategoryOnly();
 		
 		$this->data['get_top_ten_doctor'] = $this->home_model->getTopTenDoctor();	
 		//$this->data['get_rating_for_doctor'] = $this->doctor_model->get_rating_for_doctor();	
@@ -67,16 +69,16 @@ class Home extends CI_Controller {
 	//Index Function
 	public function index()	
 	{		
-			 $this->load->view('template/view_header', $this->data);								
-			//$this->load->view('view_home', $this->data); // load the view file , we are passing $data array to view file	
-			$this->load->view('template/view_about', $this->data);			
-			$this->load->view('template/view_brand', $this->data);			
-			$this->load->view('template/view_events', $this->data);			
-			$this->load->view('template/view_review_news', $this->data);			
-			$this->load->view('template/view_doctor', $this->data);			
-			$this->load->view('template/view_discount', $this->data);	 	
-			$this->load->view('template/view_healthcare');			
-			$this->load->view('template/view_faq', $this->data);			
+		 	$this->load->view('template/view_header', $this->data);
+			$this->load->view('template/view_about', $this->data);
+			$this->load->view('template/view_brand', $this->data);
+			$this->load->view('template/view_pharmacist', $this->data);
+			$this->load->view('template/view_doctor', $this->data);
+			$this->load->view('template/view_healthcare', $this->data);
+			$this->load->view('template/view_events', $this->data);
+			$this->load->view('template/view_discount', $this->data);
+			$this->load->view('template/view_review_news', $this->data);
+			//$this->load->view('template/view_faq', $this->data);
 			//$this->load->view('template/view_contact', $this->data);				
 			$this->load->view('template/view_footer', $this->data);	 
 	}	
@@ -117,15 +119,15 @@ class Home extends CI_Controller {
 	
 	//Get Thana from District 
 	public function get_thana_from_district(){		
-		$district = $this->input->post('data');	
-		$data = $this->location_model->get_thana_from_district($district);		
+		$district = $this->input->post('data');
+		$data = $this->location_model->get_thana_from_district($district);
 		echo json_encode($data);
 	}
 	
 	
 	//Get shop based on thana and brand
 	public function get_shop_based_on_thana_and_brand(){
-		$thana = $this->input->post('thana');		
+		$thana = $this->input->post('thana');
 		$brand = $this->input->post('brand');
 		$data['thana'] = $this->shop_model->get_shop_from_thana($thana);
 		$data['brand']= $this->shop_model->get_shop_based_on_thana_and_brand($brand);

@@ -22,8 +22,6 @@
 				<?php }?>	
 				</div>				
 			</div>
-		</article>	
-
+		</article>
 	</div>
-
 </div>

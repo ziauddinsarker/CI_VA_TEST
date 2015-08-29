@@ -11,7 +11,7 @@ class Search_model extends CI_Model {
 
 	}
 
-	public function search_brand_form_strength($brand = NULL){
+	public function search_brand_form_strength($brand){
 		//$brand = $this->input->post('name');
 		$this->db->select('brand.brand_name,brand_dosage_form_name,brand_strength_name');
 		$this->db->from('brand_strength_from_price');

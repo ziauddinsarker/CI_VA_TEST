@@ -14,9 +14,9 @@ class Search extends CI_Controller {
 
 	}
 
-	public function get_brand_form_strength(){
-		$brand_name = $this->input->get('name');
-		$data = $this->search_model->search_brand_form_strength($brand_name);
+	public function get_brand_form_strength($brand){
+		
+		$data = $this->search_model->search_brand_form_strength($brand);
 		echo json_encode($data);
 	}
 	

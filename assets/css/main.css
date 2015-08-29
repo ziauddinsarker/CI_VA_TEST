@@ -18,28 +18,6 @@
 	background-image: url("../images/hero-map@2x.jpg");
 }
 
-#footer{
-	position:relative;	
-}
-
-/* Set the fixed height of the footer here */
-/* #footer {
-    background-color: #f5f5f5;
-    height: auto;
-    padding: 10px 0;
-}
-footer {
-  /* position: fixed; */
-  /* Set the fixed height of the footer here */
-  /*bottom: 0;
-  width: 100%;
-  
-  height: 60px;
-  background-color: #f5f5f5;
-} */
-
-
-
 #doctors, #company {
     padding: 17px;
 }
@@ -311,32 +289,122 @@ th, td {
     padding: 23px 0px 0;
 }
  */
+/*************Top Part****************/
 
-.top-pharmacist {
+.top-upper{
     background: mintcream none repeat scroll 0 0;
     opacity: 0.76;
-	min-height:250px
+}
+.top-lower{
+    background: mintcream none repeat scroll 0 0;
+    opacity: 0.76;
 }
 
-.top-doctor {
-    background: mintcream none repeat scroll 0 0;
-    opacity: 0.76;
-	min-height:250px
+
+
+.top-style li {
+    color: #964f4c;
+    font-size: 15px;
+    font-weight: bold;
+    list-style: outside none none;
+    text-align: center;
+}
+.top-style a {
+     color: #964f4c;
+ }
+
+.top-style a:hover {
+    text-decoration: none;
 }
 
-.top-company {
-    background: mintcream none repeat scroll 0 0;
-    opacity: 0.76;
-	min-height:250px
+.rsb-value{
+    color:#5B9BD5
+}
+
+.rsb-text{
+    color:#FF6347
+}
+
+.top-style ul {
+    padding-top: 8px;
 }
 
 .all-top {
     margin-bottom: 28px;
 }
 
+.top-title {
+    background: #964f4c none repeat scroll 0 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
 
+/***************Footer**********************/
+.disclaimer {
+    color: #797979;
+    font-size: 11px;
+}
+#footer{
+    background: #404040 none repeat scroll 0 0;
+    position: relative;
+    color: #797979;
+    padding-top: 10px;
+}
 
+
+/***************Header******************/
+.top-banner {
+    background-color: #adadad;
+    border: 1px solid;
+    color: #fff;
+    height: 120px;
+    text-align: center;
+}
+
+
+/*************Shop result*******************/
+.medicine-description {
+    background-color: #FFFFE0;
+}
+
+.shop-result-brand_name {
+    color: #964f4c;
+    font-weight: bold;
+}
+
+.shop-result-generic-name , .shop-result-manufacturer{
+    font-weight: bold;
+}
+
+.medicine-result-description > p {
+    line-height: 10px;
+}
+
+.medicine-description .col-md-4 > h5 {
+    line-height: 10px;
+}
+
+.medicine-result-middle {
+    text-align: center;
+}
+
+/***************Doctors Tab*****************/
+.doctor-category-filter .col-md-3 .btn-group .btn {
+    width: 221px;
+}
+
+#healthcare_content{
+    overflow-y: scroll;
+    height:600px;
+    display: none;
+    margin-top: 10px;
+}
 
 /************Typeahed file*************/
 

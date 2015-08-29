@@ -98,43 +98,26 @@
 				
 				<h3>Healthcare Centers By Category</h3>	
 				
-				<div class="btn-group" id="filters"> 
-					
-					<div class="row">
-						<div class="col-md-4">
-						<?php foreach($company_category_4 as $company){?>									
-							<label class="btn btn-primary">
-							<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
-							</label> 
-							<br>
-						<?php }?>  
+				<div class="btn-group" id="filters">
+					<article class="row">
+						<div class="col-md-12">
+							<?php foreach($company_category_8 as $company){?>
+								<label class="btn btn-primary">
+									<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
+								</label>
+							<?php }?>
 						</div>
-						
-						<div class="col-md-4">
-						<?php foreach($company_category_3_1 as $company){?>									
-							<label class="btn btn-primary">
-							<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
-							</label> 
-							<br>
-						<?php }?> 
+						<div class="col-md-12">
+							<?php foreach($company_category_5 as $company){?>
+								<label class="btn btn-primary">
+									<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
+								</label>
+							<?php }?>
 						</div>
-						
-						<div class="col-md-4">
-						<?php foreach($company_category_3_2 as $company){?>									
-							<label class="btn btn-primary">
-							<input type="radio" name="comapny_category" id="<?php echo $company->company_cat_name;?>" value="<?php echo $company->company_cat_name; ?>" onclick="getHealthcareByCat(this)" ><?php echo $company->company_cat_name;?>
-							</label> 
-							<br>
-						<?php }?> 
-						</div>
-					</div>
-					
-				
-				
-				
-				
-								
-				</div>	
+					</article>
+
+
+				</div>
 	
 	
 				<div id="healthcare_content"></div>
