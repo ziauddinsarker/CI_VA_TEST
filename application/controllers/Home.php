@@ -80,12 +80,14 @@ class Home extends CI_Controller {
 			$this->load->view('template/view_review_news', $this->data);
 			//$this->load->view('template/view_faq', $this->data);
 			//$this->load->view('template/view_contact', $this->data);				
-			$this->load->view('template/view_footer', $this->data);	 
+			$this->load->view('template/view_footer', $this->data);
 	}	
 
 	
-	
-	
+	public function view_doctor(){
+		$this->load->view('view_doctor');
+		$this->load->view('template/view_footer', $this->data);
+	}
 	
 	
 	//Load all data from brand table and show as json 
